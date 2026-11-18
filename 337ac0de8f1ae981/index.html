@@ -70,82 +70,106 @@ footer{max-width:1100px;margin:0 auto;padding:0 18px 24px;color:var(--mute);font
   .win{font-size:32px}.card .row{font-size:21px}.pill{font-size:11px}
 
 }
+.cap{text-align:center;font-size:44px;font-weight:900;letter-spacing:-.8px;margin:18px 0 0}
+.cap small{display:block;font-size:20px;font-weight:600;color:var(--mute);letter-spacing:0;margin-top:4px}
+.store{max-width:760px;margin:0 auto;background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 12px 30px rgba(15,27,45,.10);animation:pop .4s}
+.store .bar{display:flex;align-items:center;gap:10px;padding:12px 18px;background:#f1f3f6;border-bottom:1px solid var(--line);font-size:15px;color:var(--ink2);font-weight:700}
+.store .bar i{width:11px;height:11px;border-radius:50%;background:#d4d9e1;display:inline-block}
+.store .bd{padding:20px 24px}
+.store .top{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:6px}
+.store .top b{font-size:26px}
+.bdg{font-size:15px;font-weight:800;padding:4px 12px;border-radius:8px}
+.bdg.paid{background:#cdf3dc;color:#0b6b3a}.bdg.unf{background:#fff1c2;color:#7a5a00}
+.store .meta{color:var(--mute);font-size:16px;margin-bottom:14px}
+.store .grid{display:grid;grid-template-columns:1.4fr 1fr;gap:16px}
+.store .box{border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:17px}
+.store .box .l{font-size:13px;font-weight:800;color:var(--mute);text-transform:uppercase;letter-spacing:.8px;margin-bottom:4px}
+.store .line{display:flex;justify-content:space-between;gap:10px;padding:4px 0}
+.store .tot{border-top:1px solid var(--line);margin-top:6px;padding-top:8px;font-weight:800;font-size:19px}
+.store .btnf{margin-top:14px;display:inline-block;background:#1f2937;color:#fff;border-radius:10px;padding:10px 16px;font-weight:700;font-size:16px}
+.checks{background:#fff;border:1px solid var(--line);border-radius:22px;padding:16px 22px;animation:pop .35s}
+.checks .lab{font-size:14px;font-weight:800;color:var(--mute);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
+.ck{display:flex;gap:12px;align-items:flex-start;font-size:19px;padding:7px 0;border-bottom:1px solid #f0f3f7;animation:pop .3s}
+.ck:last-child{border-bottom:0}
+.ck i{flex:none;width:28px;height:28px;border-radius:50%;background:var(--badSoft);color:var(--bad);display:grid;place-items:center;font-style:normal;font-weight:900;font-size:16px}
+.mail .hd{font-size:15px;color:var(--mute);margin-bottom:8px}
+.mail .tx{font-size:20px;margin-bottom:12px}
+.rcpt{border:1px dashed #b9c3d3;border-radius:14px;padding:6px;background:#f7f9fc}
+.rcpt .rin{background:#fff;border-radius:10px;padding:14px 16px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.rcpt .ok{width:40px;height:40px;border-radius:50%;background:#16a34a;color:#fff;display:grid;place-items:center;margin:0 auto 6px;font-weight:900;font-size:22px}
+.rcpt .amt{font-size:30px;font-weight:900}
+.rcpt .sm{font-size:14px;color:var(--mute)}
+.rcpt .fn{font-size:13px;color:var(--mute);margin-top:4px;text-align:left}
+.tallybig{max-width:760px;margin:0 auto}
+.tallybig .tr{font-size:24px;padding:16px 0}
+.tallybig .tr b{font-size:28px}
+.tallybig .tr small{display:block;font-size:16px;color:var(--mute);font-weight:500}
+@media (max-width:820px){.cap{font-size:32px}.store .grid{grid-template-columns:1fr}.tallybig .tr{font-size:19px}.tallybig .tr b{font-size:22px}}
 </style>
 </head>
 <body>
 <header><div class="logo"><div class="mark">A</div>Avorth</div><span class="pill">● Sample data</span></header>
-<main>
-  <div class="dots" id="dots"></div>
-
-  <section class="screen" data-s="0">
-    <div class="big">
-      <h1>Every order checked<br>before it ships.</h1>
-      <p>Orders come in all day and all night. Avorth checks each one and texts you. You answer with one word.</p>
-      <div class="rule">The rule: Nothing ships until the money is really in your account.</div>
-    </div>
-  </section>
-
-  <section class="screen" data-s="1">
-    <div class="rule"><span>The rule:</span>Nothing ships until the money is really in your account.</div>
-    <div class="title">A fake order comes in</div>
-    <div class="stage">
-      <div class="phone"><div class="ps">
-        <div class="ph"><div class="mark">A</div><div><b>Avorth Order Helper</b><span>Lawrence&#8217;s phone · text</span></div></div>
-        <div class="msgs" id="m1"></div>
-      </div></div>
-      <div class="side" id="s1"></div>
-    </div>
-  </section>
-
-  <section class="screen" data-s="2">
-    <div class="rule"><span>The rule:</span>Nothing ships until the money is really in your account.</div>
-    <div class="title">A real order comes in</div>
-    <div class="stage">
-      <div class="phone"><div class="ps">
-        <div class="ph"><div class="mark">A</div><div><b>Avorth Order Helper</b><span>Lawrence&#8217;s phone · text</span></div></div>
-        <div class="msgs" id="m2"></div>
-      </div></div>
-      <div class="side" id="s2"></div>
-    </div>
-  </section>
-
-  <section class="screen" data-s="3">
-    <div class="big">
-      <h1>Try it free on your real store for 30 days.</h1>
-      <p>Nothing ships until the money is really in your account. You still say yes or no to every order.</p>
-      <div class="cta">Avorth · avorth.com</div>
-    </div>
-  </section>
-
-  <div class="nav">
-    <button class="btn" id="back">← Back</button>
-    <button class="btn" id="auto">▶ Play</button>
-    <button class="btn primary" id="next">Next →</button>
-  </div>
-</main>
-<footer>Sample data: the customer, order and prices are made up to show how it works.</footer>
+<main><div class="dots" id="dots"></div>
+<section class="screen" data-s="0"><div class="big"><h1>Every order checked<br>before it ships.</h1>
+<p>Orders come in all day and all night. Avorth checks each one and texts you. You answer with one word.</p>
+<div class="rule">The rule: Nothing ships until the money is really in your account.</div></div></section>
+<section class="screen" data-s="1"><div class="rule"><span>The rule:</span>Nothing ships until the money is really in your account.</div>
+<div class="title">2:14 AM. A new order comes in.</div>
+<div class="store"><div class="bar"><i></i><i></i><i></i>&nbsp; Your Store · Orders</div><div class="bd">
+<div class="top"><b>Order #1187</b><span class="bdg paid">● Paid</span><span class="bdg unf">Unfulfilled</span></div>
+<div class="meta">Wed, Nov 18 at 2:14 AM · Online store</div>
+<div class="grid"><div class="box"><div class="l">Items</div>
+<div class="line"><span>Hospital Disinfectant · 10 cases × $124</span><span>$1,240.00</span></div>
+<div class="line"><span>Shipping: Overnight</span><span>Free</span></div>
+<div class="line tot"><span>Total</span><span>$1,240.00</span></div></div>
+<div class="box"><div class="l">Customer</div>Brandon Mills<br><span style="color:var(--mute)">New customer · 1st order</span><div class="l" style="margin-top:10px">Ship to</div>Miami, FL</div></div>
+<div class="btnf">Buy shipping label</div></div></div>
+<div class="cap">Looks paid. Looks real.<small>This is the kind of order that cost you money before.</small></div></section><section class="screen" data-s="2"><div class="rule"><span>The rule:</span>Nothing ships until the money is really in your account.</div><div class="title">What Avorth checked</div><div class="stage"><div class="phone"><div class="ps"><div class="ph"><div class="mark">A</div><div><b>Avorth Order Helper</b><span>Lawrence&#8217;s phone · text</span></div></div><div class="msgs" id="m2"></div></div></div><div class="side" id="s2"></div></div></section><section class="screen" data-s="3"><div class="rule"><span>The rule:</span>Nothing ships until the money is really in your account.</div><div class="title">A fake receipt by email</div><div class="stage"><div class="phone"><div class="ps"><div class="ph"><div class="mark">A</div><div><b>Avorth Order Helper</b><span>Lawrence&#8217;s phone · text</span></div></div><div class="msgs" id="m3"></div></div></div><div class="side" id="s3"></div></div></section><section class="screen" data-s="4"><div class="rule"><span>The rule:</span>Nothing ships until the money is really in your account.</div><div class="title">A real order comes in</div><div class="stage"><div class="phone"><div class="ps"><div class="ph"><div class="mark">A</div><div><b>Avorth Order Helper</b><span>Lawrence&#8217;s phone · text</span></div></div><div class="msgs" id="m4"></div></div></div><div class="side" id="s4"></div></div></section><section class="screen" data-s="5"><div class="rule"><span>The rule:</span>Nothing ships until the money is really in your account.</div><div class="title">Your month so far</div>
+<div class="tally tallybig"><div class="lab">November · sample numbers</div>
+<div class="tr"><span>Fake orders stopped<small>2 today: $1,240 + $1,476</small></span><b>4 · $5,180 kept</b></div>
+<div class="tr"><span>Shipping saved<small>Cheaper of FedEx or UPS, every label</small></span><b>$412.75</b></div>
+<div class="tr"><span>Real orders shipped<small>Every one with the money in your account first</small></span><b>84</b></div></div></section>
+<section class="screen" data-s="6"><div class="big"><h1>Next step: we set this up on your real store.</h1>
+<div class="rule">Nothing ships until the money is really in your account.</div>
+<p style="margin-top:18px">You still say yes or no to every order.</p><div class="cta">Avorth</div></div></section>
+<div class="nav"><button class="btn" id="back">← Back</button><button class="btn" id="auto">▶ Play</button><button class="btn primary" id="next">Next →</button></div>
+</main><footer>Sample data: customers, orders, receipts and prices are made up to show how it works.</footer>
 <script>
 (function(){
 "use strict";
+var RC='<div class="card mail"><div class="lab">New email · website order</div><div class="hd">From: &#8220;a buyer&#8221; · purchasing.dept.orders@mail-sample.net</div><div class="tx">&#8220;Ordering 9 cases of disinfectant and 4 cases of cleaner from your website. Payment sent, receipt attached. Please ship today.&#8221;</div><div class="rcpt"><div class="rin"><div class="ok">✓</div><div class="sm">PAYMENT RECEIPT · Transfer complete</div><div class="amt">$1,476.00</div><div class="sm">To: Hollywood Janitorial Supply</div></div><div class="fn">📎 receipt_screenshot.png</div></div></div>';
 var S={
- 1:[{k:'card',x:'<div class="lab">New order · online store</div><div class="row">$1,240 · 10 cases of disinfectant</div><div class="sub">From: a brand-new buyer</div><span class="tag paid">Says: Paid</span>'},
-    {k:'stop',x:'<big>🛑 Don&#8217;t ship this one.</big>1. The money never really came in.\n2. Name and address don&#8217;t match.\n3. Brand-new buyer wants it rushed.'},
+ 2:[{k:'chk',x:'The money never actually landed in your account.'},
+    {k:'chk',x:'The card was flagged by the bank.'},
+    {k:'chk',x:'Billing and shipping names and addresses don&#8217;t match.'},
+    {k:'chk',x:'It ships to a reshipping warehouse, not a business.'},
+    {k:'chk',x:'A brand-new buyer wants a big order rushed.'},
+    {k:'chk',x:'The email doesn&#8217;t match the name.'},
+    {k:'stop',x:'<big>🛑 Don&#8217;t ship this one.</big>Order #1187 · $1,240\n1. The money never landed.\n2. The bank flagged the card.\n3. It goes to a reshipping warehouse.'},
     {k:'agent',x:'Reply <b>NO SHIP</b> or <b>SHIP</b>'},
     {k:'me',x:'NO SHIP'},
     {k:'agent',x:'Done. Order cancelled.\nNo box packed. No label bought.'},
-    {k:'win',x:'You just saved $1,240.<small>Before it left your shelf.</small>'}],
- 2:[{k:'card',x:'<div class="lab">Text from a customer</div><div class="row">&#8220;We ran out. Need 6 cases of Sapphire Fresh by Thursday.&#8221;</div><div class="sub">Dana Ruiz · buys from you every month</div>'},
+    {k:'win',x:'You just saved $1,240.'}],
+ 3:[{k:'card',x:RC},
+    {k:'stop',x:'<big>🛑 This receipt is fake.</big>No money arrived in your account.\nDon&#8217;t ship.'},
+    {k:'agent',x:'Reply <b>NO SHIP</b> or <b>SHIP</b>'},
+    {k:'me',x:'NO SHIP'},
+    {k:'agent',x:'Done. Nothing ships until the money is really in your account.'},
+    {k:'win',x:'You just saved $1,476.'}],
+ 4:[{k:'card',x:'<div class="lab">Text from a customer</div><div class="row">&#8220;We ran out. Need 6 cases of Sapphire Fresh by Thursday.&#8221;</div><div class="sub">Dana Ruiz · buys from you every month</div>'},
     {k:'good',x:'<big>✅ This one&#8217;s good. Ship it.</big>Dana · 6 cases · $231\nThe money is in your account ✓\nDue Thursday\n\nSend with <b>FedEx $61.92</b>\n(UPS is $74.18, so you save $12.26)\nBoth get there Thursday.\nReply <b>Y</b>'},
     {k:'me',x:'Y'},
     {k:'agent',x:'Label printed. Dana has her tracking number.'},
-    {k:'win',x:'Shipped on time.<small>And $12.26 less on shipping.</small>'},
-    {k:'tally',x:'<div class="lab">This month so far (sample)</div><div class="tr"><span>Fake orders stopped</span><b>3 · $3,960 kept</b></div><div class="tr"><span>Shipping saved</span><b>$412.75</b></div><div class="tr"><span>Real orders shipped</span><b>84</b></div>'}]
+    {k:'win',x:'Shipped on time.<small>And $12.26 less on shipping.</small>'}]
 };
-var N=4,cur=0,timers=[],auto=false;
+var N=7,cur=0,timers=[],auto=false;
 var $=function(i){return document.getElementById(i);};
 function clear(){timers.forEach(clearTimeout);timers=[];}
 function put(n,e){
-  if(e.k==='card'||e.k==='win'||e.k==='tally'){var d=document.createElement('div');d.className=e.k==='card'?'card':e.k==='tally'?'tally':'win green';d.innerHTML=e.x;$('s'+n).appendChild(d);return;}
+  var side=$('s'+n);
+  if(e.k==='chk'){var c=side.querySelector('.checks');if(!c){c=document.createElement('div');c.className='checks';c.innerHTML='<div class="lab">Order #1187 · what Avorth checked</div>';side.appendChild(c);}
+    var r=document.createElement('div');r.className='ck';r.innerHTML='<i>✗</i><span>'+e.x+'</span>';c.appendChild(r);return;}
+  if(e.k==='card'||e.k==='win'){var d=document.createElement('div');d.className=e.k==='card'?(e.x.indexOf('<div class="card')===0?'':'card'):'win green';d.innerHTML=e.x;side.appendChild(d);return;}
   var b=document.createElement('div');b.className='b '+e.k;b.innerHTML=e.x;var m=$('m'+n);m.appendChild(b);m.scrollTop=m.scrollHeight;
 }
 function go(n,instant){
@@ -155,7 +179,7 @@ function go(n,instant){
   $('back').disabled=cur===0;$('next').disabled=cur===N-1;
   if(cur===N-1&&auto){auto=false;$('auto').textContent='▶ Play';}
   var ev=S[cur];
-  if(!ev){if(auto)timers.push(setTimeout(function(){go(cur+1);},4000));return;}
+  if(!ev){if(auto)timers.push(setTimeout(function(){go(cur+1);},cur===1?5000:4500));return;}
   $('m'+cur).innerHTML='';$('s'+cur).innerHTML='';
   if(instant){ev.forEach(function(e){put(cur,e);});return;}
   var t=400,c=cur;
@@ -163,10 +187,10 @@ function go(n,instant){
     if(e.k==='agent'||e.k==='stop'||e.k==='good'){
       timers.push(setTimeout(function(){var ty=document.createElement('div');ty.className='typing';ty.innerHTML='<i></i><i></i><i></i>';var m=$('m'+c);m.appendChild(ty);m.scrollTop=m.scrollHeight;
         timers.push(setTimeout(function(){ty.remove();put(c,e);},700));},t));
-      t+=700+1900;
-    } else {timers.push(setTimeout(function(){put(c,e);},t));t+=e.k==='me'?1500:1300;}
+      t+=700+(e.k==='agent'?1500:2300);
+    } else {timers.push(setTimeout(function(){put(c,e);},t));t+=e.k==='chk'?900:e.k==='me'?1400:1500;}
   });
-  timers.push(setTimeout(function(){if(auto)timers.push(setTimeout(function(){go(cur+1);},3500));},t));
+  timers.push(setTimeout(function(){if(auto)timers.push(setTimeout(function(){go(cur+1);},3000));},t));
 }
 $('next').onclick=function(){go(cur+1);};
 $('back').onclick=function(){go(cur-1,true);};
