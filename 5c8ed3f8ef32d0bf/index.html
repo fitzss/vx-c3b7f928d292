@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Avorth x Domeplax: Every truck leaves with the right material</title>
+<style>
+:root{
+  --ink:#0f1b2d; --ink2:#43526b; --mute:#7a879c; --line:#e3e8f0; --bg:#f4f6fa; --card:#fff;
+  --brand:#1747d6; --brand2:#0c2f9e; --brandSoft:#e8eefc; --ok:#12805c; --okSoft:#e3f5ee;
+  --warn:#b45309; --warnSoft:#fdf1e2; --agent:#eef1f6; --me:#1747d6;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 24px;background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.2px}
+.logo .mark{width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,var(--brand),#4b7bff);display:grid;place-items:center;color:#fff;font-weight:800;font-size:16px}
+.logo small{display:block;font-weight:500;color:var(--mute);font-size:12px;letter-spacing:0}
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;padding:4px 10px;border-radius:999px;background:var(--warnSoft);color:var(--warn);white-space:nowrap}
+main{max-width:1240px;margin:0 auto;padding:20px 20px 40px}
+.hero{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:14px}
+.hero h1{margin:0;font-size:28px;letter-spacing:-.4px}
+.hero p{margin:4px 0 0;color:var(--ink2)}
+.steps{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0 16px}
+.steps button{border:1px solid var(--line);background:#fff;color:var(--ink2);border-radius:999px;padding:6px 12px;font:600 12.5px/1 inherit;cursor:pointer}
+.steps button.on{background:var(--brand);border-color:var(--brand);color:#fff}
+.steps button.done{color:var(--brand);border-color:#c7d4fa}
+.scenebar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin-bottom:16px}
+.scenebar .t{font-size:12px;font-weight:700;color:var(--brand);text-transform:uppercase;letter-spacing:.8px}
+.scenebar h2{margin:2px 0 2px;font-size:19px}
+.scenebar p{margin:0;color:var(--ink2);max-width:720px}
+.ctrls{display:flex;gap:8px;align-items:center}
+.btn{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:10px;padding:9px 14px;font:600 14px/1 inherit;cursor:pointer}
+.btn:hover{border-color:#b9c4d6}
+.btn.primary{background:var(--brand);border-color:var(--brand);color:#fff}
+.btn.primary:hover{background:var(--brand2)}
+.btn:disabled{opacity:.4;cursor:default}
+.stage{display:grid;grid-template-columns:minmax(260px,330px) minmax(260px,330px) 1fr;gap:18px;align-items:start}
+.col h3{margin:0 0 8px;font-size:12.5px;color:var(--mute);text-transform:uppercase;letter-spacing:.7px;display:flex;justify-content:space-between}
+/* phone */
+.phone{background:#0f1b2d;border-radius:34px;padding:10px;box-shadow:0 12px 30px rgba(15,27,45,.18)}
+.screen{background:#fff;border-radius:26px;overflow:hidden;display:flex;flex-direction:column;height:560px}
+.sb{display:flex;justify-content:space-between;padding:8px 18px 2px;font-size:12px;font-weight:700}
+.chead{display:flex;align-items:center;gap:10px;padding:8px 14px 10px;border-bottom:1px solid var(--line)}
+.av{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--brand),#4b7bff);color:#fff;display:grid;place-items:center;font-weight:800;font-size:14px;flex:none}
+.chead b{display:block;font-size:14px}
+.chead span{font-size:11.5px;color:var(--mute)}
+.msgs{flex:1;overflow-y:auto;padding:12px 10px;display:flex;flex-direction:column;gap:7px;scroll-behavior:smooth}
+.b{max-width:84%;padding:8px 11px;border-radius:17px;font-size:13.5px;line-height:1.38;white-space:pre-line;animation:pop .28s ease-out}
+.b.agent{align-self:flex-start;background:var(--agent);border-bottom-left-radius:5px}
+.b.me{align-self:flex-end;background:var(--me);color:#fff;border-bottom-right-radius:5px}
+.b.photo{padding:4px;background:var(--me)}
+.b.photo svg{display:block;border-radius:13px}
+.b.voice{display:flex;align-items:center;gap:8px}
+.wave{display:flex;gap:2px;align-items:center}
+.wave i{display:block;width:3px;background:#fff;border-radius:2px;opacity:.85}
+.vt{font-size:11.5px;opacity:.85;display:block;margin-top:4px;font-style:italic}
+.note{align-self:center;font-size:11px;color:var(--mute);background:#f6f8fb;border:1px dashed var(--line);border-radius:999px;padding:3px 10px;animation:pop .28s ease-out;text-align:center}
+.typing{align-self:flex-start;background:var(--agent);border-radius:17px;padding:10px 12px;display:flex;gap:4px}
+.typing i{width:6px;height:6px;border-radius:50%;background:#9aa6b8;animation:blink 1s infinite}
+.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+.compose{border-top:1px solid var(--line);padding:8px 12px 12px;display:flex;gap:8px;align-items:center}
+.compose div{flex:1;border:1px solid var(--line);border-radius:999px;padding:7px 12px;font-size:12.5px;color:#aab3c2}
+.quiet{color:var(--mute);font-size:12px;text-align:center;margin-top:30%;padding:0 20px}
+@keyframes pop{from{opacity:0;transform:translateY(6px) scale(.98)}to{opacity:1;transform:none}}
+@keyframes blink{0%,100%{opacity:.3}50%{opacity:1}}
+/* record */
+.panel{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.phd{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.phd b{font-size:14px}
+.sys{display:flex;gap:6px;flex-wrap:wrap}
+.sys span{font-size:11px;font-weight:600;padding:3px 8px;border-radius:999px;background:var(--okSoft);color:var(--ok)}
+.sys span.next{background:var(--brandSoft);color:var(--brand)}
+.auto{font-size:11.5px;color:var(--mute);padding:8px 16px 0}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+th{text-align:left;font-size:10.5px;color:var(--mute);text-transform:uppercase;letter-spacing:.6px;font-weight:700;padding:8px 10px;border-bottom:1px solid var(--line)}
+td{padding:8px 10px;border-bottom:1px solid #f0f3f7;vertical-align:top}
+td small{display:block;color:var(--mute);font-size:11px}
+s{color:#b0b8c6}
+tr.flash td{animation:flash 2.2s ease-out}
+@keyframes flash{0%{background:#fff4c4}100%{background:transparent}}
+.st{font-size:11px;font-weight:700;padding:2px 7px;border-radius:999px;white-space:nowrap}
+.st.active{background:var(--brandSoft);color:var(--brand)}
+.st.closed{background:#eef1f5;color:var(--ink2)}
+.st.fixed{background:var(--warnSoft);color:var(--warn)}
+.st.ready{background:var(--okSoft);color:var(--ok)}
+.sec{padding:10px 16px 4px;font-size:11px;font-weight:700;color:var(--mute);text-transform:uppercase;letter-spacing:.6px}
+.parts{margin:0 16px 6px;border:1px solid var(--line);border-radius:10px;padding:9px 12px;font-size:12.5px;display:flex;justify-content:space-between;gap:10px;animation:pop .3s}
+.parts .st{align-self:flex-start}
+.parts.empty{color:var(--mute);border-style:dashed;animation:none}
+.log{list-style:none;margin:0;padding:4px 16px 14px;font-size:12.5px;max-height:190px;overflow-y:auto}
+.log li{display:flex;gap:8px;padding:5px 0;border-bottom:1px dashed #edf0f5;animation:pop .3s}
+.log li:last-child{border-bottom:0}
+.log .tm{color:var(--mute);font-variant-numeric:tabular-nums;min-width:58px;font-size:11.5px;padding-top:1px}
+.log .src{font-size:10.5px;font-weight:700;color:var(--brand);background:var(--brandSoft);border-radius:5px;padding:1px 5px;height:fit-content;white-space:nowrap}
+/* overlay cards */
+.card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:36px;box-shadow:0 10px 30px rgba(15,27,45,.06)}
+.intro{display:grid;grid-template-columns:1.2fr 1fr;gap:30px;align-items:center}
+.intro h2{font-size:34px;line-height:1.12;margin:0 0 12px;letter-spacing:-.6px}
+.intro p{color:var(--ink2);font-size:16px;margin:0 0 18px}
+.kick{font-size:12px;font-weight:700;color:var(--brand);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px}
+.cast{display:grid;gap:10px}
+.who{display:flex;gap:12px;align-items:center;border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.who .av{width:38px;height:38px}
+.who b{display:block}.who span{font-size:13px;color:var(--mute)}
+.av.g{background:linear-gradient(135deg,#0f766e,#14b8a6)}.av.o{background:linear-gradient(135deg,#b45309,#f59e0b)}.av.p{background:linear-gradient(135deg,#6d28d9,#a78bfa)}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:22px 0}
+.chg{border:1px solid var(--line);border-radius:14px;padding:16px}
+.chg .ic{width:34px;height:34px;border-radius:10px;background:var(--brandSoft);color:var(--brand);display:grid;place-items:center;font-weight:800;margin-bottom:10px}
+.chg b{display:block;margin-bottom:4px}.chg span{font-size:13.5px;color:var(--ink2)}
+.layer{display:grid;gap:8px;margin:6px 0 22px;max-width:760px}
+.layer div{border-radius:12px;padding:12px 16px;font-size:14px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.layer .l1{background:linear-gradient(90deg,var(--brand),#4b7bff);color:#fff;font-weight:700}
+.layer .l2{background:var(--brandSoft);color:var(--brand2);font-weight:600}
+.layer .l3{background:#eef1f5;color:var(--ink2);font-weight:600}
+.layer small{font-weight:500;opacity:.85}
+.cta{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px;background:var(--ink);color:#fff;border-radius:16px;padding:22px 24px}
+.cta b{font-size:20px;display:block}.cta span{color:#c6cfdd;font-size:14px}
+.cta .btn{background:#fff;color:var(--ink);border:0;text-decoration:none}
+footer{max-width:1240px;margin:0 auto;padding:0 20px 30px;color:var(--mute);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.hide{display:none!important}
+@media (max-width:1060px){.stage{grid-template-columns:1fr 1fr}.col.rec{grid-column:1/-1}.grid4{grid-template-columns:1fr 1fr}}
+@media (max-width:680px){
+  header{padding:10px 14px}.logo small{display:none}
+  main{padding:14px 12px 30px}.hero h1{font-size:22px}
+  .stage{grid-template-columns:1fr}.screen{height:440px}
+  .intro{grid-template-columns:1fr}.intro h2{font-size:26px}.card{padding:22px}
+  .grid4{grid-template-columns:1fr}.ctrls{width:100%}.ctrls .btn{flex:1}
+  table{font-size:11.5px}th,td{padding:6px}
+}
+.tk{margin:6px 16px 4px;border:1px solid var(--line);border-radius:12px;overflow:hidden;animation:pop .3s}
+.tk .th{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:8px 12px;background:#f7f9fc;border-bottom:1px solid var(--line);font-size:12.5px}
+.tk .tg{display:grid;grid-template-columns:repeat(4,1fr)}
+.tk .tg div{padding:6px 12px;border-right:1px solid #f0f3f7;border-bottom:1px solid #f0f3f7;font-size:12.5px}
+.tk .tg div small{display:block;font-size:10px;color:var(--mute);text-transform:uppercase;letter-spacing:.5px}
+.st.green{background:#d9f5e6;color:#0b7a46}.st.red{background:#fde4e1;color:#b42318}.st.hold{background:var(--warnSoft);color:var(--warn)}
+.ex{margin:0 16px 6px;border:1px solid #f6d2cc;background:#fff8f6;border-radius:10px;padding:8px 12px;font-size:12.5px;display:flex;justify-content:space-between;gap:10px;animation:pop .3s}
+.b.stop{background:#b42318;color:#fff;font-weight:600}
+.b.go{background:#0b7a46;color:#fff;font-weight:600}
+.file{display:flex;gap:10px;align-items:center}
+.file .fi{width:32px;height:40px;border-radius:5px;background:#fff;color:#b42318;display:grid;place-items:center;font-size:9.5px;font-weight:800;border:1px solid var(--line);flex:none}
+.b.agent .file .fi{color:var(--brand)}
+.b.email{align-self:flex-end;background:#fff;color:var(--ink);border:1px solid var(--line);border-bottom-right-radius:5px}
+.b.email .eh{font-size:11px;color:var(--mute);display:block;margin-bottom:3px}
+.chip{align-self:flex-start;display:flex;gap:6px;animation:pop .28s}
+.chip span{font-size:12px;font-weight:700;border:1px solid #c7d4fa;color:var(--brand);border-radius:999px;padding:4px 10px;background:#fff}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+@media (max-width:680px){.tk .tg{grid-template-columns:repeat(2,1fr)}}
+.ex .st{align-self:flex-start}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo"><div class="mark">A</div><div>Avorth<small>AI colleagues · custom software · avorth.com</small></div></div>
+  <span class="pill">● Sample data: fictional people, lots, weights &amp; rates</span>
+</header>
+<main>
+  <div class="hero"><div>
+    <h1>Every truck leaves with the right material.</h1>
+    <p>Even when the driver doesn&#8217;t know what he&#8217;s picking up. A day at Domeplax with an Avorth AI colleague running the yard by text, photo and email.</p>
+  </div></div>
+  <div class="steps" id="steps"></div>
+  <div class="scenebar" id="scenebar">
+    <div><div class="t" id="sTag"></div><h2 id="sTitle"></h2><p id="sDesc"></p></div>
+    <div class="ctrls">
+      <button class="btn" id="back">← Back</button>
+      <button class="btn" id="auto">▶ Autoplay</button>
+      <button class="btn primary" id="next">Next →</button>
+    </div>
+  </div>
+  <section class="card intro" id="introCard">
+    <div>
+      <div class="kick">Demo · Releases, outbound loading, scale tickets &amp; BOLs</div>
+      <h2>Every truck leaves with the right material.</h2>
+      <p>Even when the driver doesn&#8217;t know what he&#8217;s picking up. The mill&#8217;s order email becomes a release automatically. At the gate, the driver texts a photo of his PO and Julie gives him his door. The loader&#8217;s pick ticket carries the door, a lot-tag photo has to match before loading, and Julie confirms the weigh-out on a prefilled BOL.</p>
+      <p style="font-size:14px">Inbound containers, bags and pallets, inventory by client and invoice lines all come from the same photos and scale readings. Syncs to Sigma Scale, so nobody retypes a ticket.</p>
+      <button class="btn primary" id="start">Start the walkthrough →</button>
+    </div>
+    <div class="cast">
+      <div class="who"><div class="av g">D</div><div><b>Dave &amp; Sam</b><span>Truck drivers, Lakeshore Transport (sample carrier)</span></div></div>
+      <div class="who"><div class="av o">P</div><div><b>Pierre Bouchard</b><span>Loader · Domeplax yard</span></div></div>
+      <div class="who"><div class="av p">J</div><div><b>Julie Tremblay</b><span>Scale clerk · Domeplax</span></div></div>
+      <div class="who"><div class="av">A</div><div><b>Avorth AI colleague</b><span>Releases, pick tickets, lot checks, prefilled BOLs, inventory</span></div></div>
+    </div>
+  </section>
+  <section class="stage hide" id="stage">
+    <div class="col">
+      <h3><span id="aLab"></span><span id="aCh"></span></h3>
+      <div class="phone"><div class="screen">
+        <div class="sb"><span class="clk"></span><span>▮▮▮ ◔</span></div>
+        <div class="chead"><div class="av">A</div><div><b>Domeplax Yard Desk</b><span>Avorth AI colleague</span></div></div>
+        <div class="msgs" id="a"></div>
+        <div class="compose"><div>Message or photo</div></div>
+      </div></div>
+    </div>
+    <div class="col">
+      <h3><span id="bLab"></span><span id="bCh"></span></h3>
+      <div class="phone"><div class="screen">
+        <div class="sb"><span class="clk"></span><span>▮▮▮ ◔</span></div>
+        <div class="chead"><div class="av">A</div><div><b>Domeplax Yard Desk</b><span>Avorth AI colleague</span></div></div>
+        <div class="msgs" id="b"></div>
+        <div class="compose"><div>Message or photo</div></div>
+      </div></div>
+    </div>
+    <div class="col rec">
+      <h3><span>System record</span><span>updated automatically</span></h3>
+      <div class="panel">
+        <div class="phd"><b>Domeplax · Wed, Nov 18</b>
+          <div class="sys"><span>⇄ Syncs to Sigma Scale</span><span class="next">Scale 1 · clerk-confirmed weigh-outs</span></div></div>
+        <div class="auto">Nobody retyped this. Every field comes from an email, photo, scale reading or reply.</div>
+        <div class="sec" id="tkLab">Current release / ticket</div>
+        <div id="tk"><div class="parts empty">Nothing open</div></div>
+        <div class="sec">Inventory on hand by client</div>
+        <table><thead><tr><th>Client</th><th>Product · lot</th><th>Location</th><th class="num">On hand</th></tr></thead><tbody id="inv"></tbody></table>
+        <div class="sec">Exceptions caught</div>
+        <div id="ex"><div class="parts empty">None</div></div>
+        <div id="linesWrap" class="hide"><div class="sec">Invoice lines · quantity handled today</div>
+        <table><thead><tr><th>Client</th><th>Service</th><th class="num">Qty</th><th class="num">Rate</th><th class="num">Amount</th></tr></thead><tbody id="lines"></tbody></table></div>
+        <div class="sec">AI colleague activity</div>
+        <ul class="log" id="log"></ul>
+      </div>
+    </div>
+  </section>
+  <section class="card hide" id="closeCard">
+    <div class="kick">What changes for Domeplax</div>
+    <h2 style="font-size:30px;margin:0 0 6px;letter-spacing:-.5px">The right lot on every truck, and the paperwork does itself.</h2>
+    <p style="color:var(--ink2);margin:0">Drivers don&#8217;t need to know anything, loaders can&#8217;t load the wrong lot, and clerks confirm instead of retyping.</p>
+    <div class="grid4">
+      <div class="chg"><div class="ic">✓</div><b>Right material on every truck</b><span>Pick tickets give the lot, door and quantity. The lot-tag photo has to match before anything is loaded.</span></div>
+      <div class="chg"><div class="ic">⚖</div><b>Two checks, your people in control</b><span>Julie gives the driver the door, the loader&#8217;s photo check verifies the lot, and Julie confirms every weigh-out. Wrong POs get sorted with dispatch by text.</span></div>
+      <div class="chg"><div class="ic">⌨</div><b>Less retyping per truck</b><span>Orders come from email PDFs, and tickets from photos and the scale, so there are fewer BOL errors.</span></div>
+      <div class="chg"><div class="ic">$</div><b>Provable quantities, invoices ready</b><span>Every ticket has a photo and a weight. Inventory and invoice lines come straight from the scale records.</span></div>
+    </div>
+    <div class="kick" style="margin-bottom:8px">Where Avorth sits</div>
+    <div class="layer">
+      <div class="l1"><span>Mills, carriers, drivers, loaders &amp; clerks</span><small>email · text · photo</small></div>
+      <div class="l2"><span>Avorth AI colleague</span><small>releases, check-in, pick tickets, checks, BOLs</small></div>
+      <div class="l3"><span>Sigma Scale &amp; your scales</span><small>stays your system of record</small></div>
+    </div>
+    <div class="cta">
+      <div><span>Next step · Pilot</span><b>Order emails become confirmed releases, pick tickets carry the door, and the photo check stops wrong loads.</b><span>Your people stay in control, and nothing touches the live operation until you say go. Avorth · AI colleagues &amp; custom software · avorth.com</span></div>
+      <button class="btn" id="replay">↺ Replay demo</button>
+    </div>
+  </section>
+</main>
+<footer><span>Sample data: all people, carriers, lots, containers, POs, weights and rates are fictional and for illustration only. Client names appear only to show the workflow.</span><span>© Avorth</span></footer>
+<script>
+(function(){
+"use strict";
+function photo(kind,l1,l2){
+  var s='<svg width="200" height="130" viewBox="0 0 200 130" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="'+l1+'">';
+  if(kind==='doc'){s+='<rect width="200" height="130" fill="#4a4f57"/><rect x="38" y="8" width="124" height="118" rx="3" fill="#fbfaf6" transform="rotate(-3 100 65)"/><g transform="rotate(-3 100 65)" font-family="Arial"><text x="48" y="28" font-size="11" font-weight="700" fill="#222">'+l1+'</text><text x="48" y="44" font-size="9" fill="#333">'+l2+'</text>';for(var i=0;i<6;i++)s+='<rect x="48" y="'+(54+i*10)+'" width="'+(60+((i*37)%44))+'" height="4" fill="#c9c6bd"/>';s+='</g>';}
+  if(kind==='tag'){s+='<rect width="200" height="130" fill="#6b6257"/><circle cx="40" cy="100" r="30" fill="#3f3a33"/><circle cx="170" cy="30" r="40" fill="#544c42"/><rect x="40" y="22" width="120" height="86" rx="6" fill="#f3c74a" stroke="#8a6d12" stroke-width="2"/><circle cx="54" cy="36" r="5" fill="#6b6257"/><text x="100" y="58" text-anchor="middle" font-family="Arial" font-size="18" font-weight="800" fill="#222">'+l1+'</text><text x="100" y="78" text-anchor="middle" font-family="Arial" font-size="11" font-weight="700" fill="#333">'+l2+'</text><rect x="62" y="88" width="76" height="10" fill="#222" opacity=".8"/>';}
+  if(kind==='box'){s+='<rect width="200" height="130" fill="#1f5f99"/>';for(var j=0;j<10;j++)s+='<rect x="'+(4+j*20)+'" y="0" width="8" height="130" fill="#174c7c"/>';s+='<rect x="96" y="0" width="8" height="130" fill="#0f3558"/><rect x="14" y="14" width="80" height="40" rx="3" fill="#0f3558" opacity=".75"/><text x="20" y="32" font-family="Arial" font-size="11.5" font-weight="800" fill="#fff">'+l1+'</text><text x="20" y="47" font-family="Arial" font-size="9" fill="#dbe7f3">'+l2+'</text><rect x="120" y="60" width="14" height="22" fill="#e9c23a"/>';}
+  if(kind==='plate'){s+='<rect width="200" height="130" fill="#7b8794"/><rect x="40" y="10" width="120" height="80" rx="10" fill="#d8dee6"/><rect x="52" y="20" width="96" height="34" rx="4" fill="#334155"/><rect x="40" y="88" width="120" height="16" fill="#1f2937"/><rect x="72" y="92" width="56" height="20" rx="2" fill="#fff" stroke="#1f2937"/><text x="100" y="106" text-anchor="middle" font-family="Arial" font-size="11" font-weight="800" fill="#1e3a8a">'+l1+'</text><text x="100" y="74" text-anchor="middle" font-family="Arial" font-size="10" font-weight="700" fill="#334155">'+l2+'</text>';}
+  return s+'</svg>';
+}
+function file(name,sub){return '<div class="file"><div class="fi">PDF</div><div><b style="font-size:12.5px">'+name+'</b><br><span style="font-size:11.5px;opacity:.8">'+sub+'</span></div></div>';}
+function T(id,title,st,cls,f){return {id:id,title:title,st:st,cls:cls,f:f};}
+var REL0=T('REL-2041','Release · Algoma (from email PDF)','Open · 0 of 2 trucks','active',[['Client','Algoma'],['Product · lot','FeMn HC · FM-0912'],['Location','Door 4'],['Quantity','40.00 t · 2 trucks'],['Ship to','Sault Ste. Marie, ON'],['PO','4500-88213'],['Carrier','Lakeshore Transport'],['Tolerance','±2% per truck']]);
+function t1(st,cls,gross,net,lot){return T('OUT-50233','Outbound · Algoma · truck 1 of 2',st,cls,[['Driver','Dave K. · unit 14'],['PO · release','4500-88213 · REL-2041'],['Product · lot',lot||'FeMn HC · FM-0912'],['Pick','Door 4 · 20.00 t ±2%'],['Tare','14,820 kg'],['Gross',gross||'—'],['Net',net||'—'],['Scale','Scale 1 · Julie']]);}
+function t2(st,cls,po,rel){return T('OUT-50234','Outbound · truck at gate',st,cls,[['Driver','Sam R. · unit 27'],['Plate','7NK-420'],['PO texted',po],['Matched release',rel],['Carrier','Lakeshore Transport'],['Pick','Door 4 · 20.00 t ±2%'],['Tare','—'],['Scale','Scale 1 · Julie']]);}
+function c(id,ctr,st,cls,g,ta,n,paper,diff){return T(id,'Inbound · ArcelorMittal · ASN-7731',st,cls,[['Container',ctr],['Product','SiMn'],['Gross',g],['Tare',ta],['Net',n],['Supplier paper',paper],['Difference',diff],['Scale','Scale 1 · Julie']]);}
+function I(a,cc,d,e){e=e||[];return [['Algoma','FeMn HC · FM-0912','Door 4',a,e.indexOf(0)>=0],['Ivaco','FeSi 75 · FS-0877','Door 5','95.30 t',false],['Ivaco','CaSi big bags (1 t)','Rack C',cc,e.indexOf(2)>=0],['ArcelorMittal','SiMn · containers','Pad 2',d,e.indexOf(3)>=0]];}
+var INV0=I('186.40 t','64 bags','412.60 t');
+var EX1=['Wrong lot stopped before loading · Door 5','FS-0877 (Ivaco FeSi) scanned for Algoma FeMn release · photo logged'];
+var EX2=['Unmatched PO 4500-88123 · resolved','Carrier + plate → Lakeshore dispatch confirmed 4500-88213 by text'];
+var EX3=['DR-118 · container short −5.4%','TSTU 482026-1 · seal intact · 3 photos + both weights logged'];
+var LINES=[['ArcelorMittal','Inbound handling (2 containers)','47.60 t','$6.50/t','$309.40'],['Algoma','Outbound loading (2 trucks)','40.02 t','$7.25/t','$290.15'],['Ivaco','Bag handling (18 in, 10 out)','28 bags','$4.00/bag','$112.00'],['<b>Total</b>','','','','<b>$711.55</b>']];
+var scenes=[
+ {intro:true},
+ {tag:'9:14 AM · Order by email',title:'Algoma emails an order. It becomes a release.',a:'Julie Tremblay · Scale clerk',ac:'Text',b:'Dana Whitfield · Algoma',bc:'Email',clock:'9:14',
+  desc:'The mill emails a release as a PDF like they always do. The AI colleague reads it and creates the release with client, product, lot, quantity, PO and carrier, and checks stock. Nobody retypes it.',
+  ev:[{p:'b',k:'email',x:'<span class="eh">From: Dana Whitfield, Algoma · 9:12 AM</span>Hi, please release 40 t FeMn to Sault Ste. Marie, 2 trucks today with Lakeshore Transport. PO attached.<div style="margin-top:8px;padding:6px;border:1px solid var(--line);border-radius:10px">'+file('Release_PO_4500-88213.pdf','1 page · 84 KB')+'</div>'},
+   {p:'b',k:'agent',x:'Thanks Dana. I created release <b>REL-2041</b> from your PDF: 40.00 t FeMn HC, lot FM-0912, 2 trucks, PO 4500-88213. You have 186.40 t on hand. I\u2019ll email each BOL as a truck leaves.',tk:REL0,log:['9:14 AM','Email','Algoma PDF read → release REL-2041 created (40.00 t FeMn)']},
+   {p:'a',k:'agent',x:'New release <b>REL-2041</b> · Algoma · 40 t FeMn, 2 Lakeshore trucks today. Lot FM-0912 is in Door 4 and stock is OK. Nothing to type.'}]},
+ {tag:'1:30 PM · Gate check-in',title:'Julie weighs the truck in and gives the driver his door',a:'Dave · Driver (Lakeshore)',ac:'Text',b:'Julie Tremblay · Scale clerk',bc:'Text',clock:'1:30',
+  desc:'Dave has never been here and doesn\u2019t know what he\u2019s picking up. He texts a photo of his PO and the AI colleague matches it to the release. Julie weighs him in on Scale 1 and gives him his door (check 1 of 2).',
+  ev:[{p:'a',k:'note',x:'Gate sign: \u201cText a photo of your PO to 418-555-0142\u201d'},
+   {p:'a',k:'photo',x:photo('doc','PURCHASE ORDER','PO 4500-88213 · Algoma')},
+   {p:'a',k:'me',x:'here for pickup'},
+   {p:'a',k:'agent',x:'Thanks Dave. You\u2019re on Algoma release <b>REL-2041</b>, truck 1 of 2: about <b>20 t of FeMn</b> going to Sault Ste. Marie. Pull onto <b>Scale 1</b>. Julie will weigh you in and give you your door.',tk:t1('Checked in','active'),log:['1:30 PM','Photo','Dave\u2019s PO photo → matched REL-2041, truck 1 of 2']},
+   {p:'b',k:'agent',x:'Truck at the gate: Lakeshore unit 14 · PO 4500-88213 → <b>REL-2041</b> Algoma FeMn, truck 1 of 2.\nScale 1 tare: <b>14,820 kg</b>\nSuggested door: <b>Door 4</b> (lot FM-0912)',clock:'1:34'},
+   {p:'b',k:'chip',x:'<span>✓ Confirm · Door 4</span><span>Change door</span>'},
+   {p:'b',k:'me',x:'Confirm · Door 4',tk:t1('Weighed in · Door 4','active'),log:['1:34 PM','Clerk','Julie confirmed tare 14,820 kg and Door 4']},
+   {p:'a',k:'agent',x:'<b>Julie · scale house:</b> You\u2019re weighed in at 14,820 kg. Go to <b>Door 4</b>. Pierre is loading you.'}]},
+ {tag:'1:41 PM · The catch',title:'Pick ticket with the door, and the photo check stops a wrong load',a:'Pierre Bouchard · Loader',ac:'Text',b:'Julie Tremblay · Scale clerk',bc:'Text',clock:'1:41',
+  desc:'Pierre gets an exact pick ticket with the door. He goes to the wrong pile, but the lot-tag photo doesn\u2019t match the release (check 2 of 2), so the AI colleague stops him before a single bucket goes on the truck.',
+  ev:[{p:'a',k:'agent',x:'📋 <b>PICK TICKET · OUT-50233</b>\nClient: <b>Algoma</b>\nProduct: <b>FeMn HC</b>\nLot: <b>FM-0912</b>\nDoor: <b>Door 4</b> (assigned by Julie)\nQty: <b>20.00 t</b> (±2%)\nTruck: Lakeshore unit 14\nSnap the lot tag before loading. It should look like this:',log:['1:38 PM','Pick','Pick ticket sent to Pierre · Door 4 · 20.00 t']},{p:'a',k:'aphoto',x:photo('tag','FM-0912','ALGOMA · FeMn HC')},{p:'a',k:'photo',x:photo('tag','FS-0877','IVACO · FeSi 75')},
+   {p:'a',k:'stop',x:'⛔ STOP, wrong lot: this is Ivaco\u2019s FeSi (FS-0877, Door 5). The release is Algoma\u2019s FeMn, Door 4. Don\u2019t load.',ex:EX1,tk:t1('Hold · wrong lot','red','—','—','<s>FS-0877</s> → FM-0912'),log:['1:41 PM','Photo','Lot tag FS-0877 ≠ release lot FM-0912 → STOP sent']},
+   {p:'a',k:'me',x:'my bad, moving to door 4'},
+   {p:'a',k:'photo',x:photo('tag','FM-0912','ALGOMA · FeMn HC'),clock:'1:44'},
+   {p:'a',k:'go',x:'✅ Correct lot: FM-0912 · Algoma FeMn. Load about 20 t.',tk:t1('Loading · lot verified','active'),log:['1:44 PM','Photo','Lot tag FM-0912 verified → loading']},
+   {p:'b',k:'agent',x:'FYI: I caught a wrong lot at Door 5 before loading. Pierre scanned FS-0877 (Ivaco) and it\u2019s corrected to FM-0912. The photo is logged. Nothing for you to do.'}]},
+ {tag:'2:02 PM · Weigh-out',title:'Julie confirms the weigh-out. The BOL syncs to Sigma Scale.',a:'Julie Tremblay · Scale clerk',ac:'Text',b:'Dave · Driver (Lakeshore)',bc:'Text',clock:'2:02',
+  desc:'Weighing out stays with the scale house, not the trucker. The AI colleague prefills the BOL and net weight, Julie checks them against the release and pick ticket and taps Confirm, and the BOL syncs to Sigma Scale.',
+  ev:[{p:'a',k:'note',x:'2:02 PM · Scale 1 · gross 34,960 kg'},
+   {p:'a',k:'agent',x:'⚖ <b>Weigh-out ready to confirm · OUT-50233</b>\nRelease REL-2041 · Algoma FeMn ✓\nPick ticket: lot FM-0912 · Door 4 ✓ (lot photo verified 1:44 PM)\nGross 34,960 − tare 14,820 = <b>net 20,140 kg</b>\nTarget 20.00 t ±2% → +0.7% ✓\nBOL prefilled below.',tk:t1('Awaiting Julie\u2019s confirm','hold','34,960 kg','20,140 kg')},
+   {p:'a',k:'afile',x:file('BOL_OUT-50233 (draft).pdf','Algoma · FeMn FM-0912 · 20.14 t net')},
+   {p:'a',k:'chip',x:'<span>✓ Confirm</span><span>Edit</span><span>Hold truck</span>'},
+   {p:'a',k:'me',x:'Confirm',clock:'2:03',tk:t1('Confirmed by Julie · synced','green','34,960 kg','20,140 kg'),inv:I('166.26 t','64 bags','412.60 t',[0]),log:['2:03 PM','Clerk','Julie confirmed net 20.14 t → BOL OUT-50233 synced to Sigma Scale · inventory −20.14 t']},
+   {p:'a',k:'agent',x:'✅ BOL <b>OUT-50233</b> synced to Sigma Scale. I sent it to Dave and emailed it to Algoma. 19.86 t is left on REL-2041.',log:['2:03 PM','Email','BOL OUT-50233 emailed to Algoma']},
+   {p:'b',k:'agent',x:'<b>Julie · scale house:</b> You\u2019re all set, Dave: 20.14 t FeMn. Your BOL is attached. Safe drive.'},
+   {p:'b',k:'afile',x:file('BOL_OUT-50233.pdf','Algoma · FeMn FM-0912 · 20.14 t net')}]},
+ {tag:'2:20 PM · Wrong PO',title:'A PO that matches nothing, sorted without a phone call',a:'Sam · Driver (Lakeshore)',ac:'Text',b:'Lakeshore Transport · Dispatch',bc:'Text',clock:'2:20',
+  desc:'Sam\u2019s PO has a typo. The AI colleague uses the carrier and plate to find Lakeshore\u2019s open releases, and since two could fit, it texts Lakeshore dispatch itself, gets the right PO and checks him in. Staff don\u2019t make any calls.',
+  ev:[{p:'a',k:'photo',x:photo('doc','PURCHASE ORDER','PO 4500-88123 · Lakeshore')},
+   {p:'a',k:'me',x:'lakeshore, pickup'},
+   {p:'a',k:'agent',x:'I can\u2019t find PO 4500-88123 in today\u2019s releases. Can you send a photo of your truck\u2019s plate?',tk:t2('Hold · PO not found','hold','<s>4500-88123</s>','—'),log:['2:20 PM','Photo','PO 4500-88123 matches no release']},
+   {p:'a',k:'photo',x:photo('plate','7NK-420','LAKESHORE · 27')},
+   {p:'a',k:'agent',x:'Thanks. Lakeshore has 2 open pickups here today: Algoma FeMn (REL-2041) and Ivaco FeSi (REL-2044). I\u2019m confirming with your dispatch now, one minute.',log:['2:21 PM','Photo','Plate 7NK-420 → Lakeshore · 2 open releases today']},
+   {p:'b',k:'agent',x:'Hi, this is the Domeplax yard desk. Lakeshore unit 27 (plate 7NK-420) is at our gate with PO 4500-88123, which doesn\u2019t match anything. Is he on <b>Algoma 4500-88213</b> or <b>Ivaco 4500-90317</b>?'},
+   {p:'b',k:'me',x:'Algoma 88213, typo on his sheet. sorry',clock:'2:23'},
+   {p:'b',k:'agent',x:'Thanks, he\u2019s checked in. No call needed.',log:['2:23 PM','Text','Lakeshore dispatch confirmed PO 4500-88213']},
+   {p:'a',k:'agent',x:'Sorted with Lakeshore dispatch ✅ You\u2019re on Algoma release <b>REL-2041</b>, truck 2 of 2. Pull onto <b>Scale 1</b>. Julie will weigh you in and give you your door.',tk:t2('Checked in · truck 2 of 2','active','4500-88213 (corrected)','REL-2041 · Algoma FeMn'),ex:EX2}]},
+ {tag:'2:45 PM · Inbound containers',title:'A photo of the container fills in the scale ticket',a:'Julie Tremblay · Scale clerk',ac:'Text',b:'Marc Gagnon · ArcelorMittal',bc:'Email',clock:'2:45',
+  desc:'Julie snaps the container door. The AI colleague reads the container and seal numbers, matches the advance notice and takes the weights from Scale 1. A short container gets flagged before unloading, with photo proof.',
+  ev:[{p:'a',k:'photo',x:photo('box','TSTU 482019-6','SEAL 0418873')},
+   {p:'a',k:'agent',x:'<b>TSTU 482019-6</b> · seal 0418873 · SiMn for ArcelorMittal, ASN-7731 (batch 3 of 12) ✅\nScale 1: gross 34,150 · tare 9,730 · <b>net 24,420 kg</b> vs 24,400 on the paperwork (+0.1%). BOL IN-50235 is drafted.',tk:c('IN-50235','TSTU 482019-6','Drafted','active','34,150 kg','9,730 kg','24,420 kg','24,400 kg','+0.1% ✓')},
+   {p:'a',k:'chip',x:'<span>✓ Confirm</span><span>Edit</span>'},
+   {p:'a',k:'me',x:'Confirm',tk:c('IN-50235','TSTU 482019-6','Confirmed','green','34,150 kg','9,730 kg','24,420 kg','24,400 kg','+0.1% ✓'),inv:I('166.26 t','64 bags','437.02 t',[3]),log:['2:46 PM','Photo','TSTU 482019-6 → IN-50235 confirmed · +24.42 t']},
+   {p:'a',k:'photo',x:photo('box','TSTU 482026-1','SEAL 0418879'),clock:'2:58'},
+   {p:'a',k:'stop',x:'⚠ HOLD before unloading: net <b>23,180 kg</b> vs 24,500 kg on the paperwork (−5.4%). Check the seal and snap a photo.',tk:c('IN-50236','TSTU 482026-1','Hold · −5.4%','hold','32,870 kg','9,690 kg','23,180 kg','24,500 kg','−5.4% ⚠')},
+   {p:'a',k:'me',x:'seal intact 0418879, photos sent'},
+   {p:'a',k:'agent',x:'Logged <b>DR-118</b> with 3 photos and both weights, and ArcelorMittal has been notified. OK to unload.',ex:EX3,tk:c('IN-50236','TSTU 482026-1','Received · DR-118','green','32,870 kg','9,690 kg','23,180 kg','24,500 kg','−5.4% logged'),inv:I('166.26 t','64 bags','460.20 t',[3]),log:['3:01 PM','Photo','DR-118 logged (seal intact) · +23.18 t received at scale weight']},
+   {p:'b',k:'agent',x:'Container TSTU 482026-1 (ASN-7731) weighed <b>23.18 t net vs 24.50 t</b> on the supplier paperwork (−5.4%). The seal was intact. Photos and the scale ticket are attached. We received it at scale weight.'},
+   {p:'b',k:'me',x:'Thanks, receive it. We\u2019ll claim with the supplier.'}]},
+ {tag:'4:30 PM · Bags & end of day',title:'Bags by unit, reconciliation and invoice lines',a:'Julie Tremblay · Scale clerk',ac:'Text',b:'Sophie Lavoie · Ivaco',bc:'Email',clock:'4:30',
+  desc:'Big bags and pallets are tracked by unit next to the bulk tonnes. At the end of the day every client reconciles (in vs out vs on hand), and the invoice lines come straight from the scale records.',
+  ev:[{p:'a',k:'photo',x:photo('doc','PACKING LIST','18 × CaSi 1 t bags · Ivaco')},
+   {p:'a',k:'agent',x:'18 bag tags read: CaSi 1 t bags for Ivaco, matching the packing list (18) ✅ Put away in Rack C. Ticket IN-50237.',inv:I('166.26 t','82 bags','460.20 t',[2]),log:['3:20 PM','Photo','18 bag tags matched packing list → IN-50237']},
+   {p:'a',k:'note',x:'3:40 PM · 10 bags loaded for Ivaco L\u2019Orignal · each bag scanned · OUT-50238',inv:I('166.26 t','72 bags','460.20 t',[2]),log:['3:40 PM','Photo','10 bags scanned out → OUT-50238']},
+   {p:'a',k:'note',x:'4:10 PM · Algoma truck 2 of 2 · Scale 1 · net 19.88 t · confirmed by Julie',inv:I('146.38 t','72 bags','460.20 t',[0]),tk:T('REL-2041','Release · Algoma','Complete · 40.02 / 40.00 t','green',[['Truck 1','20.14 t · OUT-50233'],['Truck 2','19.88 t · OUT-50234'],['Shipped','40.02 t (+0.05%)'],['BOLs','Emailed to Algoma']]),log:['4:10 PM','Scale','Truck 2 confirmed 19.88 t → REL-2041 complete (40.02 t)']},
+   {p:'a',k:'agent',x:'📋 <b>Shift summary · Nov 18</b>\n6 scale tickets · 0 retyped\n3 exceptions caught (wrong lot, bad PO, short container)\nIn: 47.60 t SiMn + 18 bags\nOut: 40.02 t FeMn + 10 bags\nInvoice lines ready: <b>$711.55</b>',lines:LINES,log:['4:30 PM','Summary','Reconciled 3 clients · invoice lines ready ($711.55)']},
+   {p:'b',k:'email',x:'<span class="eh">From: Sophie Lavoie, Ivaco · 4:31 PM</span>Can you send our stock statement for today?'},
+   {p:'b',k:'agent',x:'Here it is, Sophie. <b>Ivaco · Nov 18</b>\nCaSi bags: 64 open + 18 in − 10 out = <b>72 on hand</b>\nFeSi FS-0877: <b>95.30 t</b> (no movement)\nHandling: 28 bags × $4.00 = $112.00'},
+   {p:'b',k:'afile',x:file('Statement_Ivaco_2026-11-18.pdf','Stock + handling · scale tickets attached'),log:['4:32 PM','Email','Stock statement sent to Ivaco on request']}]},
+ {close:true}
+];
+var $=function(id){return document.getElementById(id);};
+var cur=0,timers=[],autoplay=false,STEP=1000,st={};
+function clearT(){timers.forEach(clearTimeout);timers=[];}
+function rTk(t){ if(!t){$('tk').innerHTML='<div class="parts empty">Nothing open</div>';return;}
+  $('tk').innerHTML='<div class="tk"><div class="th"><span><b>'+t.id+'</b> · '+t.title+'</span><span class="st '+t.cls+'">'+t.st+'</span></div><div class="tg">'+t.f.map(function(f){return '<div><small>'+f[0]+'</small>'+f[1]+'</div>';}).join('')+'</div></div>';}
+function rInv(rows,anim){$('inv').innerHTML=(rows||[]).map(function(r){return '<tr class="'+(anim&&r[4]?'flash':'')+'"><td><b>'+r[0]+'</b></td><td>'+r[1]+'</td><td>'+r[2]+'</td><td class="num"><b>'+r[3]+'</b></td></tr>';}).join('');}
+function rEx(){$('ex').innerHTML=st.ex.length?st.ex.map(function(e){return '<div class="ex"><div><b>'+e[0]+'</b><br><small style="color:var(--mute)">'+e[1]+'</small></div><span class="st ready">Logged</span></div>';}).join(''):'<div class="parts empty">None</div>';}
+function rLines(){$('linesWrap').classList.toggle('hide',!st.lines);if(st.lines)$('lines').innerHTML=st.lines.map(function(l){return '<tr><td>'+l[0]+'</td><td>'+l[1]+'</td><td class="num">'+l[2]+'</td><td class="num">'+l[3]+'</td><td class="num">'+l[4]+'</td></tr>';}).join('');}
+function rLog(){$('log').innerHTML=st.log.slice().reverse().map(function(l){return '<li><span class="tm">'+l[0]+'</span><span class="src">'+l[1]+'</span><span>'+l[2]+'</span></li>';}).join('');}
+var CLS={agent:'b agent',me:'b me',note:'note',photo:'b me photo',aphoto:'b agent photo',email:'b email',stop:'b agent stop',go:'b agent go',afile:'b agent',chip:'chip'};
+function bubble(p,e){var el=document.createElement('div');el.className=CLS[e.k];if(e.k==='aphoto')el.style.background='var(--agent)';el.innerHTML=e.x;$(p).appendChild(el);$(p).scrollTop=$(p).scrollHeight;}
+function apply(e,anim){
+  if(e.clock)document.querySelectorAll('.clk').forEach(function(c){c.textContent=e.clock;});
+  if(e.p==='a'||e.p==='b')bubble(e.p,e);
+  if(e.tk){st.tk=e.tk;rTk(e.tk);} if(e.inv){st.inv=e.inv;rInv(e.inv,anim);}
+  if(e.ex){st.ex.push(e.ex);rEx();} if(e.lines){st.lines=e.lines;rLines();} if(e.log){st.log.push(e.log);rLog();}
+}
+function base(n){st={tk:null,inv:INV0,ex:[],lines:null,log:[]};
+  for(var i=1;i<n;i++)(scenes[i].ev||[]).forEach(function(e){if(e.tk)st.tk=e.tk;if(e.inv)st.inv=e.inv;if(e.ex)st.ex.push(e.ex);if(e.lines)st.lines=e.lines;if(e.log)st.log.push(e.log);});
+  rTk(st.tk);rInv(st.inv,false);rEx();rLines();rLog();}
+function typing(p){var t=document.createElement('div');t.className='typing';t.innerHTML='<i></i><i></i><i></i>';$(p).appendChild(t);$(p).scrollTop=$(p).scrollHeight;return t;}
+function go(n,instant){clearT();cur=Math.max(0,Math.min(scenes.length-1,n));var s=scenes[cur];
+  $('steps').innerHTML=scenes.map(function(sc,i){var lab=sc.intro?'Intro':sc.close?'What changes':(i+'. '+sc.tag.split('· ')[1]);return '<button data-i="'+i+'" class="'+(i===cur?'on':i<cur?'done':'')+'">'+lab+'</button>';}).join('');
+  $('back').disabled=cur===0;$('next').disabled=cur===scenes.length-1;$('next').textContent=cur===scenes.length-1?'Done':'Next →';
+  $('introCard').classList.toggle('hide',!s.intro);$('closeCard').classList.toggle('hide',!s.close);
+  $('stage').classList.toggle('hide',!!(s.intro||s.close));$('scenebar').classList.toggle('hide',!!s.intro);
+  if(s.intro){if(autoplay)timers.push(setTimeout(function(){go(1);},3500));return;}
+  if(s.close){$('sTag').textContent='Wrap-up';$('sTitle').textContent='What changes';$('sDesc').textContent='Everyone works with the AI colleague by text, photo and email, and it keeps Sigma Scale and your records up to date.';setAuto(false);return;}
+  $('sTag').textContent=s.tag;$('sTitle').textContent=s.title;$('sDesc').textContent=s.desc;
+  $('aLab').textContent=s.a;$('bLab').textContent=s.b;$('aCh').textContent=s.ac;$('bCh').textContent=s.bc;
+  $('a').innerHTML='';$('b').innerHTML='';document.querySelectorAll('.clk').forEach(function(c){c.textContent=s.clock;});
+  base(cur);
+  if(instant){s.ev.forEach(function(e){apply(e,false);});return;}
+  var t=300;
+  s.ev.forEach(function(e){var msg=e.p==='a'||e.p==='b';
+    if(msg&&/^(agent|stop|go|afile|aphoto)$/.test(e.k)){(function(e,t0){timers.push(setTimeout(function(){var ty=typing(e.p);timers.push(setTimeout(function(){ty.remove();apply(e,true);},600));},t0));})(e,t);t+=600+STEP+Math.min(1300,e.x.replace(/<[^>]+>/g,'').length*5);}
+    else{(function(e,t0){timers.push(setTimeout(function(){apply(e,true);},t0));})(e,t);t+=msg?STEP:300;}});
+  timers.push(setTimeout(function(){if(autoplay)timers.push(setTimeout(function(){go(cur+1);},2600));},t));
+}
+function setAuto(on){autoplay=on;$('auto').textContent=on?'❚❚ Pause':'▶ Autoplay';}
+$('next').onclick=function(){go(cur+1);};$('back').onclick=function(){go(cur-1,true);};
+$('start').onclick=function(){go(1);};$('replay').onclick=function(){go(1);};
+$('auto').onclick=function(){setAuto(!autoplay);if(autoplay)go(scenes[cur].close||cur===0?1:cur);};
+$('steps').onclick=function(ev){var b=ev.target.closest('button');if(b)go(+b.dataset.i);};
+document.addEventListener('keydown',function(ev){if(ev.key==='ArrowRight')go(cur+1);if(ev.key==='ArrowLeft')go(cur-1,true);});
+var m=location.hash.match(/scene=(\d+)/);if(m)go(+m[1],/instant/.test(location.hash));else go(0);
+})();
+</script>
+</body>
+</html>
