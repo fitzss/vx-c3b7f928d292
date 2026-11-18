@@ -54,6 +54,14 @@ main{max-width:1100px;margin:0 auto;padding:20px 18px 30px}
 .win small{display:block;font-size:19px;font-weight:600;margin-top:6px;opacity:.85}
 .win.green{background:var(--ok);color:#fff}
 .hint{font-size:16px;color:var(--mute);text-align:center}
+.rule{max-width:760px;margin:0 auto 16px;background:#fff;border:2px solid var(--ink);border-radius:16px;padding:10px 18px;text-align:center;font-size:19px;font-weight:800}
+.rule span{color:var(--mute);font-weight:700;margin-right:6px}
+.big .rule{font-size:26px;margin:24px auto 0;padding:16px 22px}
+.tally{background:#fff;border:1px solid var(--line);border-radius:22px;padding:18px 24px;animation:pop .35s}
+.tally .lab{font-size:14px;font-weight:800;color:var(--mute);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
+.tally .tr{display:flex;justify-content:space-between;gap:12px;font-size:21px;padding:8px 0;border-bottom:1px solid var(--line)}
+.tally .tr:last-child{border-bottom:0}
+.tally b{font-size:23px}
 .cta{display:inline-block;margin-top:26px;background:var(--ink);color:#fff;border-radius:18px;padding:18px 26px;font-size:22px;font-weight:800}
 footer{max-width:1100px;margin:0 auto;padding:0 18px 24px;color:var(--mute);font-size:14px;text-align:center}
 @media (max-width:820px){
@@ -73,10 +81,12 @@ footer{max-width:1100px;margin:0 auto;padding:0 18px 24px;color:var(--mute);font
     <div class="big">
       <h1>Every order checked<br>before it ships.</h1>
       <p>Orders come in all day and all night. Avorth checks each one and texts you. You answer with one word.</p>
+      <div class="rule">The rule: Nothing ships until the money is really in your account.</div>
     </div>
   </section>
 
   <section class="screen" data-s="1">
+    <div class="rule"><span>The rule:</span>Nothing ships until the money is really in your account.</div>
     <div class="title">A fake order comes in</div>
     <div class="stage">
       <div class="phone"><div class="ps">
@@ -88,6 +98,7 @@ footer{max-width:1100px;margin:0 auto;padding:0 18px 24px;color:var(--mute);font
   </section>
 
   <section class="screen" data-s="2">
+    <div class="rule"><span>The rule:</span>Nothing ships until the money is really in your account.</div>
     <div class="title">A real order comes in</div>
     <div class="stage">
       <div class="phone"><div class="ps">
@@ -101,7 +112,7 @@ footer{max-width:1100px;margin:0 auto;padding:0 18px 24px;color:var(--mute);font
   <section class="screen" data-s="3">
     <div class="big">
       <h1>Try it free on your real store for 30 days.</h1>
-      <p>Every order checked before you ship. You still say yes or no to every one.</p>
+      <p>Nothing ships until the money is really in your account. You still say yes or no to every order.</p>
       <div class="cta">Avorth · avorth.com</div>
     </div>
   </section>
@@ -118,23 +129,23 @@ footer{max-width:1100px;margin:0 auto;padding:0 18px 24px;color:var(--mute);font
 "use strict";
 var S={
  1:[{k:'card',x:'<div class="lab">New order · online store</div><div class="row">$1,240 · 10 cases of disinfectant</div><div class="sub">From: a brand-new buyer</div><span class="tag paid">Says: Paid</span>'},
-    {k:'stop',x:'<big>🛑 Don&#8217;t ship this one.</big>1. The card didn&#8217;t really go through.\n2. Name and address don&#8217;t match.\n3. Brand-new buyer wants it rushed.'},
+    {k:'stop',x:'<big>🛑 Don&#8217;t ship this one.</big>1. The money never really came in.\n2. Name and address don&#8217;t match.\n3. Brand-new buyer wants it rushed.'},
     {k:'agent',x:'Reply <b>NO SHIP</b> or <b>SHIP</b>'},
     {k:'me',x:'NO SHIP'},
     {k:'agent',x:'Done. Order cancelled.\nNo box packed. No label bought.'},
     {k:'win',x:'You just saved $1,240.<small>Before it left your shelf.</small>'}],
  2:[{k:'card',x:'<div class="lab">Text from a customer</div><div class="row">&#8220;We ran out. Need 6 cases of Sapphire Fresh by Thursday.&#8221;</div><div class="sub">Dana Ruiz · buys from you every month</div>'},
-    {k:'good',x:'<big>✅ This one&#8217;s good. Ship it.</big>Dana · 6 cases · $231\nShe paid ✓ · Due Thursday'},
-    {k:'agent',x:'Cheapest way: <b>FedEx $61.92</b>\n(UPS is $74.18)\nBoth get there Thursday.\nSend with FedEx? Reply <b>Y</b>'},
+    {k:'good',x:'<big>✅ This one&#8217;s good. Ship it.</big>Dana · 6 cases · $231\nThe money is in your account ✓\nDue Thursday\n\nSend with <b>FedEx $61.92</b>\n(UPS is $74.18, so you save $12.26)\nBoth get there Thursday.\nReply <b>Y</b>'},
     {k:'me',x:'Y'},
     {k:'agent',x:'Label printed. Dana has her tracking number.'},
-    {k:'win',x:'Shipped on time.<small>And $12.26 less on shipping.</small>'}]
+    {k:'win',x:'Shipped on time.<small>And $12.26 less on shipping.</small>'},
+    {k:'tally',x:'<div class="lab">This month so far (sample)</div><div class="tr"><span>Fake orders stopped</span><b>3 · $3,960 kept</b></div><div class="tr"><span>Shipping saved</span><b>$412.75</b></div><div class="tr"><span>Real orders shipped</span><b>84</b></div>'}]
 };
 var N=4,cur=0,timers=[],auto=false;
 var $=function(i){return document.getElementById(i);};
 function clear(){timers.forEach(clearTimeout);timers=[];}
 function put(n,e){
-  if(e.k==='card'||e.k==='win'){var d=document.createElement('div');d.className=e.k==='card'?'card':'win green';d.innerHTML=e.x;$('s'+n).appendChild(d);return;}
+  if(e.k==='card'||e.k==='win'||e.k==='tally'){var d=document.createElement('div');d.className=e.k==='card'?'card':e.k==='tally'?'tally':'win green';d.innerHTML=e.x;$('s'+n).appendChild(d);return;}
   var b=document.createElement('div');b.className='b '+e.k;b.innerHTML=e.x;var m=$('m'+n);m.appendChild(b);m.scrollTop=m.scrollHeight;
 }
 function go(n,instant){
