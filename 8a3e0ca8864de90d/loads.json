@@ -1,6 +1,6 @@
 {
   "brand": "Avorth",
-  "updated_at": "2026-11-20T17:00:29.487638+00:00",
+  "updated_at": "2026-11-20T17:02:18.812314+00:00",
   "note": "Live prototype. Office only. Nothing on this board is sent.",
   "loads": [
     {
@@ -438,7 +438,7 @@
       "pickup_date": "11/19",
       "delivery_date": "11/20",
       "hours": "7am-3pm",
-      "po": "[phone removed]-00030",
+      "po": "5800098785-00030",
       "release_no": "DX2094 104",
       "body_product": "HC FeMn",
       "quantity_raw": "22 X 1MT FLAT BOTTOM super sacks on pallets (no cross straps or spouts) - 48,510 lbs.",
@@ -446,7 +446,7 @@
         "raw": "48,510.000 LBS",
         "value": 48510.0,
         "unit": "lbs",
-        "kg": 22[phone removed]
+        "kg": 22003.7658687
       },
       "releases": [
         {
@@ -460,11 +460,11 @@
               "raw": "48,510.000 LBS",
               "value": 48510.0,
               "unit": "lbs",
-              "kg": 22[phone removed]
+              "kg": 22003.7658687
             }
           },
           "lot": "832586D",
-          "po": "[phone removed]-00030",
+          "po": "5800098785-00030",
           "run": "DX2094 104",
           "packaging": "22 - 1 MT S/S ON PLT",
           "size": "10 MM - 50 MM",
@@ -472,7 +472,47 @@
           "pr_number": "10028731"
         }
       ],
-      "tickets": [],
+      "tickets": [
+        {
+          "kind": "ticket",
+          "filename": "14-31994.PDF",
+          "number": "31994",
+          "date": "2026/11/19",
+          "entry": "14 h 14",
+          "exit": "15 h 19",
+          "vendor": "Ccma Llc",
+          "customer": "Algoma Steel Inc.",
+          "ship_to": "Algoma Steel Inc. Building Shape Products Shipdoor 46 Sault Ste Marie",
+          "product": "SiMn Bags",
+          "product_no": "SIMN BAGS",
+          "lot": "832586D",
+          "po": "5800098782-00030",
+          "carrier": "LAIDLAW",
+          "release_no": "DX2094-104",
+          "gross": {
+            "raw": "42 210 kg",
+            "value": 42210.0,
+            "unit": "kg",
+            "kg": 42210.0
+          },
+          "tare": {
+            "raw": "19 681 kg",
+            "value": 19681.0,
+            "unit": "kg",
+            "kg": 19681.0
+          },
+          "net": {
+            "raw": "22 529 kg",
+            "value": 22529.0,
+            "unit": "kg",
+            "kg": 22529.0
+          },
+          "net_mt_raw": "22,53 MT",
+          "quantity": "22 un",
+          "remarks": "Meterial code : 100000483\nPR Number: 10028731",
+          "weights_present": true
+        }
+      ],
       "checks": [
         {
           "id": "product_match",
@@ -483,7 +523,7 @@
           "sides": [
             {
               "source": "email body",
-              "snippet": "… the CCMA release number as the pick-up number Thursday 11/19. Please issue two separate bills of lading. Thank you! SHIPPING via tarped Flatbed: HC FeMn - MATERIAL ALREADY PACKAGED DX2094 104 PO # [phone removed]-00030 22 X 1MT FLAT BOTTOM super sacks on pallets (no cross straps or spouts) - 48,510 …",
+              "snippet": "… the CCMA release number as the pick-up number Thursday 11/19. Please issue two separate bills of lading. Thank you! SHIPPING via tarped Flatbed: HC FeMn - MATERIAL ALREADY PACKAGED DX2094 104 PO # 5800098785-00030 22 X 1MT FLAT BOTTOM super sacks on pallets (no cross straps or spouts) - 48,510 …",
               "value": "HC FeMn"
             },
             {
@@ -500,44 +540,54 @@
               "source": "certificate",
               "snippet": "… 1 MT S/S ON PLT November 17, 2026 ALGOMA STEEL INC. 301 WALLACE TERRACE SAULT STE MARIE ON P6C 1K8 SI MN Lot # 832586D Mn 65.47 Si 16.62 C 1.86 P 0.18 S …",
               "value": "SI MN"
+            },
+            {
+              "source": "bon de livraison 31994",
+              "snippet": "… Sault Ste Marie Fournisseur Description du produit No de produit Lot SiMn Bags SIMN BAGS 832586D - PO#5800098782-00030 Transporteur Préposé …",
+              "value": "SiMn Bags"
             }
           ]
         },
         {
           "id": "po_match",
           "title": "Purchase order numbers across the documents",
-          "severity": "ok",
-          "status": "pass",
-          "why": "The PO is the same on every document that has one.",
+          "severity": "check",
+          "status": "fail",
+          "why": "The PO on at least one document is different from the others.",
           "sides": [
             {
               "source": "email body",
-              "snippet": "… Please issue two separate bills of lading. Thank you! SHIPPING via tarped Flatbed: HC FeMn - MATERIAL ALREADY PACKAGED DX2094 104 PO # [phone removed]-00030 22 X 1MT FLAT BOTTOM super sacks on pallets (no cross straps or spouts) - 48,510 lbs. Net wt. Pick Up 11/19: CCMA c/o Domplex 2045 Route Ma …",
-              "value": "[phone removed]-00030"
+              "snippet": "… Please issue two separate bills of lading. Thank you! SHIPPING via tarped Flatbed: HC FeMn - MATERIAL ALREADY PACKAGED DX2094 104 PO # 5800098785-00030 22 X 1MT FLAT BOTTOM super sacks on pallets (no cross straps or spouts) - 48,510 lbs. Net wt. Pick Up 11/19: CCMA c/o Domplex 2045 Route Ma …",
+              "value": "5800098785-00030"
             },
             {
               "source": "packing sheet",
-              "snippet": "… SALES CONTRACT: 111473 REQUESTED ARRIVAL DATE: 11/20/26 CUST P.O. #: [phone removed]-00030 RELEASE #: SHIP TO: ALGOMA STEEL INC. …",
-              "value": "[phone removed]-00030"
+              "snippet": "… SALES CONTRACT: 111473 REQUESTED ARRIVAL DATE: 11/20/26 CUST P.O. #: 5800098785-00030 RELEASE #: SHIP TO: ALGOMA STEEL INC. …",
+              "value": "5800098785-00030"
             },
             {
               "source": "certificate",
-              "snippet": "… s CCMA, LLC Customer Order Number 2410 N. Forest Rd. [phone removed]-00030 SUITE 100 Quantity Getzville, NY 14068 48,510.000 LBS 1-800-833-2 …",
-              "value": "[phone removed]-00030"
+              "snippet": "… s CCMA, LLC Customer Order Number 2410 N. Forest Rd. 5800098785-00030 SUITE 100 Quantity Getzville, NY 14068 48,510.000 LBS 1-800-833-2 …",
+              "value": "5800098785-00030"
             },
             {
               "source": "release SI MN",
-              "snippet": "… Please issue two separate bills of lading. Thank you! SHIPPING via tarped Flatbed: HC FeMn - MATERIAL ALREADY PACKAGED DX2094 104 PO # [phone removed]-00030 22 X 1MT FLAT BOTTOM super sacks on pallets (no cross straps or spouts) - 48,510 lbs. Net wt. Pick Up 11/19: CCMA c/o Domplex 2045 Route Ma …",
-              "value": "[phone removed]-00030"
+              "snippet": "… Please issue two separate bills of lading. Thank you! SHIPPING via tarped Flatbed: HC FeMn - MATERIAL ALREADY PACKAGED DX2094 104 PO # 5800098785-00030 22 X 1MT FLAT BOTTOM super sacks on pallets (no cross straps or spouts) - 48,510 lbs. Net wt. Pick Up 11/19: CCMA c/o Domplex 2045 Route Ma …",
+              "value": "5800098785-00030"
+            },
+            {
+              "source": "bon de livraison 31994",
+              "snippet": "… ription du produit No de produit Lot SiMn Bags SIMN BAGS 832586D - PO#5800098782-00030 Transporteur Préposé No relâche/No conteneur LAIDLAW …",
+              "value": "5800098782-00030"
             }
           ]
         },
         {
           "id": "carrier_match",
           "title": "Carrier on the email and packing sheet vs the ticket",
-          "severity": "ok",
-          "status": "pass",
-          "why": "The carrier is consistent across the documents that name one.",
+          "severity": "check",
+          "status": "fail",
+          "why": "The carrier named on the order documents is not the carrier on the ticket. The office should confirm who is at the gate.",
           "sides": [
             {
               "source": "email body",
@@ -548,6 +598,11 @@
               "source": "packing sheet · route",
               "snippet": "… EQUIPMENT: FLATBED SIDE UNLOADING ON ROUTE: CONTRANS PRODUCT: SI MN SIZE: 10 MM - 50 MM QTY ORDERED: 48,510.000 LBS PACKING: 22 - 1 MT S/S ON PLT LOTS: …",
               "value": "CONTRANS"
+            },
+            {
+              "source": "bon de livraison 31994 · transporteur",
+              "snippet": "… GS 832586D - PO#5800098782-00030 Transporteur Préposé No relâche/No conteneur LAIDLAW DX2094-104 SUPERVIS …",
+              "value": "LAIDLAW"
             }
           ]
         },
@@ -569,17 +624,39 @@
               "value": "1 packet(s)"
             }
           ]
+        },
+        {
+          "id": "weight_variance_31994",
+          "title": "The scale net and the paperwork net differ",
+          "severity": "heads_up",
+          "status": "heads_up",
+          "why": "This is on the board so the office can look at it. It is not a conclusion about why they differ.",
+          "sides": [
+            {
+              "source": "packing sheet / certificate / email",
+              "snippet": "48,510.000 LBS (packing sheet)",
+              "value": "48,510.000 LBS (packing sheet) = 22003.8 kg"
+            },
+            {
+              "source": "bon de livraison 31994",
+              "snippet": "22 529 kg",
+              "value": "22529.000 kg · difference 525 kg"
+            }
+          ],
+          "paper_kg": 22003.7658687,
+          "ticket_kg": 22529.0,
+          "difference_kg": 525.2341312999997
         }
       ],
       "bol_required_count": 2,
       "bol_source": "domeplex_issues",
       "bol_instructions": "Please issue two separate bills of lading.",
-      "bol_instructions_snippet": "… d afternoon, Please see the attached release for Algoma. Contrans will use the CCMA release number as the pick-up number Thursday 11/19. Please issue two separate bills of lading. Thank you! SHIPPING via tarped Flatbed: HC FeMn - MATERIAL ALREADY PACKAGED DX2094 104 PO # [phone removed]-00030 22 X 1MT FLAT BOTTOM …",
+      "bol_instructions_snippet": "… d afternoon, Please see the attached release for Algoma. Contrans will use the CCMA release number as the pick-up number Thursday 11/19. Please issue two separate bills of lading. Thank you! SHIPPING via tarped Flatbed: HC FeMn - MATERIAL ALREADY PACKAGED DX2094 104 PO # 5800098785-00030 22 X 1MT FLAT BOTTOM …",
       "material_code": "100000483",
       "pr_number": "10028731",
       "equipment": "FLATBED SIDE UNLOADING",
       "freight": "PREPAID",
-      "updated_at": "2026-11-20T17:00:29.487580+00:00",
+      "updated_at": "2026-11-20T17:02:18.812281+00:00",
       "created_at": "2026-11-20T16:58:25.265245+00:00",
       "documents": {
         "email": {
@@ -593,28 +670,28 @@
           "delivery_date": "11/20",
           "hours": "7am-3pm",
           "body_product": "HC FeMn",
-          "po": "[phone removed]-00030",
+          "po": "5800098785-00030",
           "release_no": "DX2094 104",
           "quantity_raw": "22 X 1MT FLAT BOTTOM super sacks on pallets (no cross straps or spouts) - 48,510 lbs.",
           "bol_required_count": 2,
           "bol_source": "domeplex_issues",
           "bol_instructions": "Please issue two separate bills of lading.",
-          "bol_instructions_snippet": "… d afternoon, Please see the attached release for Algoma. Contrans will use the CCMA release number as the pick-up number Thursday 11/19. Please issue two separate bills of lading. Thank you! SHIPPING via tarped Flatbed: HC FeMn - MATERIAL ALREADY PACKAGED DX2094 104 PO # [phone removed]-00030 22 X 1MT FLAT BOTTOM …",
-          "body_product_snippet": "… the CCMA release number as the pick-up number Thursday 11/19. Please issue two separate bills of lading. Thank you! SHIPPING via tarped Flatbed: HC FeMn - MATERIAL ALREADY PACKAGED DX2094 104 PO # [phone removed]-00030 22 X 1MT FLAT BOTTOM super sacks on pallets (no cross straps or spouts) - 48,510 …",
+          "bol_instructions_snippet": "… d afternoon, Please see the attached release for Algoma. Contrans will use the CCMA release number as the pick-up number Thursday 11/19. Please issue two separate bills of lading. Thank you! SHIPPING via tarped Flatbed: HC FeMn - MATERIAL ALREADY PACKAGED DX2094 104 PO # 5800098785-00030 22 X 1MT FLAT BOTTOM …",
+          "body_product_snippet": "… the CCMA release number as the pick-up number Thursday 11/19. Please issue two separate bills of lading. Thank you! SHIPPING via tarped Flatbed: HC FeMn - MATERIAL ALREADY PACKAGED DX2094 104 PO # 5800098785-00030 22 X 1MT FLAT BOTTOM super sacks on pallets (no cross straps or spouts) - 48,510 …",
           "carrier_snippet": "Good afternoon, Please see the attached release for Algoma. Contrans will use the CCMA release number as the pick-up number Thursday 11/19. Please issue two separate bills of lading. Thank you! SHIPPING via tarped F …",
-          "po_snippet": "… Please issue two separate bills of lading. Thank you! SHIPPING via tarped Flatbed: HC FeMn - MATERIAL ALREADY PACKAGED DX2094 104 PO # [phone removed]-00030 22 X 1MT FLAT BOTTOM super sacks on pallets (no cross straps or spouts) - 48,510 lbs. Net wt. Pick Up 11/19: CCMA c/o Domplex 2045 Route Ma …",
+          "po_snippet": "… Please issue two separate bills of lading. Thank you! SHIPPING via tarped Flatbed: HC FeMn - MATERIAL ALREADY PACKAGED DX2094 104 PO # 5800098785-00030 22 X 1MT FLAT BOTTOM super sacks on pallets (no cross straps or spouts) - 48,510 lbs. Net wt. Pick Up 11/19: CCMA c/o Domplex 2045 Route Ma …",
           "qty_weight": {
             "raw": "48,510.000 LBS",
             "value": 48510.0,
             "unit": "lbs",
-            "kg": 22[phone removed]
+            "kg": 22003.7658687
           }
         },
         "packing": {
           "kind": "packing",
           "filename": "PACKING_000105_DSZARAFINR.PDF",
           "release_no": "DX2094 104 ORDER DATE",
-          "po": "[phone removed]-00030",
+          "po": "5800098785-00030",
           "product": "SI MN",
           "size": "10 MM - 50 MM",
           "quantity": "48,510.000 LBS",
@@ -622,7 +699,7 @@
             "raw": "48,510.000 LBS",
             "value": 48510.0,
             "unit": "lbs",
-            "kg": 22[phone removed]
+            "kg": 22003.7658687
           },
           "packing": "22 - 1 MT S/S ON PLT",
           "lot": "832586D",
@@ -638,7 +715,7 @@
         "cert": {
           "kind": "cert",
           "filename": "CertOfAnalysis_832586D.PDF",
-          "po": "[phone removed]-00030",
+          "po": "5800098785-00030",
           "qty_weight": {},
           "lot": "832586D",
           "product": "SI MN",
@@ -696,8 +773,8 @@
         },
         "customer_bol": {
           "kind": "customer_bol",
-          "filename": "Bill of Lading (Imacro) - [phone removed].pdf",
-          "number": "[phone removed]",
+          "filename": "Bill of Lading (Imacro) - 0000013638.pdf",
+          "number": "0000013638",
           "date": "November 12, 2026",
           "po": "PO 11070",
           "ship_date": "17-Nov-2026",
@@ -741,7 +818,7 @@
       "ship_to": "ArcelorMittal Produits Long Canada Ctr-Est 3900, Rte des Aciéries Contrecoeur, QC, J0L 1C0",
       "carrier": "ROBERT TRANSPORT",
       "pickup_date": "2026/11/14",
-      "po": "[phone removed]",
+      "po": "4501037365",
       "release_no": "N/A",
       "releases": [],
       "tickets": [
@@ -750,7 +827,7 @@
           "filename": "13-31767.PDF",
           "number": "31767",
           "date": "2026/11/14",
-          "commande": "[phone removed]",
+          "commande": "4501037365",
           "entry": "09 h 12",
           "exit": "09 h 19",
           "vendor": "Glencore Ltd",
