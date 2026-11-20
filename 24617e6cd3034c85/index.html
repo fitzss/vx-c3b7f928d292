@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Avorth: catch the expensive mistake before it ships</title>
-<meta name="description" content="Catch the expensive mistake before it ships. AI in your email and texts for owner-run distributors, wholesalers and small manufacturers.">
+<title>Avorth: catch order errors before the truck leaves</title>
+<meta name="description" content="Catch order errors before the truck leaves. AI checks on payments, picks and loads for owner-run distributors, wholesalers and small manufacturers.">
 <meta name="robots" content="noindex">
 <style>
 :root{--ink:#0f1b2d;--ink2:#43526b;--mute:#6b7890;--line:#e3e8f0;--bg:#f4f6fa;--brand:#1747d6;--brand2:#0c2f9e;--ok:#0b7a46;--okSoft:#dff5ea;--bad:#b42318;--badSoft:#fde7e4;--warn:#b45309;--warnSoft:#fdf1e2}
@@ -123,6 +123,45 @@ footer a{color:var(--mute)}
   .ctas .alt{width:100%;text-align:center}
   .final h2{font-size:30px}
 }
+
+/* hero check */
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.hero h1{font-size:54px}
+.note{margin:18px 0 0;font-size:15px;font-weight:600;color:var(--ink2)}
+.check{display:block;background:#fff;border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:0 16px 40px rgba(15,27,45,.12);text-decoration:none;color:var(--ink)}
+.check:hover{border-color:#c9d3e2}
+.check-top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px}
+.check .tag{font-size:12px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:var(--mute)}
+.order{display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--bg);margin-bottom:14px}
+.order b{font-size:18px}.order .amt{font-weight:800;font-size:18px;margin-right:auto}
+.badge.warn{background:#cdf3dc;color:#0b6b3a}
+.flow{list-style:none;margin:0;padding:0}
+.flow li{display:flex;gap:12px;align-items:flex-start;padding:10px 0;position:relative}
+.flow li:not(:last-child)::after{content:"";position:absolute;left:14px;top:42px;bottom:-4px;width:2px;background:var(--line)}
+.flow i{flex:none;width:30px;height:30px;border-radius:50%;background:#e8eefc;color:var(--brand);display:grid;place-items:center;font-style:normal;font-weight:900;font-size:14px}
+.flow li.bad i{background:var(--badSoft);color:var(--bad)}
+.flow li.ok i{background:var(--okSoft);color:var(--ok)}
+.flow b{display:block;font-size:17px}
+.flow span{display:block;font-size:15px;color:var(--ink2)}
+.check-foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;margin-top:12px;padding-top:14px;border-top:1px solid var(--line);font-size:15px;font-weight:700;color:var(--ok)}
+.check-foot .go{color:var(--brand)}
+.cards.three{grid-template-columns:repeat(3,1fr)}
+@media (max-width:900px){.hero-grid{grid-template-columns:1fr;gap:28px}.hero h1{font-size:40px}.cards.three{grid-template-columns:1fr 1fr}}
+@media (max-width:640px){
+  .hero{padding:24px 0 36px}
+  .hero h1{font-size:31px;letter-spacing:-.6px;margin-bottom:12px}
+  .hero .lead{font-size:16px;margin-bottom:16px}
+  .hero .ctas{gap:10px;flex-wrap:nowrap}
+  .hero .ctas .btn{width:auto;flex:1;padding:12px 8px;font-size:15px}
+  .note{margin-top:10px;font-size:13px}
+  .hero-grid{gap:18px}
+  .check{padding:16px}
+  .check-top{margin-bottom:10px}
+  .order{padding:9px 12px;margin-bottom:6px}
+  .flow li{padding:7px 0}
+  .flow li:not(:last-child)::after{top:38px}
+  .cards.three{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
@@ -136,42 +175,49 @@ footer a{color:var(--mute)}
       <a href="#how">How it works</a>
       <a href="#team">Who we are</a>
       <!-- TODO: replace #book with the real booking link (Cal.com / Calendly) -->
-      <a class="btn sm" href="#book">Book 20 minutes</a>
+      <a class="btn sm" href="#book">Book a call</a>
     </nav>
   </div>
 </header>
 
 <main id="top">
   <section class="hero">
-    <div class="wrap">
-      <p class="eyebrow">You've thought about using AI. We put it in place.</p>
-      <h1>Catch the expensive mistake before it ships.</h1>
-      <p class="lead">AI that works inside your email and texts, flagging the wrong load, the fake order, or the shipment nobody billed.</p>
-      <div class="ctas">
-        <a class="btn" href="#book">Book 20 minutes. Bring one problem.</a>
-        <span class="alt">or <!-- TODO: replace with Fitz's LinkedIn profile URL --><a href="#linkedin">message Fitz on LinkedIn</a></span>
+    <div class="wrap hero-grid">
+      <div class="hero-text">
+        <h1>Catch order errors before the truck leaves.</h1>
+        <p class="lead">We set up AI checks on the payments, picks, and loads your team already tracks. When something doesn't match, you see what's off and decide what happens next.</p>
+        <div class="ctas">
+          <!-- TODO: replace #book with the real booking link -->
+          <a class="btn" href="#book">Book a 20-minute call</a>
+          <a class="btn ghost" href="https://fitzss.github.io/vx-c3b7f928d292/337ac0de8f1ae981/" target="_blank" rel="noopener">See an order check</a>
+        </div>
+        <p class="note">Fixed-price pilot on one workflow. No surprise bills.</p>
       </div>
-      <div class="for">
-        <span class="l">Built for</span>
-        <span class="chip">Distributors</span>
-        <span class="chip">Wholesalers</span>
-        <span class="chip">Small manufacturers</span>
-      </div>
+      <a class="check" href="https://fitzss.github.io/vx-c3b7f928d292/337ac0de8f1ae981/" target="_blank" rel="noopener" aria-label="Order check example">
+        <div class="check-top"><span class="tag">Order check · example</span><span class="pill">● Sample data</span></div>
+        <div class="order"><b>Order #1187</b><span class="amt">$1,240</span><span class="badge warn">Marked paid</span></div>
+        <ol class="flow">
+          <li><i>1</i><div><b>Buyer sent a receipt</b><span>The order shows as paid.</span></div></li>
+          <li class="bad"><i>!</i><div><b>No matching payment found</b><span>The money never reached the account.</span></div></li>
+          <li class="ok"><i>✓</i><div><b>Owner reviews before release</b><span>Held. Nothing ships until someone says yes.</span></div></li>
+        </ol>
+        <div class="check-foot"><span>Payment couldn't be verified. $1,240 kept.</span><span class="go">Watch it →</span></div>
+      </a>
     </div>
   </section>
 
   <section class="who">
     <div class="wrap who-grid">
       <div>
-        <p class="eyebrow">Who it's for</p>
-        <h2>Small teams moving real product.</h2>
-        <p class="sub" style="margin-bottom:0">You run a distributor, a wholesaler or a small plant. Orders come in by email, text and phone. A few people keep it all straight, and one slip costs real money.</p>
+        <p class="eyebrow">One promise</p>
+        <h2>We help you catch the wrong thing before it leaves.</h2>
+        <p class="sub" style="margin-bottom:0">For owner-run distributors, wholesalers and small manufacturers. Orders come in by email, text and phone. A few people keep it all straight, and one slip costs real money.</p>
       </div>
       <ul>
-        <li><i>!</i><span>An order that looks paid, but isn't, goes out the door.</span></li>
+        <li><i>!</i><span>An order looks paid, but the payment couldn't be verified.</span></li>
         <li><i>!</i><span>The wrong product gets loaded on the truck.</span></li>
-        <li><i>!</i><span>A job ships, and the invoice waits a week.</span></li>
         <li><i>!</i><span>A wrong pick gets caught at the customer's dock, not yours.</span></li>
+        <li><i>!</i><span>A job ships, and the invoice waits a week.</span></li>
       </ul>
     </div>
   </section>
@@ -180,32 +226,18 @@ footer a{color:var(--mute)}
     <div class="wrap">
       <div class="demo-head">
         <div>
-          <p class="eyebrow">Examples</p>
-          <h2>In owners' own words.</h2>
-          <p>Four problems owners told us about, and a two-minute example of each. Click a card to watch it.</p>
+          <p class="eyebrow">More examples</p>
+          <h2>The same kind of check, other places.</h2>
+          <p>Problems owners told us about, each with a two-minute example.</p>
         </div>
         <span class="pill">● Examples with sample data</span>
       </div>
-      <div class="cards">
+      <div class="cards three">
         <a class="card" href="https://fitzss.github.io/vx-c3b7f928d292/5c8ed3f8ef32d0bf/" target="_blank" rel="noopener">
           <div class="top"><span class="tag">Loading</span><span class="badge stop">Stopped</span></div>
           <blockquote>&ldquo;One wrong load can scrap a $200K steel batch.&rdquo;</blockquote>
           <div class="who-said">What we heard from a steel maker</div>
-          <p>The lot tag didn't match the release. The AI flagged it before loading.</p>
-          <span class="go">Watch the example →</span>
-        </a>
-        <a class="card" href="https://fitzss.github.io/vx-c3b7f928d292/337ac0de8f1ae981/" target="_blank" rel="noopener">
-          <div class="top"><span class="tag">Order check</span><span class="badge stop">Stopped</span></div>
-          <blockquote>&ldquo;Orders that look paid until they aren't.&rdquo;</blockquote>
-          <div class="who-said">What we heard from a janitorial supplier</div>
-          <p>A $1,240 order looked paid. The money never landed, so nothing shipped.</p>
-          <span class="go">Watch the example →</span>
-        </a>
-        <a class="card" href="https://fitzss.github.io/vx-c3b7f928d292/afcc34a60c6e6305/" target="_blank" rel="noopener">
-          <div class="top"><span class="tag">Billing</span><span class="badge ok">Done</span></div>
-          <blockquote>&ldquo;I just want to mark it shipped and send the invoice.&rdquo;</blockquote>
-          <div class="who-said">What we heard from a lubricants maker</div>
-          <p>One text that it shipped. The invoice and payment link go out the same day.</p>
+          <p>The lot tag didn't match the release. Flagged before loading.</p>
           <span class="go">Watch the example →</span>
         </a>
         <a class="card" href="https://fitzss.github.io/vx-c3b7f928d292/6636e9f6cbff99e8/" target="_blank" rel="noopener">
@@ -213,6 +245,13 @@ footer a{color:var(--mute)}
           <blockquote>&ldquo;Wrong color, wrong count, pay freight twice.&rdquo;</blockquote>
           <div class="who-said">What we heard from a furniture importer</div>
           <p>The LTL pick didn't match the order. Caught before the truck left, about $640 saved.</p>
+          <span class="go">Watch the example →</span>
+        </a>
+        <a class="card" href="https://fitzss.github.io/vx-c3b7f928d292/afcc34a60c6e6305/" target="_blank" rel="noopener">
+          <div class="top"><span class="tag">Billing</span><span class="badge ok">Done</span></div>
+          <blockquote>&ldquo;I just want to mark it shipped and send the invoice.&rdquo;</blockquote>
+          <div class="who-said">What we heard from a lubricants maker</div>
+          <p>One text that it shipped. The invoice and payment link go out the same day.</p>
           <span class="go">Watch the example →</span>
         </a>
       </div>
@@ -227,17 +266,19 @@ footer a{color:var(--mute)}
         <div>
           <p class="eyebrow">The pilot</p>
           <h2>Start with a small fixed-price pilot.</h2>
-          <p>We agree the price upfront for one problem, so there are no surprise bills.</p>
-          <p>We set it up on your real orders, and you see what it catches. Keep going only if it's working.</p>
+          <p>We agree the price upfront for one workflow, so there are no surprise bills.</p>
+          <p>Before we start, we agree on one number to judge it by: errors caught before dispatch, time spent double-checking orders, or time from shipment to invoice.</p>
+          <p>At the end, we show you what changed, using your own records. Keep going only if it's working.</p>
         </div>
         <div class="price">
           <div class="n">Fixed price</div><div class="nsub">Agreed before we start</div>
           <ul>
-            <li>One problem, set up on your real orders</li>
+            <li>One workflow, set up on your real orders</li>
+            <li>One number to judge it by</li>
             <li>Fitz and Martin do the setup</li>
-            <li>You decide what comes next</li>
+            <li>Results shown from your own records</li>
           </ul>
-          <a class="btn" href="#book" style="width:100%">Book 20 minutes</a>
+          <a class="btn" href="#book" style="width:100%">Book a 20-minute call</a>
         </div>
       </div>
     </div>
