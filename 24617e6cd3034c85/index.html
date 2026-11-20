@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Avorth: we put AI in place for companies that ship product</title>
-<meta name="description" content="You've thought about using AI in your business. We put it in place. For owner-run distributors, wholesalers and small manufacturers.">
+<title>Avorth: catch the expensive mistake before it ships</title>
+<meta name="description" content="Catch the expensive mistake before it ships. AI in your email and texts for owner-run distributors, wholesalers and small manufacturers.">
 <meta name="robots" content="noindex">
 <style>
 :root{--ink:#0f1b2d;--ink2:#43526b;--mute:#6b7890;--line:#e3e8f0;--bg:#f4f6fa;--brand:#1747d6;--brand2:#0c2f9e;--ok:#0b7a46;--okSoft:#dff5ea;--bad:#b42318;--badSoft:#fde7e4;--warn:#b45309;--warnSoft:#fdf1e2}
@@ -54,8 +54,8 @@ h3{font-size:21px;line-height:1.25;margin:0 0 8px}
 .card:hover{box-shadow:0 12px 30px rgba(15,27,45,.10);transform:translateY(-2px);border-color:#c9d3e2}
 .card .top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:16px}
 .card .tag{font-size:12px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:var(--mute)}
-.card .amt{font-size:40px;font-weight:900;letter-spacing:-1px;color:var(--ok);line-height:1;margin-bottom:10px}
-.card .amt small{font-size:15px;font-weight:700;color:var(--mute);letter-spacing:0;margin-left:4px}
+.card blockquote{margin:0 0 10px;font-size:23px;line-height:1.25;font-weight:800;letter-spacing:-.3px;color:var(--ink)}
+.card .who-said{font-size:14px;font-weight:700;color:var(--mute);margin-bottom:14px}
 .card p{margin:0 0 18px;color:var(--ink2);font-size:17px}
 .card .go{margin-top:auto;font-weight:700;color:var(--brand);font-size:16px}
 .badge{font-size:12px;font-weight:800;padding:4px 9px;border-radius:7px}
@@ -114,7 +114,9 @@ footer a{color:var(--mute)}
   nav a:not(.btn){display:none}
   h1{font-size:36px}
   .cards{grid-template-columns:1fr}
-  .card .amt{font-size:34px}
+  .card blockquote{margin:0 0 10px;font-size:23px;line-height:1.25;font-weight:800;letter-spacing:-.3px;color:var(--ink)}
+.card .who-said{font-size:14px;font-weight:700;color:var(--mute);margin-bottom:14px}
+.card blockquote{font-size:21px}
   .price .n{font-size:52px}
   .ctas .btn{width:100%}
   .ctas .alt{width:100%;text-align:center}
@@ -141,9 +143,9 @@ footer a{color:var(--mute)}
 <main id="top">
   <section class="hero">
     <div class="wrap">
-      <p class="eyebrow">For owner-run companies that ship product</p>
-      <h1>You've thought about using AI in your business. We put it in place.</h1>
-      <p class="lead">We set up today's AI inside the email, texts and tools you already use. It catches the costly mistakes before they ship, and you approve every step.</p>
+      <p class="eyebrow">You've thought about using AI. We put it in place.</p>
+      <h1>Catch the expensive mistake before it ships.</h1>
+      <p class="lead">AI that works inside your email and texts, flagging the wrong load, the fake order, or the shipment nobody billed.</p>
       <div class="ctas">
         <a class="btn" href="#book">Book 20 minutes. Bring one problem.</a>
         <span class="alt">or <!-- TODO: replace with Fitz's LinkedIn profile URL --><a href="#linkedin">message Fitz on LinkedIn</a></span>
@@ -178,42 +180,42 @@ footer a{color:var(--mute)}
       <div class="demo-head">
         <div>
           <p class="eyebrow">Examples</p>
-          <h2>Four money leaks, caught.</h2>
-          <p>Each one is a two-minute walkthrough. Click a card to watch it.</p>
+          <h2>In owners' own words.</h2>
+          <p>Four problems owners told us about, and a two-minute example of each. Click a card to watch it.</p>
         </div>
         <span class="pill">● Examples with sample data</span>
       </div>
       <div class="cards">
-        <a class="card" href="https://fitzss.github.io/vx-c3b7f928d292/337ac0de8f1ae981/" target="_blank" rel="noopener">
-          <div class="top"><span class="tag">Order check</span><span class="badge stop">Stopped</span></div>
-          <div class="amt">$1,240<small>saved</small></div>
-          <h3>A fake order, caught before it shipped.</h3>
-          <p>The order looked paid. The AI checked whether the money had really landed. It hadn't, so it texted the owner before anything shipped.</p>
-          <span class="go">Watch the example →</span>
-        </a>
         <a class="card" href="https://fitzss.github.io/vx-c3b7f928d292/5c8ed3f8ef32d0bf/" target="_blank" rel="noopener">
           <div class="top"><span class="tag">Loading</span><span class="badge stop">Stopped</span></div>
-          <div class="amt">1 load<small>kept off the truck</small></div>
-          <h3>The wrong load, stopped at the door.</h3>
-          <p>The lot tag didn't match the release. The AI flagged it before loading, so the truck left with the right material.</p>
+          <blockquote>&ldquo;One wrong load can scrap a $200K steel batch.&rdquo;</blockquote>
+          <div class="who-said">What we heard from a steel maker</div>
+          <p>The lot tag didn't match the release. The AI flagged it before loading.</p>
+          <span class="go">Watch the example →</span>
+        </a>
+        <a class="card" href="https://fitzss.github.io/vx-c3b7f928d292/337ac0de8f1ae981/" target="_blank" rel="noopener">
+          <div class="top"><span class="tag">Order check</span><span class="badge stop">Stopped</span></div>
+          <blockquote>&ldquo;Orders that look paid until they aren't.&rdquo;</blockquote>
+          <div class="who-said">What we heard from a janitorial supplier</div>
+          <p>A $1,240 order looked paid. The money never landed, so nothing shipped.</p>
           <span class="go">Watch the example →</span>
         </a>
         <a class="card" href="https://fitzss.github.io/vx-c3b7f928d292/afcc34a60c6e6305/" target="_blank" rel="noopener">
           <div class="top"><span class="tag">Billing</span><span class="badge ok">Done</span></div>
-          <div class="amt">Same day<small>billed</small></div>
-          <h3>Shipped and billed the same day.</h3>
-          <p>One text that the order shipped. The AI drafted the invoice and payment link, and the owner sent it with one word.</p>
+          <blockquote>&ldquo;I just want to mark it shipped and send the invoice.&rdquo;</blockquote>
+          <div class="who-said">What we heard from a lubricants maker</div>
+          <p>One text that it shipped. The invoice and payment link go out the same day.</p>
           <span class="go">Watch the example →</span>
         </a>
         <a class="card" href="https://fitzss.github.io/vx-c3b7f928d292/6636e9f6cbff99e8/" target="_blank" rel="noopener">
           <div class="top"><span class="tag">Picking</span><span class="badge stop">Stopped</span></div>
-          <div class="amt">~$640<small>re-ship avoided</small></div>
-          <h3>A wrong LTL pick, caught before the truck left.</h3>
-          <p>The pick didn't match the order. The AI caught it from the warehouse email, so nobody paid to ship it twice.</p>
+          <blockquote>&ldquo;Wrong color, wrong count, pay freight twice.&rdquo;</blockquote>
+          <div class="who-said">What we heard from a furniture importer</div>
+          <p>The LTL pick didn't match the order. Caught before the truck left, about $640 saved.</p>
           <span class="go">Watch the example →</span>
         </a>
       </div>
-      <p class="fine">These are examples built with sample data to show how it works. They are not customer results.</p>
+      <p class="fine">Quotes are from conversations with owners, not customers. The examples use sample data to show how it works. They are not customer results.</p>
       <!-- PLACEHOLDER: Real customer quote goes here once the first pilot lands. Do not add until it's real and approved by the customer. -->
     </div>
   </section>
@@ -267,11 +269,12 @@ footer a{color:var(--mute)}
   <section>
     <div class="wrap">
       <p class="eyebrow">Questions</p>
-      <h2>The short answers.</h2>
+      <h2>Questions owners ask us.</h2>
       <div class="faq">
-        <div><h3>Do we have to change software?</h3><p>No. We start with the email, texts and systems you already use.</p></div>
+        <div><h3>Will the AI bill surprise me?</h3><p>No. The pilot is a flat $250 for 30 days. You'll know the monthly price before you decide to keep it.</p></div>
+        <div><h3>Do my drivers or crew have to use it?</h3><p>No. It works in the office, through the email and texts you already use. No new software.</p></div>
+        <div><h3>Is this another complicated demo?</h3><p>No. It's one problem, solved first, with screens your team already understands.</p></div>
         <div><h3>Who stays in control?</h3><p>You do. The AI suggests and flags. Your team approves.</p></div>
-        <div><h3>What does it cost?</h3><p>$250 for a 30-day pilot. If it's worth keeping, we agree on a monthly price after.</p></div>
         <div><h3>What if it's not a fit?</h3><p>Then you walk away after 30 days. Nothing more to pay.</p></div>
       </div>
     </div>
@@ -279,8 +282,8 @@ footer a{color:var(--mute)}
 
   <section id="book" class="final" style="padding-top:24px">
     <div class="wrap">
-      <h2>What's the one mistake you'd most like to stop?</h2>
-      <p class="sub">Tell us in 20 minutes. We'll tell you straight if we can help.</p>
+      <h2>Tell us the mistake that cost you the most this year.</h2>
+      <p class="sub">20 minutes. We'll tell you straight if we can help.</p>
       <div class="ctas">
         <!-- TODO: replace #book with the real booking link -->
         <a class="btn" href="#book">Book 20 minutes. Bring one problem.</a>
