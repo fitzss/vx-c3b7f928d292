@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Avorth × Domeplex — today’s loads, checked before they leave</title>
+<meta name="description" content="A prototype for Domeplex, built from sample order emails and tickets. The office sees every load and every mismatch before the truck is loaded.">
+<meta name="robots" content="noindex, nofollow">
+<style>
+:root{
+  --ink:#0f1b2d;--ink2:#43526b;--mute:#6b7890;--line:#e3e8f0;--bg:#f4f6fa;--paper:#fff;
+  --brand:#1747d6;--brand2:#0c2f9e;--brandSoft:#e8eefc;
+  --ok:#0b7a46;--okSoft:#dff5ea;--bad:#b42318;--badSoft:#fde7e4;
+  --warn:#b45309;--warnSoft:#fdf1e2;--wait:#5b4570;--waitSoft:#efeaf6;
+  --shadow:0 1px 2px rgba(15,27,45,.05),0 8px 24px rgba(15,27,45,.06);
+  --radius:16px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);
+  font:17px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased}
+button,input{font:inherit}
+button{cursor:pointer}
+a{color:var(--brand)}
+.skip{position:absolute;left:-999px}
+.skip:focus{left:12px;top:12px;background:#fff;padding:8px 12px;z-index:20;border-radius:8px}
+
+/* header */
+.chrome{position:sticky;top:0;z-index:8;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+header .bar{max-width:1120px;margin:0 auto;padding:0 20px;height:62px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:17px;color:var(--ink);text-decoration:none;letter-spacing:-.2px}
+.mark{width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,var(--brand),#4b7bff);color:#fff;display:grid;place-items:center;font-weight:800;font-size:15px;flex:none}
+.logo small{display:block;font-weight:600;color:var(--mute);font-size:11px;letter-spacing:.2px}
+.banner{font-size:12px;font-weight:700;color:var(--warn);background:var(--warnSoft);border:1px solid #f3d7b0;border-radius:999px;padding:5px 10px;white-space:nowrap}
+.banner .short{display:none}
+
+/* steps */
+.steps{max-width:1120px;margin:0 auto;padding:14px 20px 0;display:flex;gap:6px;overflow:auto;scrollbar-width:none}
+.steps::-webkit-scrollbar{display:none}
+.steps button{flex:1;min-width:92px;border:0;background:transparent;padding:8px 6px 12px;color:var(--mute);font-size:12px;font-weight:700;letter-spacing:.3px;border-bottom:2px solid transparent}
+.steps button .n{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;background:#e7ecf3;color:var(--ink2);font-size:11px;margin-right:6px;vertical-align:middle}
+.steps button.on{color:var(--brand);border-bottom-color:var(--brand)}
+.steps button.on .n{background:var(--brand);color:#fff}
+.steps button.done .n{background:var(--okSoft);color:var(--ok)}
+.steps button:hover{color:var(--ink)}
+
+main{max-width:1120px;margin:0 auto;padding:28px 20px 148px}
+.screen{display:none}
+.screen.on{display:block;animation:in .28s ease}
+@keyframes in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+.eyebrow{font-size:12px;font-weight:800;letter-spacing:1.1px;text-transform:uppercase;color:var(--brand);margin:0 0 8px}
+h1{font-size:42px;line-height:1.12;letter-spacing:-1.1px;margin:0 0 14px;max-width:18ch}
+h2{font-size:28px;line-height:1.2;letter-spacing:-.6px;margin:0 0 10px}
+h3{font-size:18px;line-height:1.3;margin:0 0 6px}
+.lead{font-size:19px;color:var(--ink2);max-width:62ch;margin:0 0 22px}
+.sub{color:var(--ink2);margin:0 0 18px;max-width:68ch}
+.fine{font-size:13px;color:var(--mute);margin:14px 0 0}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:2px solid var(--brand);background:var(--brand);color:#fff;border-radius:12px;padding:12px 18px;font-weight:700;font-size:16px;line-height:1.1}
+.btn:hover{background:var(--brand2);border-color:var(--brand2)}
+.btn.ghost{background:#fff;color:var(--ink);border-color:var(--line)}
+.btn.ghost:hover{border-color:#c9d3e2}
+.btn.ok{background:var(--ok);border-color:var(--ok)}
+.btn.ok:hover{background:#08653a;border-color:#08653a}
+.btn.warn{background:#fff;color:var(--warn);border-color:#f3d7b0}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.ctas{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:22px}
+
+/* footer nav */
+.navf{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-top:1px solid var(--line);z-index:8}
+.navf .in{max-width:1120px;margin:0 auto;padding:12px 20px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.navf .hint{font-size:13px;color:var(--mute);font-weight:600}
+
+/* cards */
+.grid{display:grid;gap:16px}
+.grid.three{grid-template-columns:repeat(3,1fr)}
+.grid.two{grid-template-columns:repeat(2,1fr)}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow)}
+.card.flat{box-shadow:none}
+.mail .who{font-size:13px;font-weight:700;color:var(--mute);margin:0 0 4px}
+.mail .subj{font-size:18px;font-weight:800;letter-spacing:-.3px;margin:0 0 6px}
+.mail .meta{font-size:13px;color:var(--mute);margin:0 0 12px}
+.mail blockquote{margin:0;padding:12px 14px;background:var(--bg);border-left:3px solid var(--brand);border-radius:0 10px 10px 0;color:var(--ink2);font-size:15px}
+.mail .atts{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.file{font-size:12px;font-weight:700;background:#eef1f5;border:1px solid var(--line);border-radius:8px;padding:5px 8px;color:var(--ink2)}
+.tag{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;padding:3px 8px;border-radius:999px;margin-right:4px}
+.tag.issue{background:var(--badSoft);color:var(--bad)}
+.tag.head{background:var(--warnSoft);color:var(--warn)}
+.tag.ok{background:var(--okSoft);color:var(--ok)}
+.tag.recv{background:var(--brandSoft);color:var(--brand)}
+.tag.wait{background:var(--waitSoft);color:var(--wait)}
+.tag.miss{background:#eef1f5;color:var(--mute)}
+
+/* board table */
+.board{width:100%;border-collapse:separate;border-spacing:0;background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+.board th{text-align:left;font-size:11px;letter-spacing:.6px;text-transform:uppercase;color:var(--mute);font-weight:700;padding:12px 14px;background:#fafbfd;border-bottom:1px solid var(--line)}
+.board td{padding:14px;border-bottom:1px solid var(--line);vertical-align:top;font-size:14.5px}
+.board tr:last-child td{border-bottom:0}
+.board tr.click{cursor:pointer}
+.board tr.click:hover td{background:#f6f8fd}
+.board .load{font-weight:800;font-size:15.5px;letter-spacing:-.2px}
+.board .muted{color:var(--ink2)}
+.fr{display:block;font-size:11px;color:var(--mute);font-weight:600;margin-top:2px}
+
+/* flags */
+.flag{border:1px solid var(--line);border-radius:var(--radius);background:#fff;overflow:hidden;box-shadow:var(--shadow)}
+.flag.hi{border-color:#f2c4bf}
+.flag.med{border-color:#f3d7b0}
+.flag.headup{border-color:#e6dcc8}
+.flag h3{margin:0}
+.flag .hd{display:flex;gap:12px;align-items:flex-start;padding:16px 18px;cursor:pointer;width:100%;border:0;background:transparent;text-align:left}
+.flag.hi .hd{background:#fff8f7}
+.flag.med .hd{background:#fffaf3}
+.flag.headup .hd{background:#fffcf7}
+.flag .sev{flex:none;font-size:11px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;padding:4px 8px;border-radius:7px;margin-top:2px}
+.flag.hi .sev{background:var(--badSoft);color:var(--bad)}
+.flag.med .sev{background:var(--warnSoft);color:var(--warn)}
+.flag.headup .sev{background:#f4efe6;color:#7a5a2b}
+.flag .why{color:var(--ink2);font-size:15px;margin:4px 0 0}
+.sides{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;padding:0 18px 18px}
+.side{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.side .src{font-size:11px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--mute);margin:0 0 6px}
+.side q,.side .q{display:block;font-size:14.5px;color:var(--ink);quotes:none;font-weight:600}
+.side .val{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:14px;background:#fff;border:1px solid var(--line);border-radius:6px;padding:3px 6px;display:inline-block;margin-top:6px}
+
+/* paperwork */
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px}
+.tabs button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 14px;font-weight:700;font-size:14px;color:var(--ink2)}
+.tabs button.on{background:var(--brand);border-color:var(--brand);color:#fff}
+.paper-form{background:#fff;border:1px dashed #c9d3e2;border-radius:14px;padding:22px;position:relative}
+.paper-form.approved{border-style:solid;border-color:#9ad0b3;background:#f7fdf9}
+.wm{position:absolute;top:14px;right:16px;font-size:11px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:var(--warn);background:var(--warnSoft);padding:4px 8px;border-radius:6px}
+.wm.ok{color:var(--ok);background:var(--okSoft)}
+.wm.miss{color:var(--mute);background:#eef1f5}
+.formhead{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;border-bottom:2px solid var(--ink);padding-bottom:10px;margin-bottom:14px}
+.formhead .co{font-weight:800;font-size:18px}
+.formhead .co span{display:block;font-weight:600;font-size:12px;color:var(--mute)}
+.formhead .doc{text-align:right;font-weight:800}
+.formhead .doc em{display:block;font-style:normal;font-size:12px;color:var(--mute);font-weight:600}
+.kv{display:grid;grid-template-columns:repeat(2,1fr);gap:8px 16px;margin:0 0 14px}
+.kv div{border-bottom:1px dotted #d5dce6;padding:6px 0}
+.kv b{display:block;font-size:10.5px;letter-spacing:.5px;text-transform:uppercase;color:var(--mute);font-weight:700}
+.kv span{font-size:14.5px}
+.kv .empty{color:var(--mute);font-style:italic;font-weight:600}
+.lines{width:100%;border-collapse:collapse;font-size:13.5px;margin:8px 0 12px}
+.lines th{text-align:left;font-size:10.5px;letter-spacing:.5px;text-transform:uppercase;color:var(--mute);border-bottom:1px solid var(--line);padding:6px 8px 6px 0}
+.lines td{padding:7px 8px 7px 0;border-bottom:1px solid #eef1f5;vertical-align:top}
+.label-sheet{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-top:14px}
+.skid{border:2px solid var(--ink);border-radius:8px;padding:12px 14px;background:#fff;font-size:13px}
+.skid .lab{font-size:10px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:var(--mute)}
+.skid h4{margin:2px 0 8px;font-size:16px}
+.skid p{margin:0 0 4px}
+.skid b{font-weight:800}
+.approve{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:14px}
+
+/* loader */
+.placeholder{border:2px dashed #c9b37a;background:#fff8e8;color:#7a5a2b;border-radius:12px;padding:14px 16px;font-weight:700}
+.placeholder strong{display:block;font-size:16px;color:var(--ink);margin-bottom:2px}
+.placeholder span{font-size:13px;font-weight:600}
+.pick{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+.pick th{text-align:left;font-size:11px;letter-spacing:.5px;text-transform:uppercase;color:var(--mute);padding:10px 12px;background:#fafbfd;border-bottom:1px solid var(--line)}
+.pick td{padding:12px;border-bottom:1px solid var(--line);font-size:14.5px;vertical-align:top}
+.pick tr:last-child td{border-bottom:0}
+
+.callouts{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px}
+.need{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
+.need h3{margin:0 0 8px}
+.need p{margin:0;color:var(--ink2)}
+.need .num{width:32px;height:32px;border-radius:10px;background:var(--brandSoft);color:var(--brand);display:grid;place-items:center;font-weight:800;margin-bottom:12px}
+
+.note{background:var(--brandSoft);color:var(--brand2);border-radius:12px;padding:12px 14px;font-size:14.5px;font-weight:600;margin:0 0 16px}
+.statrow{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 18px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 14px;min-width:110px}
+.stat b{display:block;font-size:22px;letter-spacing:-.5px;line-height:1.1}
+.stat span{font-size:12px;color:var(--mute);font-weight:700}
+
+
+.board-cards,.pick-cards{display:none}
+@media (max-width:860px){
+  .board-wrap .board, .pick-wrap .pick{display:none}
+  .board-cards,.pick-cards{display:grid;gap:12px}
+  .mcard{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:var(--shadow);text-align:left;width:100%;color:inherit;font:inherit;cursor:pointer;-webkit-appearance:none;appearance:none}
+  button.mcard:hover{border-color:#c9d3e2}
+  .mcard .when{font-size:12px;font-weight:800;color:var(--mute);letter-spacing:.4px;text-transform:uppercase;margin:0 0 4px}
+  .mcard .load{font-weight:800;font-size:17px;letter-spacing:-.2px;margin:0 0 8px}
+  .mcard dl{margin:0;display:grid;grid-template-columns:88px 1fr;gap:6px 10px;font-size:14px}
+  .mcard dt{color:var(--mute);font-weight:700;font-size:11px;letter-spacing:.4px;text-transform:uppercase;padding-top:2px}
+  .mcard dd{margin:0;color:var(--ink2)}
+  .mcard .tags{margin:10px 0 0;display:flex;flex-wrap:wrap;gap:6px}
+}
+
+@media (max-width:860px){
+  h1{font-size:32px}
+  h2{font-size:24px}
+  .grid.three,.grid.two,.kv,.callouts{grid-template-columns:1fr}
+  .formhead{flex-direction:column}
+  .formhead .doc{text-align:left}
+  .steps button{min-width:78px;font-size:11px}
+}
+@media (max-width:520px){
+  header .bar{padding:0 14px}
+  .banner{font-size:11px;padding:4px 8px}
+  .banner .full{display:none}
+  .banner .short{display:inline}
+  main{padding:20px 14px 160px}
+  .navf .in{padding:10px 14px}
+  .lead{font-size:17px}
+  .sides{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="chrome"><header>
+  <div class="bar">
+    <div class="logo"><span class="mark">A</span><span>Avorth <span style="color:var(--mute);font-weight:700">×</span> Domeplex<small>Second set of eyes · office only</small></span></div>
+    <div class="banner"><span class="full">Prototype · sample documents · not live</span><span class="short">Prototype · not live</span></div>
+  </div>
+</header>
+<nav class="steps" aria-label="Walkthrough">
+  <button type="button" data-go="intro" class="on"><span class="n">1</span>Start</button>
+  <button type="button" data-go="inbox"><span class="n">2</span>Inbox</button>
+  <button type="button" data-go="board"><span class="n">3</span>Board</button>
+  <button type="button" data-go="checks"><span class="n">4</span>Checks</button>
+  <button type="button" data-go="paper"><span class="n">5</span>Paperwork</button>
+  <button type="button" data-go="loader"><span class="n">6</span>Loader</button>
+  <button type="button" data-go="next"><span class="n">7</span>Next</button>
+</nav>
+</div>
+
+<main id="main">
+
+<section class="screen on" id="intro">
+  <p class="eyebrow">For the December 3 meeting</p>
+  <h1>The office sees every mismatch before the truck is loaded.</h1>
+  <p class="lead">A prototype for Domeplex, built from the order emails and tickets you shared. It reads the inbox, lays out the day’s loads, and flags anything that doesn’t match — so a wrong material doesn’t leave the yard.</p>
+  <p class="sub">The office stays in control. Drafts wait for your approval. Nothing is sent, and nothing touches your live operation, clients, or trucks, until you say go.</p>
+  <div class="statrow">
+    <div class="stat"><b>3</b><span>incoming emails</span></div>
+    <div class="stat"><b>4</b><span>loads in the sample</span></div>
+    <div class="stat"><b>8</b><span>checks that need a look</span></div>
+  </div>
+  <div class="ctas">
+    <button class="btn" type="button" data-go="inbox">Start with this morning’s inbox</button>
+  </div>
+  <p class="fine">Built on sample documents Lucas shared. Names, products, lots, POs and weights are taken from those files. Where something is missing, it is shown as missing. Phone numbers, personal email addresses and prices are left out.</p>
+</section>
+
+<section class="screen" id="inbox">
+  <p class="eyebrow">Inbox → board</p>
+  <h2>Three emails came in. Each one is a load.</h2>
+  <p class="sub">The same messages already in your inbox. Read them once; the board and the checks are filled in from the text and the attachments — no retyping.</p>
+  <div class="grid three">
+    <article class="card mail">
+      <p class="who">Brittany Silver · Rand Alloys · Wed, Nov 18</p>
+      <h3 class="subj">Rand release // Domeplex to Soucy Belgen // 14 skid pickup Nov 19th</h3>
+      <p class="meta">To Domeplex · five releases, one pickup</p>
+      <blockquote>Please find releases below — To be picked up Nov 19th. Bourret Transport will arrange for the pickup.<br><br>P.S: Kindly ensure BOL has PO Ref number included on the paperwork. Also ensure all packaging markings are included, and BOL is taped to each skid in a plastic sleeve.</blockquote>
+      <div class="atts"><span class="file">5 releases in the email body</span></div>
+    </article>
+    <article class="card mail">
+      <p class="who">Dave Szarafin · CCMA, LLC · Tue, Nov 17</p>
+      <h3 class="subj">DX2094 104 · Algoma Steel Inc. · SiMn · Packaged — November</h3>
+      <p class="meta">To Domeplex, with Contrans on the thread</p>
+      <blockquote>Please see the attached release for Algoma. Contrans will use the CCMA release number as the pick-up number Thursday 11/19.<br><br>Please issue two separate bills of lading.</blockquote>
+      <div class="atts"><span class="file">CertOfAnalysis_832586D.PDF</span><span class="file">PACKING_000105_DSZARAFINR.PDF</span></div>
+    </article>
+    <article class="card mail">
+      <p class="who">Mary Sanelli · IMACRO Inc. · Thu, Nov 12</p>
+      <h3 class="subj">IVACO BRICK ORDER 11/17/26</h3>
+      <p class="meta">To Domeplex · BOL already attached</p>
+      <blockquote>Please find the bol for Tuesday’s shipment.</blockquote>
+      <div class="atts"><span class="file">Bill of Lading (Imacro) — 0000013638.pdf</span></div>
+    </article>
+  </div>
+  <p class="fine" style="margin-top:18px">A fourth load is in the sample as a completed <i>bon de livraison</i> only — Glencore to ArcelorMittal, Nov 14 — with no originating email in what was shared.</p>
+</section>
+
+<section class="screen" id="board">
+  <p class="eyebrow">Chargements du jour · today’s loads</p>
+  <h2>What is leaving, from the paperwork you already have.</h2>
+  <p class="sub">One board for the office. It shows who is coming, what is on the truck, and whether Domeplex has to issue the bills of lading or the customer already sent one.</p>
+  <div class="statrow">
+    <div class="stat"><b>2</b><span>pickups on Nov 19</span></div>
+    <div class="stat"><b>1</b><span>BOL already received</span></div>
+    <div class="stat"><b>8</b><span>open checks</span></div>
+  </div>
+  <div class="board-wrap" style="overflow:auto">
+  <table class="board">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Load</th>
+        <th>Carrier</th>
+        <th>What is on the truck</th>
+        <th>Paperwork</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="click" data-go="checks" data-filter="rand">
+        <td>Nov 19</td>
+        <td><div class="load">Rand Alloys → Soucy Belgen Inc.</div><div class="muted">Pickup at Domeplex, Contrecoeur · van</div></td>
+        <td>Bourret Transport</td>
+        <td class="muted">Five releases: Ferrophosphorus 1 MT; Ferrosilicon Barium 1 MT; Ferrosilicon Magnesium 8 Bags; High Carbon Ferromanganese 1 MT; Ferrosilicon 3 MT. Subject line: 14 skid pickup.</td>
+        <td><span class="tag issue">Domeplex issues BOLs</span><div class="muted" style="margin-top:6px">One BOL taped to each skid, with that release’s PO ref and markings.</div></td>
+        <td><span class="tag issue">3 checks</span><div class="muted" style="margin-top:6px">Ticket 31959 covers only release 5, and has no weights. Release 5 PO ref is TBD.</div></td>
+      </tr>
+      <tr class="click" data-go="checks" data-filter="ccma">
+        <td>Nov 19</td>
+        <td><div class="load">CCMA, LLC → Algoma Steel Inc.</div><div class="muted">Deliver Nov 20 · Sault Ste. Marie · hours 7am–3pm</div></td>
+        <td class="muted">Contrans on the email and packing sheet. Laidlaw on <i>bon de livraison</i> 31994.</td>
+        <td class="muted">SiMn, lot 832586D, 22 × 1 MT flat-bottom supersacks on pallets. Packing sheet: 48,510 lbs. Ticket: 22 un, 22,529 kg net. Release DX2094 104.</td>
+        <td><span class="tag issue">Domeplex issues 2 BOLs</span><div class="muted" style="margin-top:6px">CCMA asked for two separate bills of lading. Only this SiMn packet is in the sample.</div></td>
+        <td><span class="tag issue">5 checks</span><div class="muted" style="margin-top:6px">PO, product name, carrier, second BOL, and a weight heads-up.</div></td>
+      </tr>
+      <tr class="click" data-go="paper" data-tab="ivaco">
+        <td>Nov 17</td>
+        <td><div class="load">IMACRO c/o Domeplex → Ivaco Rolling Mills</div><div class="muted">L'Orignal, ON · FCA Contrecoeur, QC</div></td>
+        <td>Customer pickup</td>
+        <td class="muted">Brick order PO 11070: SLLADS SU6-45, 1,100 EA on 4 pallets; SLLADEL SU6.5-45, 825 EA on 3 pallets. Do not stack.</td>
+        <td><span class="tag recv">BOL received</span><div class="muted" style="margin-top:6px">IMACRO bill of lading 0000013638, dated Nov 12, ship date Nov 17.</div></td>
+        <td><span class="tag ok">No mismatch in this sample</span></td>
+      </tr>
+      <tr>
+        <td>Nov 14</td>
+        <td><div class="load">Glencore Ltd → ArcelorMittal Produits Long Canada Ctr-Est</div><div class="muted">3900 Rte des Aciéries, Contrecoeur — same town</div></td>
+        <td>Robert Transport</td>
+        <td class="muted">Chrome, product 20000037, lot DMP5192201. Net 34,050 kg (34.05 MT). Commande 4501037365.</td>
+        <td><span class="tag miss">No email in this sample</span><div class="muted" style="margin-top:6px"><i>Bon de livraison</i> 31767 only. In 09:12, out 09:19. Release no.: N/A.</div></td>
+        <td><span class="tag wait">Ticket only</span></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="board-cards">
+    <button type="button" class="mcard" data-go="checks" data-filter="rand">
+      <p class="when">Nov 19</p>
+      <p class="load">Rand Alloys → Soucy Belgen Inc.</p>
+      <dl>
+        <dt>Carrier</dt><dd>Bourret Transport · van · pickup at Domeplex, Contrecoeur</dd>
+        <dt>On the truck</dt><dd>Five releases: Ferrophosphorus 1 MT; Ferrosilicon Barium 1 MT; Ferrosilicon Magnesium 8 Bags; High Carbon Ferromanganese 1 MT; Ferrosilicon 3 MT. Subject line: 14 skid pickup.</dd>
+        <dt>Paperwork</dt><dd>Domeplex issues BOLs — one taped to each skid, with that release’s PO ref and markings.</dd>
+        <dt>Status</dt><dd>3 checks: ticket 31959 covers only release 5 and has no weights. Release 5 PO ref is TBD.</dd>
+      </dl>
+      <div class="tags"><span class="tag issue">Domeplex issues BOLs</span><span class="tag issue">3 checks</span></div>
+    </button>
+    <button type="button" class="mcard" data-go="checks" data-filter="ccma">
+      <p class="when">Nov 19</p>
+      <p class="load">CCMA, LLC → Algoma Steel Inc.</p>
+      <dl>
+        <dt>Carrier</dt><dd>Contrans on the email and packing sheet. Laidlaw on bon de livraison 31994. Deliver Nov 20, Sault Ste. Marie, hours 7am–3pm.</dd>
+        <dt>On the truck</dt><dd>SiMn, lot 832586D, 22 × 1 MT flat-bottom supersacks on pallets. Packing sheet: 48,510 lbs. Ticket: 22 un, 22,529 kg net. Release DX2094 104.</dd>
+        <dt>Paperwork</dt><dd>Domeplex issues 2 BOLs. CCMA asked for two separate bills of lading. Only this SiMn packet is in the sample.</dd>
+        <dt>Status</dt><dd>5 checks: PO, product name, carrier, second BOL, and a weight heads-up.</dd>
+      </dl>
+      <div class="tags"><span class="tag issue">Domeplex issues 2 BOLs</span><span class="tag issue">5 checks</span></div>
+    </button>
+    <button type="button" class="mcard" data-go="paper" data-tab="ivaco">
+      <p class="when">Nov 17</p>
+      <p class="load">IMACRO c/o Domeplex → Ivaco Rolling Mills</p>
+      <dl>
+        <dt>Carrier</dt><dd>Customer pickup · L'Orignal, ON · FCA Contrecoeur, QC</dd>
+        <dt>On the truck</dt><dd>Brick order PO 11070: SLLADS SU6-45, 1,100 EA on 4 pallets; SLLADEL SU6.5-45, 825 EA on 3 pallets. Do not stack.</dd>
+        <dt>Paperwork</dt><dd>BOL received: IMACRO bill of lading 0000013638, dated Nov 12, ship date Nov 17.</dd>
+        <dt>Status</dt><dd>No mismatch in this sample.</dd>
+      </dl>
+      <div class="tags"><span class="tag recv">BOL received</span><span class="tag ok">No mismatch in this sample</span></div>
+    </button>
+    <div class="mcard">
+      <p class="when">Nov 14</p>
+      <p class="load">Glencore Ltd → ArcelorMittal Produits Long Canada Ctr-Est</p>
+      <dl>
+        <dt>Carrier</dt><dd>Robert Transport · 3900 Rte des Aciéries, Contrecoeur — same town</dd>
+        <dt>On the truck</dt><dd>Chrome, product 20000037, lot DMP5192201. Net 34,050 kg (34.05 MT). Commande 4501037365.</dd>
+        <dt>Paperwork</dt><dd>No email in this sample. Bon de livraison 31767 only. In 09:12, out 09:19. Release no.: N/A.</dd>
+        <dt>Status</dt><dd>Ticket only.</dd>
+      </dl>
+      <div class="tags"><span class="tag miss">No email in this sample</span><span class="tag wait">Ticket only</span></div>
+    </div>
+  </div>
+  <p class="fine">Click a Nov 19 load to see the checks. Door and bunker are not on this board yet — that list has not arrived.</p>
+</section>
+
+<section class="screen" id="checks">
+  <p class="eyebrow">À vérifier · pre-release checks</p>
+  <h2>Flagged from the documents, before anything is loaded.</h2>
+  <p class="sub">Each flag puts the source lines side by side. Nothing here is guessed. The office decides what to do. The ~525 kg weight difference is a heads-up, not an accusation.</p>
+  <div class="tabs" role="tablist">
+    <button type="button" class="on" data-filter="all">All 8</button>
+    <button type="button" data-filter="rand">Rand / Bourret</button>
+    <button type="button" data-filter="ccma">CCMA / Algoma</button>
+  </div>
+
+  <article class="flag hi" data-load="ccma">
+    <div class="hd">
+      <span class="sev">Check</span>
+      <div>
+        <h3>The CCMA email body says HC FeMn. Everything else says SiMn.</h3>
+        <p class="why">A product name on the email that does not match the subject, the packing sheet, the certificate, or the ticket is worth stopping on before the load is called.</p>
+      </div>
+    </div>
+    <div class="sides">
+      <div class="side"><p class="src">CCMA email body</p><span class="q">“SHIPPING via tarped Flatbed: HC FeMn – MATERIAL ALREADY PACKAGED”</span><span class="val">HC FeMn</span></div>
+      <div class="side"><p class="src">CCMA email subject</p><span class="q">“DX2094 104 · Algoma Steel Inc. · SiMn · Packaged — November”</span><span class="val">SiMn</span></div>
+      <div class="side"><p class="src">Packing sheet and certificate</p><span class="q">Product: SI MN · Lot # 832586D</span><span class="val">SI MN</span></div>
+      <div class="side"><p class="src">Bon de livraison 31994</p><span class="q">Description du produit: SiMn Bags</span><span class="val">SiMn Bags</span></div>
+    </div>
+  </article>
+
+  <article class="flag hi" data-load="ccma" style="margin-top:14px">
+    <div class="hd">
+      <span class="sev">Check</span>
+      <div>
+        <h3>The PO on the ticket is one digit different from the email, packing sheet, and certificate.</h3>
+        <p class="why">Rand and CCMA both ask that the PO appear on the paperwork. The ticket and the order documents do not currently agree.</p>
+      </div>
+    </div>
+    <div class="sides">
+      <div class="side"><p class="src">CCMA email</p><span class="q">“PO # 5800098785-00030”</span><span class="val">5800098785-00030</span></div>
+      <div class="side"><p class="src">Packing sheet · Cust P.O. #</p><span class="q">5800098785-00030</span><span class="val">5800098785-00030</span></div>
+      <div class="side"><p class="src">Certificate of analysis · customer order number</p><span class="q">5800098785-00030</span><span class="val">5800098785-00030</span></div>
+      <div class="side"><p class="src">Bon de livraison 31994 · lot field</p><span class="q">“832586D - PO#5800098782-00030”</span><span class="val">5800098782-00030</span></div>
+    </div>
+  </article>
+
+  <article class="flag hi" data-load="rand" style="margin-top:14px">
+    <div class="hd">
+      <span class="sev">Check</span>
+      <div>
+        <h3>Bon de livraison 31959 covers only release 5 of the five-release pickup.</h3>
+        <p class="why">The email is one Bourret van for five products, lots, and PO refs. The ticket in the sample lists only the 3 MT of Ferrosilicon (lot 2405-0515, run 879034). The other four releases are not on that ticket.</p>
+      </div>
+    </div>
+    <div class="sides">
+      <div class="side"><p class="src">Rand email · subject and body</p><span class="q">“14 skid pickup Nov 19th” · five releases for Soucy Belgen, all Bourret Transport, all Nov 19</span><span class="val">5 releases</span></div>
+      <div class="side"><p class="src">Bon de livraison 31959</p><span class="q">Fesi Bags · lot 2405-0515 · no relâche 879034 · quantité 3 un</span><span class="val">Release 5 only</span></div>
+    </div>
+  </article>
+
+  <article class="flag med" data-load="ccma" style="margin-top:14px">
+    <div class="hd">
+      <span class="sev">Check</span>
+      <div>
+        <h3>The carrier on the email and packing sheet is not the carrier on the ticket.</h3>
+        <p class="why">The email says Contrans will use the CCMA release number as the pick-up number. The ticket names Laidlaw. Someone in the office should confirm who is actually at the gate.</p>
+      </div>
+    </div>
+    <div class="sides">
+      <div class="side"><p class="src">CCMA email</p><span class="q">“Contrans will use the CCMA release number as the pick-up number Thursday 11/19.”</span><span class="val">Contrans</span></div>
+      <div class="side"><p class="src">Packing sheet · Route</p><span class="q">CONTRANS · equipment: flatbed side unloading</span><span class="val">CONTRANS</span></div>
+      <div class="side"><p class="src">Bon de livraison 31994 · Transporteur</p><span class="q">LAIDLAW</span><span class="val">LAIDLAW</span></div>
+    </div>
+  </article>
+
+  <article class="flag med" data-load="ccma" style="margin-top:14px">
+    <div class="hd">
+      <span class="sev">Check</span>
+      <div>
+        <h3>CCMA asked for two separate bills of lading. Only one release packet is in the sample.</h3>
+        <p class="why">A second BOL cannot be drafted from these documents. The office would wait for the other release, rather than invent it.</p>
+      </div>
+    </div>
+    <div class="sides">
+      <div class="side"><p class="src">CCMA email</p><span class="q">“Please issue two separate bills of lading.”</span><span class="val">2 BOLs requested</span></div>
+      <div class="side"><p class="src">Attachments in the sample</p><span class="q">One packing sheet and one certificate, both for SiMn, DX2094 104, lot 832586D</span><span class="val">1 release packet</span></div>
+    </div>
+  </article>
+
+  <article class="flag med" data-load="rand" style="margin-top:14px">
+    <div class="hd">
+      <span class="sev">Check</span>
+      <div>
+        <h3>Release 5’s end-user PO ref is TBD, and Rand requires the PO on the BOL.</h3>
+        <p class="why">The other four releases have PO refs. This one does not. The draft can be prepared, but it cannot be finished until Rand sends the reference.</p>
+      </div>
+    </div>
+    <div class="sides">
+      <div class="side"><p class="src">Rand email · instruction</p><span class="q">“Kindly ensure BOL has PO Ref number included on the paperwork.”</span><span class="val">PO ref required</span></div>
+      <div class="side"><p class="src">Rand email · release 5</p><span class="q">End-user PO ref: TBD · Ferrosilicon 3 MT · lot 2405-0515 · internal ALL0008</span><span class="val">TBD</span></div>
+    </div>
+  </article>
+
+  <article class="flag med" data-load="rand" style="margin-top:14px">
+    <div class="hd">
+      <span class="sev">Check</span>
+      <div>
+        <h3>Bon de livraison 31959 has no weights.</h3>
+        <p class="why">Quantity is 3 un. Poids brut, poids vide, and poids net are blank. Entry is 08:09 and exit is 08:10.</p>
+      </div>
+    </div>
+    <div class="sides">
+      <div class="side"><p class="src">Bon de livraison 31959</p><span class="q">Date 2026/11/19 · entrée 08 h 09 · sortie 08 h 10 · quantité 3 un</span><span class="val">Poids brut / vide / net: blank</span></div>
+      <div class="side"><p class="src">For comparison · bon de livraison 31994 (Algoma, same day)</p><span class="q">Poids brut 42,210 kg · vide 19,681 kg · net 22,529 kg</span><span class="val">Weights filled in</span></div>
+    </div>
+  </article>
+
+  <article class="flag headup" data-load="ccma" style="margin-top:14px">
+    <div class="hd">
+      <span class="sev">Heads-up</span>
+      <div>
+        <h3>The scale net and the packing-sheet net differ by about 525 kg.</h3>
+        <p class="why">This is on the board so the office can look at it. It is not a conclusion about why they differ.</p>
+      </div>
+    </div>
+    <div class="sides">
+      <div class="side"><p class="src">Packing sheet · qty ordered / lot 832586D</p><span class="q">48,510.000 LBS · 22 — 1 MT S/S ON PLT</span><span class="val">48,510 lbs = 22,003.8 kg</span></div>
+      <div class="side"><p class="src">Bon de livraison 31994</p><span class="q">Poids net 22,529 kg · 22,53 MT · quantité 22 un</span><span class="val">22,529 kg · difference 525 kg</span></div>
+    </div>
+  </article>
+</section>
+
+<section class="screen" id="paper">
+  <p class="eyebrow">Brouillons · office approval</p>
+  <h2>Draft the paperwork. The office approves it. Nothing goes out on its own.</h2>
+  <p class="sub">Rand wants a BOL taped to each skid, with that release’s PO ref and markings. CCMA wants two bills of lading, with the PO, material code, and PR number on the paperwork. The second CCMA BOL is waiting — it is not in the sample.</p>
+  <div class="tabs" id="paper-tabs">
+    <button type="button" class="on" data-tab="rand">Rand · five drafts</button>
+    <button type="button" data-tab="ccma">CCMA · two BOLs</button>
+    <button type="button" data-tab="ivaco">Ivaco · already received</button>
+  </div>
+
+  <div id="tab-rand" class="ptab">
+    <p class="note">Five draft bills of lading, one per release, plus a skid-label template for each. Weights are left blank where the sample has none. Release 5’s PO ref stays TBD.</p>
+    <div id="rand-drafts"></div>
+  </div>
+
+  <div id="tab-ccma" class="ptab" hidden>
+    <p class="note">Draft 1 of 2 uses the SiMn release in the sample (DX2094 104). The PO is taken from the email, packing sheet, and certificate (5800098785-00030), with a note that ticket 31994 had 8782. Carrier is left as a confirmation, not a guess.</p>
+    <div class="paper-form" id="ccma1" data-approve="ccma1">
+      <div class="wm">Draft — waiting for office approval</div>
+      <div class="formhead">
+        <div class="co">Domeplex Inc.<span>2045 Route Marie-Victorin, Contrecoeur (QC) J0L 1C0 · www.domeplex.ca</span></div>
+        <div class="doc">Bon de livraison <em>Brouillon · 1 of 2 · from CCMA release DX2094 104</em></div>
+      </div>
+      <div class="kv">
+        <div><b>Date / requested ship</b><span>Nov 19, 2026</span></div>
+        <div><b>Requested arrival</b><span>Nov 20, 2026</span></div>
+        <div><b>Vendeur</b><span>CCMA, LLC · 450 Corporate, suite 100, Amherst, NY 14226</span></div>
+        <div><b>Client</b><span>Algoma Steel Inc.</span></div>
+        <div><b>Livré à · packing sheet</b><span>301 Wallace Terrace, Sault Ste Marie, ON P6C 1K8</span></div>
+        <div><b>Also on ticket 31994</b><span>Building Shape Products Shipdoor 46, Sault Ste Marie — confirm with the office</span></div>
+        <div><b>No relâche / pickup no.</b><span>DX2094 104</span></div>
+        <div><b>Cust P.O. #</b><span>5800098785-00030</span></div>
+        <div><b>Material code</b><span>100000483</span></div>
+        <div><b>PR number</b><span>10028731</span></div>
+        <div><b>Lot</b><span>832586D</span></div>
+        <div><b>Transporteur</b><span class="empty">Confirm: Contrans (email, packing sheet) or Laidlaw (ticket 31994)</span></div>
+        <div><b>Freight / FOB</b><span>Prepaid · delivered</span></div>
+        <div><b>Equipment</b><span>Tarped flatbed, side unloading</span></div>
+        <div><b>Hours</b><span>7am–3pm at pickup and delivery</span></div>
+        <div><b>Commande on ticket 31994</b><span class="empty">Blank on the ticket</span></div>
+      </div>
+      <table class="lines">
+        <thead><tr><th>Description du produit</th><th>Size</th><th>Lot</th><th>Packing</th><th>Paper qty</th><th>Scale ticket 31994</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>SiMn / SI MN / SiMn Bags</td>
+            <td>10 MM – 50 MM</td>
+            <td>832586D</td>
+            <td>22 × 1 MT flat-bottom supersacks on pallets</td>
+            <td>48,510.000 LBS (22,003.8 kg)</td>
+            <td>22 un · net 22,529 kg · gross 42,210 kg · tare 19,681 kg</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="fine">Show on all paperwork, per the packing sheet: purchase order #, material code, PR number. Label each sack with CCMA lot #, net weight, product, and analysis (Mn 65.47, Si 16.62, C 1.86, P 0.18, S 0.018). Email the analysis to the Algoma addresses listed on the packing sheet. Customs: HSTC 7202.30.0000, cleared by Mohawk Global. Ticket PO 5800098782-00030 is not used on this draft.</p>
+      <div class="approve">
+        <button class="btn ok" type="button" data-approve-btn="ccma1">Approve this draft</button>
+        <span class="fine" style="margin:0">The office approves. Nothing is sent automatically.</span>
+      </div>
+    </div>
+    <div class="paper-form" style="margin-top:16px" data-approve="ccma2">
+      <div class="wm miss">Waiting — not in the sample</div>
+      <div class="formhead">
+        <div class="co">Domeplex Inc.<span>2045 Route Marie-Victorin, Contrecoeur (QC) J0L 1C0</span></div>
+        <div class="doc">Bon de livraison <em>Brouillon · 2 of 2</em></div>
+      </div>
+      <p class="sub" style="margin:0">CCMA asked for two separate bills of lading. Only the SiMn packet (DX2094 104, lot 832586D) is in the documents you shared. The second draft is left blank on purpose.</p>
+    </div>
+  </div>
+
+  <div id="tab-ivaco" class="ptab" hidden>
+    <p class="note">No draft to write. IMACRO already sent bill of lading 0000013638 for Tuesday’s shipment (ship date Nov 17).</p>
+    <div class="paper-form" style="border-style:solid">
+      <div class="wm ok">Received from the customer</div>
+      <div class="formhead">
+        <div class="co">IMACRO Inc.<span>Ship from: IMACRO c/o Domeplex Inc., 2045 Route Marie-Victorin, Contrecoeur QC J0L 1C0</span></div>
+        <div class="doc">Bill of Lading 0000013638 <em>Date on form: November 12, 2026 · Customer IVACOU</em></div>
+      </div>
+      <div class="kv">
+        <div><b>Bill to / Ship to</b><span>Ivaco Rolling Mills, P.O. Box 322, 1040 County Rd 17, L'Orignal ON K0B 1K0</span></div>
+        <div><b>PO Number</b><span>PO 11070</span></div>
+        <div><b>Terms</b><span>FCA Contrecoeur, QC</span></div>
+        <div><b>Ship date / required</b><span>17-Nov-2026</span></div>
+        <div><b>Ship via</b><span>Customer Pickup</span></div>
+        <div><b>Payment terms</b><span>60 Days</span></div>
+        <div><b>Salesperson</b><span>003</span></div>
+        <div><b>Order number</b><span>0000013638</span></div>
+      </div>
+      <table class="lines">
+        <thead><tr><th>Part number</th><th>Description</th><th>UOM</th><th>Qty reqd</th><th>Packing</th></tr></thead>
+        <tbody>
+          <tr><td>SLLADS SU6-45</td><td>SLLADS SU645-3" · item # 6167660</td><td>EA</td><td>1,100</td><td>4 pallets (275 per pallet)</td></tr>
+          <tr><td>SLLADEL SU6.5-45</td><td>SLLADEL SU 6.5-45 3" · item # 6167637</td><td>EA</td><td>825</td><td>3 pallets (275 per pallet)</td></tr>
+        </tbody>
+      </table>
+      <p class="fine">Note on the BOL: PLEASE DO NOT STACK PALLETS. Signature and agent signature lines were blank on the copy in the sample.</p>
+    </div>
+  </div>
+</section>
+
+<section class="screen" id="loader">
+  <p class="eyebrow">For the loader · not for the driver</p>
+  <h2>What goes on this truck.</h2>
+  <p class="sub">A simple list the office can walkie or hand to the loader. It does not go to the trucker. The door or bunker is left blank on purpose — that list has not arrived yet.</p>
+  <div class="tabs" id="loader-tabs">
+    <button type="button" class="on" data-truck="bourret">Bourret · Nov 19 · Soucy Belgen</button>
+    <button type="button" data-truck="algoma">Algoma · Nov 19 · SiMn</button>
+  </div>
+  <div class="placeholder" style="margin-bottom:16px">
+    <strong>Door / bunker from your list, coming from Lucas</strong>
+    <span>Placeholder only. No door or bunker was invented for this prototype.</span>
+  </div>
+  <div id="truck-bourret">
+    <p class="note">One van, five releases. Each line keeps its own lot, internal number, and PO ref. A BOL and a label go on each skid, in a plastic sleeve, as Rand asked.</p>
+    <div class="pick-wrap" style="overflow:auto">
+    <table class="pick">
+      <thead><tr><th>Release</th><th>Product</th><th>Lot</th><th>Qty</th><th>Internal #</th><th>End-user PO ref</th><th>Run #</th><th>On the skid</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>Ferrophosphorus<br><span class="muted">2–10 mm (90% min.)</span></td><td>2605-0764</td><td>1 MT</td><td>ALL0053</td><td>458117</td><td>879020</td><td>BOL + label</td></tr>
+        <tr><td>2</td><td>Ferrosilicon Barium (SIBA)<br><span class="muted">2–7 mm (90% min.)</span></td><td>2603-0504</td><td>1 MT</td><td>ALL0018</td><td>457255</td><td>879015</td><td>BOL + label</td></tr>
+        <tr><td>3</td><td>Ferrosilicon Magnesium<br><span class="muted">1¼ × ¼ inch</span></td><td>2607-0151</td><td>8 Bags</td><td>ALL0023</td><td>458600</td><td>879017</td><td>BOL + label</td></tr>
+        <tr><td>4</td><td>High Carbon Ferromanganese<br><span class="muted">2 × ½ inch</span></td><td>2609-0706</td><td>1 MT</td><td>ALL0025</td><td>455515</td><td>879018</td><td>BOL + label</td></tr>
+        <tr><td>5</td><td>Ferrosilicon<br><span class="muted">5 × 50 mm</span></td><td>2405-0515</td><td>3 MT</td><td>ALL0008</td><td><em>TBD — do not finish the BOL until this arrives</em></td><td>879034</td><td>BOL + label</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <div class="pick-cards">
+      <div class="mcard"><p class="when">Release 1 · run 879020</p><p class="load">Ferrophosphorus</p><dl><dt>Size</dt><dd>2–10 mm (90% min.)</dd><dt>Lot</dt><dd>2605-0764</dd><dt>Qty</dt><dd>1 MT</dd><dt>Internal #</dt><dd>ALL0053</dd><dt>PO ref</dt><dd>458117</dd><dt>On the skid</dt><dd>BOL + label</dd></dl></div>
+      <div class="mcard"><p class="when">Release 2 · run 879015</p><p class="load">Ferrosilicon Barium (SIBA)</p><dl><dt>Size</dt><dd>2–7 mm (90% min.)</dd><dt>Lot</dt><dd>2603-0504</dd><dt>Qty</dt><dd>1 MT</dd><dt>Internal #</dt><dd>ALL0018</dd><dt>PO ref</dt><dd>457255</dd><dt>On the skid</dt><dd>BOL + label</dd></dl></div>
+      <div class="mcard"><p class="when">Release 3 · run 879017</p><p class="load">Ferrosilicon Magnesium</p><dl><dt>Size</dt><dd>1¼ × ¼ inch</dd><dt>Lot</dt><dd>2607-0151</dd><dt>Qty</dt><dd>8 Bags</dd><dt>Internal #</dt><dd>ALL0023</dd><dt>PO ref</dt><dd>458600</dd><dt>On the skid</dt><dd>BOL + label</dd></dl></div>
+      <div class="mcard"><p class="when">Release 4 · run 879018</p><p class="load">High Carbon Ferromanganese</p><dl><dt>Size</dt><dd>2 × ½ inch</dd><dt>Lot</dt><dd>2609-0706</dd><dt>Qty</dt><dd>1 MT</dd><dt>Internal #</dt><dd>ALL0025</dd><dt>PO ref</dt><dd>455515</dd><dt>On the skid</dt><dd>BOL + label</dd></dl></div>
+      <div class="mcard"><p class="when">Release 5 · run 879034</p><p class="load">Ferrosilicon</p><dl><dt>Size</dt><dd>5 × 50 mm</dd><dt>Lot</dt><dd>2405-0515</dd><dt>Qty</dt><dd>3 MT</dd><dt>Internal #</dt><dd>ALL0008</dd><dt>PO ref</dt><dd>TBD — do not finish the BOL until this arrives</dd><dt>On the skid</dt><dd>BOL + label</dd></dl></div>
+    </div>
+    <p class="fine">Packaging on every release: supersacks on pallet, shrink wrapped. Ship to: 4475 boulevard Saint-Joseph, Drummondville, QC J2B 1T8. Label each skid with commodity name, internal number, cargo weight, and RAND lot number. Ticket 31959 in the sample covers only line 5 and has no weights.</p>
+  </div>
+  <div id="truck-algoma" hidden>
+    <p class="note">One product, already packaged. 22 supersacks, one lot. Confirm the PO and the carrier with the office before loading — both are flagged.</p>
+    <div class="pick-wrap" style="overflow:auto">
+    <table class="pick">
+      <thead><tr><th>Product</th><th>Lot</th><th>Qty</th><th>PO on the order docs</th><th>Release / pickup no.</th><th>On the paperwork</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>SiMn · 10 MM – 50 MM · flat-bottom supersacks, no cross straps or spouts</td>
+          <td>832586D</td>
+          <td>22 × 1 MT on pallets</td>
+          <td>5800098785-00030</td>
+          <td>DX2094 104</td>
+          <td>Material code 100000483 · PR 10028731</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <div class="pick-cards">
+      <div class="mcard">
+        <p class="when">Release DX2094 104</p>
+        <p class="load">SiMn · 10 MM – 50 MM</p>
+        <dl>
+          <dt>Lot</dt><dd>832586D</dd>
+          <dt>Qty</dt><dd>22 × 1 MT flat-bottom supersacks on pallets, no cross straps or spouts</dd>
+          <dt>PO</dt><dd>5800098785-00030</dd>
+          <dt>Paperwork</dt><dd>Material code 100000483 · PR 10028731</dd>
+        </dl>
+      </div>
+    </div>
+    <p class="fine">Ship to on the packing sheet: 301 Wallace Terrace, Sault Ste Marie, ON P6C 1K8. Ticket 31994 also has “Building Shape Products Shipdoor 46” — that is an Algoma receiving location, not a Domeplex door. Hours 7am–3pm. Deliver Nov 20.</p>
+  </div>
+</section>
+
+<section class="screen" id="next">
+  <p class="eyebrow">Before December 3, 4:00 PM ET</p>
+  <h2>What we’d need from you to make this real.</h2>
+  <p class="lead">This prototype is built only on the emails and tickets already shared. It is not connected to your operation. Two things would let us finish a working version you can walk through on the 3rd.</p>
+  <div class="callouts">
+    <div class="need">
+      <div class="num">1</div>
+      <h3>The door or bunker list</h3>
+      <p>A rough list of which material sits at which door or bunker. Until that arrives, every loader list keeps the placeholder you saw — we will not invent doors.</p>
+    </div>
+    <div class="need">
+      <div class="num">2</div>
+      <h3>Who in the office to work with</h3>
+      <p>The person who already confirms orders, tickets, and bills of lading. We can work directly with them by email, so the checking stays in the tools you already use.</p>
+    </div>
+  </div>
+  <div class="card" style="margin-top:18px">
+    <h3>What would not change</h3>
+    <p class="sub" style="margin:0">The office stays the safety net. This does not go in the trucker’s hands. Drafts wait for a yes. Nothing touches live operations, clients, or trucks until you give the go-ahead.</p>
+  </div>
+  <p class="fine">Avorth · a second set of eyes, in the email and paperwork you already have. Prototype built on sample documents from Domeplex. Meeting: Thursday, December 3, 2026, 4:00 PM ET.</p>
+</section>
+</main>
+
+<div class="navf">
+  <div class="in">
+    <button class="btn ghost" type="button" id="back" style="visibility:hidden" aria-hidden="true" tabindex="-1">Back</button>
+    <div class="hint" id="hint">A prototype for the December 3 meeting</div>
+    <button class="btn" type="button" id="nextb">Continue</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  const order=['intro','inbox','board','checks','paper','loader','next'];
+  const hints={
+    intro:'A prototype for the December 3 meeting',
+    inbox:'Three real emails, then the board fills in',
+    board:'Click a Nov 19 load to see its checks',
+    checks:'Source lines are quoted from the documents',
+    paper:'The office approves. Nothing is sent.',
+    loader:'For the loader and the office — not the driver',
+    next:'Door list + who in the office'
+  };
+  const randReleases=[
+    {n:1,product:'Ferrophosphorus',size:'2–10 mm (90% min.)',analysis:'P 24.68 % · S 0.9 % · Mn 3.11 % · Ti 1.67 %',qty:'1 MT',lot:'2605-0764',so:'S-2605-0531',run:'879020',po:'458117',internal:'ALL0053',weight:'1 MT'},
+    {n:2,product:'Ferrosilicon Barium (SIBA)',size:'2–7 mm (90% min.)',analysis:'Si 72.77 % · Ba 2.76 % · Ca 1.53 % · Al 1.24 %',qty:'1 MT',lot:'2603-0504',so:'S-2603-0398',run:'879015',po:'457255',internal:'ALL0018',weight:'1 MT'},
+    {n:3,product:'Ferrosilicon Magnesium',size:'1¼ × ¼ inch',analysis:'Si 44.64 % · Mg 3.53 % · TRE 0.43 % · Ca 0.40 % · Al 0.66 %',qty:'8 Bags',lot:'2607-0151',so:'S-2607-0115',run:'879017',po:'458600',internal:'ALL0023',weight:null},
+    {n:4,product:'High Carbon Ferromanganese',size:'2 × ½ inch',analysis:'Mn 75.91 % · Si 0.65 % · C 6.86 % · P 0.189 % · S 0.006 %',qty:'1 MT',lot:'2609-0706',so:'S-2510-0180',run:'879018',po:'455515',internal:'ALL0025',weight:'1 MT'},
+    {n:5,product:'Ferrosilicon',size:'5 × 50 mm',analysis:'Si 76.21 % · Al 1.28 % · C 0.11 % · P 0.029 % · S 0.006 %',qty:'3 MT',lot:'2405-0515',so:'S-2611-0378',run:'879034',po:'TBD',internal:'ALL0008',weight:'3 MT (release qty — no scale weight in the sample)'}
+  ];
+
+  function el(id){return document.getElementById(id)}
+  function show(id,filter,tab,truck){
+    order.forEach(s=>{
+      const n=el(s); if(n) n.classList.toggle('on',s===id);
+    });
+    document.querySelectorAll('.steps button').forEach((b,i)=>{
+      b.classList.toggle('on',b.getAttribute('data-go')===id);
+      const idx=order.indexOf(id);
+      b.classList.toggle('done',i<idx);
+      if(b.getAttribute('data-go')===id) try{b.scrollIntoView({inline:'center',block:'nearest',behavior:'instant'});}catch(e){}
+    });
+    el('hint').textContent=hints[id]||'';
+    const back=el('back');
+    const hide=id==='intro';
+    back.style.visibility=hide?'hidden':'visible';
+    back.setAttribute('aria-hidden', hide?'true':'false');
+    back.tabIndex=hide?-1:0;
+    const last=id==='next';
+    el('nextb').textContent=last?'Back to start':'Continue';
+    window.scrollTo(0,0);
+    if(filter) setFilter(filter);
+    if(tab) setPaperTab(tab);
+    if(truck) setTruck(truck);
+    try{history.replaceState(null,'','#'+id);}catch(e){}
+  }
+  function idx(){return order.indexOf(document.querySelector('.screen.on').id)}
+
+  function setFilter(f){
+    document.querySelectorAll('#checks .tabs button').forEach(b=>{
+      b.classList.toggle('on', (b.getAttribute('data-filter')||'')===f || (f==='all'&&b.getAttribute('data-filter')==='all'));
+    });
+    document.querySelectorAll('#checks .flag').forEach(card=>{
+      const load=card.getAttribute('data-load');
+      card.style.display=(!f||f==='all'||f===load)?'':'none';
+    });
+  }
+  function setPaperTab(tab){
+    document.querySelectorAll('#paper-tabs button').forEach(b=>b.classList.toggle('on',b.getAttribute('data-tab')===tab));
+    ['rand','ccma','ivaco'].forEach(t=>{
+      const n=el('tab-'+t); if(n) n.hidden=t!==tab;
+    });
+  }
+  function setTruck(t){
+    document.querySelectorAll('#loader-tabs button').forEach(b=>b.classList.toggle('on',b.getAttribute('data-truck')===t));
+    el('truck-bourret').hidden=t!=='bourret';
+    el('truck-algoma').hidden=t!=='algoma';
+  }
+
+  /* Rand drafts */
+  const box=el('rand-drafts');
+  if(box){
+    box.innerHTML=randReleases.map(r=>{
+      const poMissing=r.po==='TBD';
+      const cargo=r.weight?r.weight:'<span class="empty">Missing — no cargo weight in the sample</span>';
+      return `<div class="paper-form" style="margin-bottom:16px" data-approve="rand${r.n}">
+        <div class="wm">${poMissing?'Draft — PO ref still TBD':'Draft — waiting for office approval'}</div>
+        <div class="formhead">
+          <div class="co">Domeplex Inc.<span>2045 Route Marie-Victorin, Contrecoeur (QC) J0L 1C0 · Pickup for Rand Alloys</span></div>
+          <div class="doc">Bon de livraison <em>Brouillon · Release ${r.n} of 5 · run ${r.run}</em></div>
+        </div>
+        <div class="kv">
+          <div><b>Date / pickup</b><span>Nov 19, 2026</span></div>
+          <div><b>Transporteur</b><span>Bourret Transport · van</span></div>
+          <div><b>Vendeur</b><span>Rand Alloys · 8470 Keele Street, Concord, ON L4K 2S1</span></div>
+          <div><b>Client / livré à</b><span>Soucy Belgen Inc. · 4475 boulevard Saint-Joseph, Drummondville, QC J2B 1T8</span></div>
+          <div><b>End-user PO ref</b><span${poMissing?' class="empty"':''}>${r.po}${poMissing?' — required on the BOL, not yet provided':''}</span></div>
+          <div><b>Internal number</b><span>${r.internal}</span></div>
+          <div><b>RAND lot #</b><span>${r.lot}</span></div>
+          <div><b>RAND SO #</b><span>${r.so}</span></div>
+          <div><b>RAND run #</b><span>${r.run}</span></div>
+          <div><b>Poids (brut / vide / net)</b><span class="empty">Missing in this sample${r.n===5?' — ticket 31959 is also blank':''}</span></div>
+        </div>
+        <table class="lines">
+          <thead><tr><th>Commodity</th><th>Size</th><th>Analysis</th><th>Quantity</th><th>Packaging</th></tr></thead>
+          <tbody><tr><td>${r.product}</td><td>${r.size}</td><td>${r.analysis}</td><td>${r.qty}</td><td>Supersacks on pallet, shrink wrapped</td></tr></tbody>
+        </table>
+        <p class="fine">Tape this BOL to each skid in a plastic sleeve. Label in a plastic pouch:</p>
+        <div class="label-sheet">
+          <div class="skid">
+            <div class="lab">Skid label · packaging markings</div>
+            <h4>${r.product}</h4>
+            <p>Internal number: <b>${r.internal}</b></p>
+            <p>Cargo weight: <b>${r.weight||'Missing in this sample'}</b></p>
+            <p>RAND lot number: <b>${r.lot}</b></p>
+            <p>PO ref: <b>${r.po}</b></p>
+          </div>
+        </div>
+        <div class="approve">
+          <button class="btn ok" type="button" data-approve-btn="rand${r.n}" ${poMissing?'data-warn="1"':''}>${poMissing?'Approve with PO still TBD':'Approve this draft'}</button>
+          <span class="fine" style="margin:0">${poMissing?'The required PO ref is still TBD. Approval here is only a prototype action.':'The office approves. Nothing is sent automatically.'}</span>
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  document.addEventListener('click',e=>{
+    const go=e.target.closest('[data-go]');
+    if(go){
+      show(go.getAttribute('data-go'), go.getAttribute('data-filter'), go.getAttribute('data-tab'), go.getAttribute('data-truck'));
+      return;
+    }
+    const tb=e.target.closest('#paper-tabs button');
+    if(tb){ setPaperTab(tb.getAttribute('data-tab')); return; }
+    const fb=e.target.closest('#checks .tabs button');
+    if(fb){ setFilter(fb.getAttribute('data-filter')); return; }
+    const lb=e.target.closest('#loader-tabs button');
+    if(lb){ setTruck(lb.getAttribute('data-truck')); return; }
+    const ap=e.target.closest('[data-approve-btn]');
+    if(ap){
+      const id=ap.getAttribute('data-approve-btn');
+      const form=document.querySelector('[data-approve="'+id+'"]');
+      if(!form) return;
+      const on=form.classList.toggle('approved');
+      const wm=form.querySelector('.wm');
+      if(wm){
+        if(on){ wm.textContent='Approved by the office — not sent'; wm.classList.add('ok'); }
+        else{ wm.textContent=ap.getAttribute('data-warn')?'Draft — PO ref still TBD':'Draft — waiting for office approval'; wm.classList.remove('ok'); }
+      }
+      ap.textContent=on?'Undo approval':(ap.getAttribute('data-warn')?'Approve with PO still TBD':'Approve this draft');
+    }
+  });
+  el('back').addEventListener('click',()=>{ const i=idx(); if(i>0) show(order[i-1]); });
+  el('nextb').addEventListener('click',()=>{ const i=idx(); if(i<order.length-1) show(order[i+1]); else show('intro'); });
+  const hash=(location.hash||'').replace('#','');
+  if(order.includes(hash)) show(hash);
+})();
+</script>
+</body>
+</html>
