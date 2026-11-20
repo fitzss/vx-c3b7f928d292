@@ -1,0 +1,792 @@
+{
+  "brand": "Avorth",
+  "updated_at": "2026-11-20T17:00:29.487638+00:00",
+  "note": "Live prototype. Office only. Nothing on this board is sent.",
+  "loads": [
+    {
+      "id": "4009ce7e05f5bfb8",
+      "kind": "rand_release",
+      "status": "needs_look",
+      "subject": "Rand release // Domeplex to Soucy Belgen// 14 skid_pickup Nov 19th",
+      "received_at": "2026-11-18T16:30:00+00:00",
+      "from_name": "Brittany Silver",
+      "trader": "Rand Alloys",
+      "customer": "SOUCY BELGEN INC",
+      "ship_to": "SOUCY BELGEN INC\r\n\r\n4475 boulevard Saint-Joseph\r\n\r\nDrummondville QC J2B 1T8\r\n\r\nCANADA",
+      "pickup_address": "Domeplex Inc.\r\n\r\n2045 Route Marie-Victorin, Contrecoeur\r\n\r\nQC, Canada, J0L 1C0",
+      "carrier": "Bourret Transport",
+      "email_carrier": "Bourret Transport",
+      "pickup_date": "Nov 19th",
+      "releases": [
+        {
+          "product": "Ferrophosphorus",
+          "analysis": "P 24.68 %\r\nS 0.9 %\r\nMn 3.11 %\r\nTi 1.67 %",
+          "size": "2 - 10 mm (90% min.)",
+          "quantity": "1 MT",
+          "qty": {
+            "raw": "1 MT",
+            "count": 1.0,
+            "unit": "mt",
+            "weight": {
+              "raw": "1 MT",
+              "value": 1.0,
+              "unit": "mt",
+              "kg": 1000.0
+            }
+          },
+          "lot": "2605-0764",
+          "po": "458117",
+          "so": "S-2605-0531",
+          "run": "879020",
+          "internal": "ALL0053",
+          "packaging": "Supersacks on pallet and shrink wrapped",
+          "packaging_markings": "Label to be inserted in plastic pouch. Tape the BOL to the skids in a plastic sleeve\r\nShould contain “Commodity Name”, \"Internal Number\", “Cargo Weight”, and “RAND lot number\"",
+          "truck_type": "VAN",
+          "pickup_date": "Nov 19th",
+          "carrier": "Bourret Transport",
+          "ship_to": "SOUCY BELGEN INC\r\n\r\n4475 boulevard Saint-Joseph\r\n\r\nDrummondville QC J2B 1T8\r\n\r\nCANADA",
+          "pickup_address": "Domeplex Inc.\r\n\r\n2045 Route Marie-Victorin, Contrecoeur\r\n\r\nQC, Canada, J0L 1C0"
+        },
+        {
+          "product": "Ferrosilicon Barium (SIBA)",
+          "analysis": "Si 72.77 %\r\nBa 2.76 %\r\nCa 1.53 %\r\nAl 1.24 %",
+          "size": "2 - 7 mm (90% Min.)",
+          "quantity": "1 MT",
+          "qty": {
+            "raw": "1 MT",
+            "count": 1.0,
+            "unit": "mt",
+            "weight": {
+              "raw": "1 MT",
+              "value": 1.0,
+              "unit": "mt",
+              "kg": 1000.0
+            }
+          },
+          "lot": "2603-0504",
+          "po": "457255",
+          "so": "S-2603-0398",
+          "run": "879015",
+          "internal": "ALL0018",
+          "packaging": "Supersacks on pallet and shrink wrapped",
+          "packaging_markings": "Label to be inserted in plastic pouch. Tape the BOL to the skids in a plastic sleeve\r\nShould contain “Commodity Name”, \"Internal Number\", “Cargo Weight”, and “RAND lot number\"",
+          "truck_type": "VAN",
+          "pickup_date": "Nov 19th",
+          "carrier": "Bourret Transport",
+          "ship_to": "SOUCY BELGEN INC\r\n\r\n4475 boulevard Saint-Joseph\r\n\r\nDrummondville QC J2B 1T8\r\n\r\nCANADA",
+          "pickup_address": "Domeplex Inc.\r\n\r\n2045 Route Marie-Victorin, Contrecoeur\r\n\r\nQC, Canada, J0L 1C0"
+        },
+        {
+          "product": "Ferrosilicon Magnesium",
+          "analysis": "Si 44.64 %\r\nMg 3.53 %\r\nTRE 0.43 %\r\nCa 0.40 %\r\nAl 0.66 %",
+          "size": "1 1⁄4 x 1⁄4 inch",
+          "quantity": "8 Bags",
+          "qty": {
+            "raw": "8 Bags",
+            "count": 8.0,
+            "unit": "bags"
+          },
+          "lot": "2607-0151",
+          "po": "458600",
+          "so": "S-2607-0115",
+          "run": "879017",
+          "internal": "ALL0023",
+          "packaging": "Supersacks on pallet and shrink wrapped",
+          "packaging_markings": "Label to be inserted in plastic pouch. Tape the BOL to the skids in a plastic sleeve\r\nShould contain “Commodity Name”, \"Internal Number\", “Cargo Weight”, and “RAND lot number\"",
+          "truck_type": "VAN",
+          "pickup_date": "November 19th",
+          "carrier": "Bourret Transport",
+          "ship_to": "SOUCY BELGEN INC\r\n\r\n4475 boulevard Saint-Joseph\r\n\r\nDrummondville QC J2B 1T8\r\n\r\nCANADA",
+          "pickup_address": "Domeplex Inc.\r\n\r\n2045 Route Marie-Victorin, Contrecoeur\r\n\r\nQC, Canada, J0L 1C0"
+        },
+        {
+          "product": "High Carbon Ferromanganese",
+          "analysis": "Mn 75.91 %\r\nSi 0.65 %\r\nC 6.86 %\r\nP 0.189 %\r\nS 0.006 %",
+          "size": "2 x 1⁄2 inch",
+          "quantity": "1 MT",
+          "qty": {
+            "raw": "1 MT",
+            "count": 1.0,
+            "unit": "mt",
+            "weight": {
+              "raw": "1 MT",
+              "value": 1.0,
+              "unit": "mt",
+              "kg": 1000.0
+            }
+          },
+          "lot": "2609-0706",
+          "po": "455515",
+          "so": "S-2510-0180",
+          "run": "879018",
+          "internal": "ALL0025",
+          "packaging": "Supersacks on pallet and shrink wrapped",
+          "packaging_markings": "Label to be inserted in plastic pouch. Tape the BOL to the skids in a plastic sleeve\r\nShould contain “Commodity Name”, \"Internal Number\", “Cargo Weight”, and “RAND lot number\"",
+          "truck_type": "Van",
+          "pickup_date": "Nov 19th",
+          "carrier": "Bourret Transport",
+          "ship_to": "SOUCY BELGEN INC\r\n\r\n4475 boulevard Saint-Joseph\r\n\r\nDrummondville QC J2B 1T8",
+          "pickup_address": "Domeplex Inc.\r\n\r\n2045 Route Marie-Victorin, Contrecoeur\r\n\r\nQC, Canada, J0L 1C0"
+        },
+        {
+          "product": "Ferrosilicon",
+          "analysis": "Si 76.21 %\r\nAl 1.28 %\r\nC 0.11 %\r\nP 0.029 %\r\nS 0.006 %",
+          "size": "5 x 50 mm",
+          "quantity": "3 MT",
+          "qty": {
+            "raw": "3 MT",
+            "count": 3.0,
+            "unit": "mt",
+            "weight": {
+              "raw": "3 MT",
+              "value": 3.0,
+              "unit": "mt",
+              "kg": 3000.0
+            }
+          },
+          "lot": "2405-0515",
+          "po": "TBD",
+          "so": "S-2611-0378",
+          "run": "879034",
+          "internal": "ALL0008\r\n\r\n\r\n\r\nBest,\r\n\r\nBrittany Silver\r\n\r\nSenior Trading Coordinator, Rand\r\n\r\nRand Alloys<https://www.randalloys.com/>\r\n\r\n\r\n\r\n [email removed]<mailto:[email removed]>\r\n\r\n [phone removed]\r\n\r\n [phone removed]-578-7232\r\n\r\n 8470 Keele St, Concord, ON L4K 2S1\r\n\r\n\r\n\r\nPlease note: All pricing is based on live market offers and is subject to confirmation of both price and availability at the time of order.\r\n\r\nGiven ongoing developments in trade policy - including the potential introduction or modification of tariffs by the U.S. or Canadian governments - final pricing may be subject to change. We will communicate any adjustments accordingly, as we remain committed to transparency and clear communication.\r\n\r\n\r\n\r\n\r\n\r\nPlease consider the environment before printing this e-mail. This communication may contain confidential and/or privileged information intended only for the person(s) to whom it is addressed. Any unauthorized disclosure, copying, other distribution of this communication or taking any action on its contents is strictly prohibited. If you have received this message in error, please notify Combined Metal Industries Inc. immediately and delete this message without reading, copying or forwarding it to anyone.",
+          "packaging": "Supersacks on pallet and shrink wrapped",
+          "packaging_markings": "Label to be inserted in plastic pouch. Tape the BOL to the skids in a plastic sleeve\r\nShould contain “Commodity Name”, \"Internal Number\", “Cargo Weight”, and “RAND lot number\"",
+          "truck_type": "VAN",
+          "pickup_date": "Nov 19th",
+          "carrier": "Bourret Transport",
+          "ship_to": "SOUCY BELGEN INC\r\n\r\n4475 boulevard Saint-Joseph\r\n\r\nDrummondville QC J2B 1T8\r\n\r\nCANADA",
+          "pickup_address": "Domeplex Inc.\r\n\r\n2045 Route Marie-Victorin, Contrecoeur\r\n\r\nQC, Canada, J0L 1C0"
+        }
+      ],
+      "tickets": [
+        {
+          "kind": "ticket",
+          "filename": "12-31959.PDF",
+          "number": "31959",
+          "date": "2026/11/19",
+          "entry": "08 h 09",
+          "exit": "08 h 10",
+          "vendor": "RANDS ALLOYS",
+          "customer": "SOUCY BELGEN INC",
+          "ship_to": "SOUCY BELGEN INC 4475 BOUL SAINT-JOSEPH DRUMONDVILLE, QC, J2B 1T8",
+          "product": "Fesi Bags",
+          "product_no": "1111",
+          "lot": "2405-0515",
+          "carrier": "BOURRET TRANSPORT",
+          "release_no": "879034",
+          "quantity": "3 un",
+          "remarks": "RAND ALLOYS 8470 Keele Street, Concord, ON L4K 2S1\n8470 Keele Street, Concord, ON L4K 2S1, Canada\n[email removed] <mailto:[email removed]> | www.randalloys.com\n<http://www.randalloys.com>\nPick-Up Address Domeplex Inc.\n 2045 Route Marie-Victorin, Contrecoeur\n QC, Canada, J0L 1C0\nCarrier Name Bourret Transport\nShip To Address SOUCY BELGEN INC\n 4475 boulevard Saint-Joseph\n Drummondville QC J2B 1T8\n CANADA\nPickup date Nov 19th\nProduct Ferrosilicon\nAnalysis Si 76.21 % Al 1.28 % C 0.11 % P 0.029 % S 0.006 %\nSize 5 x 50 mm\nQuantity 3 MT\nTruck Type VAN\nPackaging Supersacks on pallet and shrink wrapped\nRAND lot# 2405-0515\nPackaging Markings Label to be inserted in plastic pouch. Tape the BOL to the skids in a plastic\nsleeve Should contain “Commodity Name”, \"Internal Number\", “Cargo Weight”, and “RAND lot\nnumber\"\nRAND SO# S-2611-0378\nRAND run# 879034\nEnd-user PO ref. TBD\nInternal Number ALL0008",
+          "weights_present": false
+        }
+      ],
+      "checks": [
+        {
+          "id": "missing_po",
+          "title": "A required end-user PO ref is TBD or missing",
+          "severity": "check",
+          "status": "fail",
+          "why": "The release instructions require the PO ref on the BOL, but this release does not have one yet.",
+          "sides": [
+            {
+              "source": "email instructions",
+              "snippet": "… ng, Please find releases below - To be picked up Nov 19th Bourret Transport will arrange for the pickup. P.S: Kindly ensure BOL has PO Ref number included on the paperwork. Also ensure all packaging markings are included, and BOL Is taped to each skid in a plastic sleeve. 1st Release …"
+            },
+            {
+              "source": "release · Ferrosilicon",
+              "snippet": "End-user PO ref: TBD",
+              "value": "TBD"
+            }
+          ]
+        },
+        {
+          "id": "carrier_match",
+          "title": "Carrier on the email and packing sheet vs the ticket",
+          "severity": "ok",
+          "status": "pass",
+          "why": "The carrier is consistent across the documents that name one.",
+          "sides": [
+            {
+              "source": "email body",
+              "snippet": "Good morning, Please find releases below - To be picked up Nov 19th Bourret Transport will arrange for the pickup. P.S: Kindly ensure BOL has PO Ref number included on the paperwork. Also ensure all packaging markings are included, and BO …",
+              "value": "Bourret Transport"
+            },
+            {
+              "source": "bon de livraison 31959 · transporteur",
+              "snippet": "… 1111 2405-0515 Transporteur Préposé No relâche/No conteneur BOURRET TRANSPORT 879034 SUP …",
+              "value": "BOURRET TRANSPORT"
+            }
+          ]
+        },
+        {
+          "id": "ticket_partial",
+          "title": "The scale ticket covers only some of the releases on this pickup",
+          "severity": "check",
+          "status": "fail",
+          "why": "The order has 5 releases. The ticket in the sample matches 1 of them.",
+          "sides": [
+            {
+              "source": "release email",
+              "snippet": "5 releases on this pickup",
+              "value": "5"
+            },
+            {
+              "source": "bon de livraison 31959",
+              "snippet": "Product: Fesi Bags; lot: 2405-0515; no relâche: 879034; quantité: 3 un",
+              "value": "1 of 5"
+            }
+          ]
+        },
+        {
+          "id": "missing_weights_31959",
+          "title": "Bon de livraison 31959 has no weights",
+          "severity": "check",
+          "status": "fail",
+          "why": "Poids brut, poids vide, and poids net are blank on this ticket.",
+          "sides": [
+            {
+              "source": "bon de livraison 31959",
+              "snippet": "Date 2026/11/19 · entrée 08 h 09 · sortie 08 h 10 · quantité 3 un · poids brut / vide / net: blank",
+              "value": "Poids brut / vide / net: blank"
+            }
+          ]
+        }
+      ],
+      "bol_required_count": 5,
+      "bol_source": "domeplex_issues",
+      "bol_instructions": "BOL must include PO Ref number; packaging markings included; BOL taped to each skid in a plastic sleeve.",
+      "bol_instructions_snippet": "… od morning, Please find releases below - To be picked up Nov 19th Bourret Transport will arrange for the pickup. P.S: Kindly ensure BOL has PO Ref number included on the paperwork. Also ensure all packaging markings are included, and BOL Is taped to each skid in a plastic sleeve. 1st Release …",
+      "subject_note": "14 skid",
+      "updated_at": "2026-11-20T16:58:25.316971+00:00",
+      "created_at": "2026-11-20T16:58:25.225153+00:00",
+      "documents": {
+        "email": {
+          "kind": "rand_release",
+          "trader": "Rand Alloys",
+          "customer": "SOUCY BELGEN INC",
+          "ship_to": "SOUCY BELGEN INC\r\n\r\n4475 boulevard Saint-Joseph\r\n\r\nDrummondville QC J2B 1T8\r\n\r\nCANADA",
+          "pickup_address": "Domeplex Inc.\r\n\r\n2045 Route Marie-Victorin, Contrecoeur\r\n\r\nQC, Canada, J0L 1C0",
+          "carrier": "Bourret Transport",
+          "pickup_date": "Nov 19th",
+          "releases": [
+            {
+              "product": "Ferrophosphorus",
+              "analysis": "P 24.68 %\r\nS 0.9 %\r\nMn 3.11 %\r\nTi 1.67 %",
+              "size": "2 - 10 mm (90% min.)",
+              "quantity": "1 MT",
+              "qty": {
+                "raw": "1 MT",
+                "count": 1.0,
+                "unit": "mt",
+                "weight": {
+                  "raw": "1 MT",
+                  "value": 1.0,
+                  "unit": "mt",
+                  "kg": 1000.0
+                }
+              },
+              "lot": "2605-0764",
+              "po": "458117",
+              "so": "S-2605-0531",
+              "run": "879020",
+              "internal": "ALL0053",
+              "packaging": "Supersacks on pallet and shrink wrapped",
+              "packaging_markings": "Label to be inserted in plastic pouch. Tape the BOL to the skids in a plastic sleeve\r\nShould contain “Commodity Name”, \"Internal Number\", “Cargo Weight”, and “RAND lot number\"",
+              "truck_type": "VAN",
+              "pickup_date": "Nov 19th",
+              "carrier": "Bourret Transport",
+              "ship_to": "SOUCY BELGEN INC\r\n\r\n4475 boulevard Saint-Joseph\r\n\r\nDrummondville QC J2B 1T8\r\n\r\nCANADA",
+              "pickup_address": "Domeplex Inc.\r\n\r\n2045 Route Marie-Victorin, Contrecoeur\r\n\r\nQC, Canada, J0L 1C0"
+            },
+            {
+              "product": "Ferrosilicon Barium (SIBA)",
+              "analysis": "Si 72.77 %\r\nBa 2.76 %\r\nCa 1.53 %\r\nAl 1.24 %",
+              "size": "2 - 7 mm (90% Min.)",
+              "quantity": "1 MT",
+              "qty": {
+                "raw": "1 MT",
+                "count": 1.0,
+                "unit": "mt",
+                "weight": {
+                  "raw": "1 MT",
+                  "value": 1.0,
+                  "unit": "mt",
+                  "kg": 1000.0
+                }
+              },
+              "lot": "2603-0504",
+              "po": "457255",
+              "so": "S-2603-0398",
+              "run": "879015",
+              "internal": "ALL0018",
+              "packaging": "Supersacks on pallet and shrink wrapped",
+              "packaging_markings": "Label to be inserted in plastic pouch. Tape the BOL to the skids in a plastic sleeve\r\nShould contain “Commodity Name”, \"Internal Number\", “Cargo Weight”, and “RAND lot number\"",
+              "truck_type": "VAN",
+              "pickup_date": "Nov 19th",
+              "carrier": "Bourret Transport",
+              "ship_to": "SOUCY BELGEN INC\r\n\r\n4475 boulevard Saint-Joseph\r\n\r\nDrummondville QC J2B 1T8\r\n\r\nCANADA",
+              "pickup_address": "Domeplex Inc.\r\n\r\n2045 Route Marie-Victorin, Contrecoeur\r\n\r\nQC, Canada, J0L 1C0"
+            },
+            {
+              "product": "Ferrosilicon Magnesium",
+              "analysis": "Si 44.64 %\r\nMg 3.53 %\r\nTRE 0.43 %\r\nCa 0.40 %\r\nAl 0.66 %",
+              "size": "1 1⁄4 x 1⁄4 inch",
+              "quantity": "8 Bags",
+              "qty": {
+                "raw": "8 Bags",
+                "count": 8.0,
+                "unit": "bags"
+              },
+              "lot": "2607-0151",
+              "po": "458600",
+              "so": "S-2607-0115",
+              "run": "879017",
+              "internal": "ALL0023",
+              "packaging": "Supersacks on pallet and shrink wrapped",
+              "packaging_markings": "Label to be inserted in plastic pouch. Tape the BOL to the skids in a plastic sleeve\r\nShould contain “Commodity Name”, \"Internal Number\", “Cargo Weight”, and “RAND lot number\"",
+              "truck_type": "VAN",
+              "pickup_date": "November 19th",
+              "carrier": "Bourret Transport",
+              "ship_to": "SOUCY BELGEN INC\r\n\r\n4475 boulevard Saint-Joseph\r\n\r\nDrummondville QC J2B 1T8\r\n\r\nCANADA",
+              "pickup_address": "Domeplex Inc.\r\n\r\n2045 Route Marie-Victorin, Contrecoeur\r\n\r\nQC, Canada, J0L 1C0"
+            },
+            {
+              "product": "High Carbon Ferromanganese",
+              "analysis": "Mn 75.91 %\r\nSi 0.65 %\r\nC 6.86 %\r\nP 0.189 %\r\nS 0.006 %",
+              "size": "2 x 1⁄2 inch",
+              "quantity": "1 MT",
+              "qty": {
+                "raw": "1 MT",
+                "count": 1.0,
+                "unit": "mt",
+                "weight": {
+                  "raw": "1 MT",
+                  "value": 1.0,
+                  "unit": "mt",
+                  "kg": 1000.0
+                }
+              },
+              "lot": "2609-0706",
+              "po": "455515",
+              "so": "S-2510-0180",
+              "run": "879018",
+              "internal": "ALL0025",
+              "packaging": "Supersacks on pallet and shrink wrapped",
+              "packaging_markings": "Label to be inserted in plastic pouch. Tape the BOL to the skids in a plastic sleeve\r\nShould contain “Commodity Name”, \"Internal Number\", “Cargo Weight”, and “RAND lot number\"",
+              "truck_type": "Van",
+              "pickup_date": "Nov 19th",
+              "carrier": "Bourret Transport",
+              "ship_to": "SOUCY BELGEN INC\r\n\r\n4475 boulevard Saint-Joseph\r\n\r\nDrummondville QC J2B 1T8",
+              "pickup_address": "Domeplex Inc.\r\n\r\n2045 Route Marie-Victorin, Contrecoeur\r\n\r\nQC, Canada, J0L 1C0"
+            },
+            {
+              "product": "Ferrosilicon",
+              "analysis": "Si 76.21 %\r\nAl 1.28 %\r\nC 0.11 %\r\nP 0.029 %\r\nS 0.006 %",
+              "size": "5 x 50 mm",
+              "quantity": "3 MT",
+              "qty": {
+                "raw": "3 MT",
+                "count": 3.0,
+                "unit": "mt",
+                "weight": {
+                  "raw": "3 MT",
+                  "value": 3.0,
+                  "unit": "mt",
+                  "kg": 3000.0
+                }
+              },
+              "lot": "2405-0515",
+              "po": "TBD",
+              "so": "S-2611-0378",
+              "run": "879034",
+              "internal": "ALL0008\r\n\r\n\r\n\r\nBest,\r\n\r\nBrittany Silver\r\n\r\nSenior Trading Coordinator, Rand\r\n\r\nRand Alloys<https://www.randalloys.com/>\r\n\r\n\r\n\r\n [email removed]<mailto:[email removed]>\r\n\r\n [phone removed]\r\n\r\n [phone removed]-578-7232\r\n\r\n 8470 Keele St, Concord, ON L4K 2S1\r\n\r\n\r\n\r\nPlease note: All pricing is based on live market offers and is subject to confirmation of both price and availability at the time of order.\r\n\r\nGiven ongoing developments in trade policy - including the potential introduction or modification of tariffs by the U.S. or Canadian governments - final pricing may be subject to change. We will communicate any adjustments accordingly, as we remain committed to transparency and clear communication.\r\n\r\n\r\n\r\n\r\n\r\nPlease consider the environment before printing this e-mail. This communication may contain confidential and/or privileged information intended only for the person(s) to whom it is addressed. Any unauthorized disclosure, copying, other distribution of this communication or taking any action on its contents is strictly prohibited. If you have received this message in error, please notify Combined Metal Industries Inc. immediately and delete this message without reading, copying or forwarding it to anyone.",
+              "packaging": "Supersacks on pallet and shrink wrapped",
+              "packaging_markings": "Label to be inserted in plastic pouch. Tape the BOL to the skids in a plastic sleeve\r\nShould contain “Commodity Name”, \"Internal Number\", “Cargo Weight”, and “RAND lot number\"",
+              "truck_type": "VAN",
+              "pickup_date": "Nov 19th",
+              "carrier": "Bourret Transport",
+              "ship_to": "SOUCY BELGEN INC\r\n\r\n4475 boulevard Saint-Joseph\r\n\r\nDrummondville QC J2B 1T8\r\n\r\nCANADA",
+              "pickup_address": "Domeplex Inc.\r\n\r\n2045 Route Marie-Victorin, Contrecoeur\r\n\r\nQC, Canada, J0L 1C0"
+            }
+          ],
+          "bol_required_count": 5,
+          "bol_source": "domeplex_issues",
+          "bol_instructions": "BOL must include PO Ref number; packaging markings included; BOL taped to each skid in a plastic sleeve.",
+          "bol_instructions_snippet": "… od morning, Please find releases below - To be picked up Nov 19th Bourret Transport will arrange for the pickup. P.S: Kindly ensure BOL has PO Ref number included on the paperwork. Also ensure all packaging markings are included, and BOL Is taped to each skid in a plastic sleeve. 1st Release …",
+          "subject_note": "14 skid",
+          "sources": [
+            {
+              "kind": "email_body",
+              "trader_guess": "Rand Alloys"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "91c8d78187af0ccd",
+      "kind": "ccma_release",
+      "status": "needs_look",
+      "subject": "DX2094 104 Algoma Steel Inc. SiMn Packaged - November",
+      "received_at": "2026-11-17T20:35:06+00:00",
+      "from_name": "Dave Szarafin",
+      "trader": "CCMA, LLC",
+      "customer": "Algoma Steel Inc.",
+      "ship_to": "Algoma Steel Inc. 301 Wallace Terrace\r Sault Ste Marie, Ontario Canada P6C 1K8",
+      "pickup_address": "CCMA c/o Domplex\r 2045 Route Marie-Victorin\r Contrecoeur, Quebec J0L 1C0",
+      "carrier": "Contrans",
+      "email_carrier": "Contrans",
+      "pickup_date": "11/19",
+      "delivery_date": "11/20",
+      "hours": "7am-3pm",
+      "po": "[phone removed]-00030",
+      "release_no": "DX2094 104",
+      "body_product": "HC FeMn",
+      "quantity_raw": "22 X 1MT FLAT BOTTOM super sacks on pallets (no cross straps or spouts) - 48,510 lbs.",
+      "qty_weight": {
+        "raw": "48,510.000 LBS",
+        "value": 48510.0,
+        "unit": "lbs",
+        "kg": 22[phone removed]
+      },
+      "releases": [
+        {
+          "product": "SI MN",
+          "quantity": "48,510.000 LBS",
+          "qty": {
+            "raw": "48,510.000 LBS",
+            "count": 48510.0,
+            "unit": "lbs",
+            "weight": {
+              "raw": "48,510.000 LBS",
+              "value": 48510.0,
+              "unit": "lbs",
+              "kg": 22[phone removed]
+            }
+          },
+          "lot": "832586D",
+          "po": "[phone removed]-00030",
+          "run": "DX2094 104",
+          "packaging": "22 - 1 MT S/S ON PLT",
+          "size": "10 MM - 50 MM",
+          "material_code": "100000483",
+          "pr_number": "10028731"
+        }
+      ],
+      "tickets": [],
+      "checks": [
+        {
+          "id": "product_match",
+          "title": "Product name on the email body vs the other documents",
+          "severity": "check",
+          "status": "fail",
+          "why": "The email body names a product that does not match the subject, packing sheet, certificate, or ticket.",
+          "sides": [
+            {
+              "source": "email body",
+              "snippet": "… the CCMA release number as the pick-up number Thursday 11/19. Please issue two separate bills of lading. Thank you! SHIPPING via tarped Flatbed: HC FeMn - MATERIAL ALREADY PACKAGED DX2094 104 PO # [phone removed]-00030 22 X 1MT FLAT BOTTOM super sacks on pallets (no cross straps or spouts) - 48,510 …",
+              "value": "HC FeMn"
+            },
+            {
+              "source": "subject",
+              "snippet": "DX2094 104 Algoma Steel Inc. SiMn Packaged - November",
+              "value": "SiMn"
+            },
+            {
+              "source": "packing sheet",
+              "snippet": "… UIPMENT: FLATBED SIDE UNLOADING ON ROUTE: CONTRANS PRODUCT: SI MN SIZE: 10 MM - 50 MM QTY ORDERED: 48,510.000 LBS PACKING: 22 - 1 MT S/S ON PLT LOTS: 832586D 48,510.000 LB …",
+              "value": "SI MN"
+            },
+            {
+              "source": "certificate",
+              "snippet": "… 1 MT S/S ON PLT November 17, 2026 ALGOMA STEEL INC. 301 WALLACE TERRACE SAULT STE MARIE ON P6C 1K8 SI MN Lot # 832586D Mn 65.47 Si 16.62 C 1.86 P 0.18 S …",
+              "value": "SI MN"
+            }
+          ]
+        },
+        {
+          "id": "po_match",
+          "title": "Purchase order numbers across the documents",
+          "severity": "ok",
+          "status": "pass",
+          "why": "The PO is the same on every document that has one.",
+          "sides": [
+            {
+              "source": "email body",
+              "snippet": "… Please issue two separate bills of lading. Thank you! SHIPPING via tarped Flatbed: HC FeMn - MATERIAL ALREADY PACKAGED DX2094 104 PO # [phone removed]-00030 22 X 1MT FLAT BOTTOM super sacks on pallets (no cross straps or spouts) - 48,510 lbs. Net wt. Pick Up 11/19: CCMA c/o Domplex 2045 Route Ma …",
+              "value": "[phone removed]-00030"
+            },
+            {
+              "source": "packing sheet",
+              "snippet": "… SALES CONTRACT: 111473 REQUESTED ARRIVAL DATE: 11/20/26 CUST P.O. #: [phone removed]-00030 RELEASE #: SHIP TO: ALGOMA STEEL INC. …",
+              "value": "[phone removed]-00030"
+            },
+            {
+              "source": "certificate",
+              "snippet": "… s CCMA, LLC Customer Order Number 2410 N. Forest Rd. [phone removed]-00030 SUITE 100 Quantity Getzville, NY 14068 48,510.000 LBS 1-800-833-2 …",
+              "value": "[phone removed]-00030"
+            },
+            {
+              "source": "release SI MN",
+              "snippet": "… Please issue two separate bills of lading. Thank you! SHIPPING via tarped Flatbed: HC FeMn - MATERIAL ALREADY PACKAGED DX2094 104 PO # [phone removed]-00030 22 X 1MT FLAT BOTTOM super sacks on pallets (no cross straps or spouts) - 48,510 lbs. Net wt. Pick Up 11/19: CCMA c/o Domplex 2045 Route Ma …",
+              "value": "[phone removed]-00030"
+            }
+          ]
+        },
+        {
+          "id": "carrier_match",
+          "title": "Carrier on the email and packing sheet vs the ticket",
+          "severity": "ok",
+          "status": "pass",
+          "why": "The carrier is consistent across the documents that name one.",
+          "sides": [
+            {
+              "source": "email body",
+              "snippet": "Good afternoon, Please see the attached release for Algoma. Contrans will use the CCMA release number as the pick-up number Thursday 11/19. Please issue two separate bills of lading. Thank you! SHIPPING via tarped F …",
+              "value": "Contrans"
+            },
+            {
+              "source": "packing sheet · route",
+              "snippet": "… EQUIPMENT: FLATBED SIDE UNLOADING ON ROUTE: CONTRANS PRODUCT: SI MN SIZE: 10 MM - 50 MM QTY ORDERED: 48,510.000 LBS PACKING: 22 - 1 MT S/S ON PLT LOTS: …",
+              "value": "CONTRANS"
+            }
+          ]
+        },
+        {
+          "id": "bol_count",
+          "title": "Number of bills of lading requested vs release packets in the sample",
+          "severity": "check",
+          "status": "fail",
+          "why": "A second (or further) BOL cannot be drafted from these documents. The office would wait rather than invent it.",
+          "sides": [
+            {
+              "source": "email",
+              "snippet": "Please issue two separate bills of lading.",
+              "value": "2 requested"
+            },
+            {
+              "source": "attachments in this email",
+              "snippet": "1 release packet(s) in the sample",
+              "value": "1 packet(s)"
+            }
+          ]
+        }
+      ],
+      "bol_required_count": 2,
+      "bol_source": "domeplex_issues",
+      "bol_instructions": "Please issue two separate bills of lading.",
+      "bol_instructions_snippet": "… d afternoon, Please see the attached release for Algoma. Contrans will use the CCMA release number as the pick-up number Thursday 11/19. Please issue two separate bills of lading. Thank you! SHIPPING via tarped Flatbed: HC FeMn - MATERIAL ALREADY PACKAGED DX2094 104 PO # [phone removed]-00030 22 X 1MT FLAT BOTTOM …",
+      "material_code": "100000483",
+      "pr_number": "10028731",
+      "equipment": "FLATBED SIDE UNLOADING",
+      "freight": "PREPAID",
+      "updated_at": "2026-11-20T17:00:29.487580+00:00",
+      "created_at": "2026-11-20T16:58:25.265245+00:00",
+      "documents": {
+        "email": {
+          "kind": "ccma_release",
+          "trader": "CCMA, LLC",
+          "customer": "Algoma Steel Inc.",
+          "ship_to": "Algoma Steel Inc. 301 Wallace Terrace\r Sault Ste Marie, Ontario Canada P6C 1K8",
+          "pickup_address": "CCMA c/o Domplex\r 2045 Route Marie-Victorin\r Contrecoeur, Quebec J0L 1C0",
+          "carrier": "Contrans",
+          "pickup_date": "11/19",
+          "delivery_date": "11/20",
+          "hours": "7am-3pm",
+          "body_product": "HC FeMn",
+          "po": "[phone removed]-00030",
+          "release_no": "DX2094 104",
+          "quantity_raw": "22 X 1MT FLAT BOTTOM super sacks on pallets (no cross straps or spouts) - 48,510 lbs.",
+          "bol_required_count": 2,
+          "bol_source": "domeplex_issues",
+          "bol_instructions": "Please issue two separate bills of lading.",
+          "bol_instructions_snippet": "… d afternoon, Please see the attached release for Algoma. Contrans will use the CCMA release number as the pick-up number Thursday 11/19. Please issue two separate bills of lading. Thank you! SHIPPING via tarped Flatbed: HC FeMn - MATERIAL ALREADY PACKAGED DX2094 104 PO # [phone removed]-00030 22 X 1MT FLAT BOTTOM …",
+          "body_product_snippet": "… the CCMA release number as the pick-up number Thursday 11/19. Please issue two separate bills of lading. Thank you! SHIPPING via tarped Flatbed: HC FeMn - MATERIAL ALREADY PACKAGED DX2094 104 PO # [phone removed]-00030 22 X 1MT FLAT BOTTOM super sacks on pallets (no cross straps or spouts) - 48,510 …",
+          "carrier_snippet": "Good afternoon, Please see the attached release for Algoma. Contrans will use the CCMA release number as the pick-up number Thursday 11/19. Please issue two separate bills of lading. Thank you! SHIPPING via tarped F …",
+          "po_snippet": "… Please issue two separate bills of lading. Thank you! SHIPPING via tarped Flatbed: HC FeMn - MATERIAL ALREADY PACKAGED DX2094 104 PO # [phone removed]-00030 22 X 1MT FLAT BOTTOM super sacks on pallets (no cross straps or spouts) - 48,510 lbs. Net wt. Pick Up 11/19: CCMA c/o Domplex 2045 Route Ma …",
+          "qty_weight": {
+            "raw": "48,510.000 LBS",
+            "value": 48510.0,
+            "unit": "lbs",
+            "kg": 22[phone removed]
+          }
+        },
+        "packing": {
+          "kind": "packing",
+          "filename": "PACKING_000105_DSZARAFINR.PDF",
+          "release_no": "DX2094 104 ORDER DATE",
+          "po": "[phone removed]-00030",
+          "product": "SI MN",
+          "size": "10 MM - 50 MM",
+          "quantity": "48,510.000 LBS",
+          "qty_weight": {
+            "raw": "48,510.000 LBS",
+            "value": 48510.0,
+            "unit": "lbs",
+            "kg": 22[phone removed]
+          },
+          "packing": "22 - 1 MT S/S ON PLT",
+          "lot": "832586D",
+          "carrier": "CONTRANS",
+          "equipment": "FLATBED SIDE UNLOADING",
+          "pickup_date": "11/19/26",
+          "delivery_date": "11/20/26",
+          "material_code": "100000483",
+          "pr_number": "10028731",
+          "hstc": "7202.30.0000",
+          "freight": "PREPAID"
+        },
+        "cert": {
+          "kind": "cert",
+          "filename": "CertOfAnalysis_832586D.PDF",
+          "po": "[phone removed]-00030",
+          "qty_weight": {},
+          "lot": "832586D",
+          "product": "SI MN",
+          "customer": "ALGOMA STEEL INC.",
+          "packing": "1 MT S/S ON PLT"
+        }
+      }
+    },
+    {
+      "id": "37a8881d763c45e5",
+      "kind": "imacro_order",
+      "status": "ok",
+      "subject": "IVACO BRICK ORDER 11/17/26",
+      "received_at": "2026-11-12T15:19:27+00:00",
+      "from_name": "Mary Sanelli",
+      "trader": "IMACRO Inc.",
+      "customer": "Ivaco Rolling Mills",
+      "ship_to": "Ivaco Rolling Mills",
+      "carrier": "Customer Pickup",
+      "pickup_date": "17-Nov-2026",
+      "po": "PO 11070",
+      "releases": [
+        {
+          "product": "SLLADS SU6-45",
+          "description": "SLLADS SU645-3\"",
+          "quantity": "1,100 EA",
+          "po": "PO 11070",
+          "packaging": "4 pallets (275 per pallet)",
+          "item": "6167660"
+        },
+        {
+          "product": "SLLADEL SU6.5-45",
+          "description": "SLLADEL SU 6.5-45 3\"",
+          "quantity": "825 EA",
+          "po": "PO 11070",
+          "packaging": "3 pallets (275 per pallet)",
+          "item": "6167637"
+        }
+      ],
+      "tickets": [],
+      "checks": [],
+      "bol_required_count": 0,
+      "bol_source": "customer_provided",
+      "bol_instructions": "PLEASE DO NOT STACK PALLETS",
+      "updated_at": "2026-11-20T16:58:25.283492+00:00",
+      "created_at": "2026-11-20T16:58:25.283483+00:00",
+      "documents": {
+        "email": {
+          "kind": "imacro_order",
+          "trader": "IMACRO Inc.",
+          "customer": "Ivaco Rolling Mills",
+          "bol_source": "customer_provided",
+          "bol_required_count": 0,
+          "note_snippet": "Morning Please find the bol for Tuesday's shipment. Thanks Mary Note - I'm away Monday and Tuesday next week, please contact Adrienne Finch should any issues arise."
+        },
+        "customer_bol": {
+          "kind": "customer_bol",
+          "filename": "Bill of Lading (Imacro) - [phone removed].pdf",
+          "number": "[phone removed]",
+          "date": "November 12, 2026",
+          "po": "PO 11070",
+          "ship_date": "17-Nov-2026",
+          "ship_via": "Customer Pickup",
+          "terms": "FCA CONTRECOEUR,QC",
+          "customer": "Ivaco Rolling Mills",
+          "ship_from": "IMACRO C/O DOMEPLEX INC",
+          "ship_to": "Ivaco Rolling Mills",
+          "lines": [
+            {
+              "part": "SLLADS SU6-45",
+              "description": "SLLADS SU645-3\"",
+              "item": "6167660",
+              "qty": "1,100",
+              "uom": "EA",
+              "packing": "4 pallets (275 per pallet)"
+            },
+            {
+              "part": "SLLADEL SU6.5-45",
+              "description": "SLLADEL SU 6.5-45 3\"",
+              "item": "6167637",
+              "qty": "825",
+              "uom": "EA",
+              "packing": "3 pallets (275 per pallet)"
+            }
+          ],
+          "note": "PLEASE DO NOT STACK PALLETS",
+          "bol_source": "customer_provided",
+          "bol_required_count": 0
+        }
+      }
+    },
+    {
+      "id": "80ffba5bf8dfa19a",
+      "kind": "ticket_only",
+      "status": "waiting_on_release",
+      "subject": "13-31767.PDF",
+      "received_at": "2026/11/14",
+      "trader": "Glencore Ltd",
+      "customer": "ArcelorMittal Produits Long Canada Ctr-Est",
+      "ship_to": "ArcelorMittal Produits Long Canada Ctr-Est 3900, Rte des Aciéries Contrecoeur, QC, J0L 1C0",
+      "carrier": "ROBERT TRANSPORT",
+      "pickup_date": "2026/11/14",
+      "po": "[phone removed]",
+      "release_no": "N/A",
+      "releases": [],
+      "tickets": [
+        {
+          "kind": "ticket",
+          "filename": "13-31767.PDF",
+          "number": "31767",
+          "date": "2026/11/14",
+          "commande": "[phone removed]",
+          "entry": "09 h 12",
+          "exit": "09 h 19",
+          "vendor": "Glencore Ltd",
+          "customer": "ArcelorMittal Produits Long Canada Ctr-Est",
+          "ship_to": "ArcelorMittal Produits Long Canada Ctr-Est 3900, Rte des Aciéries Contrecoeur, QC, J0L 1C0",
+          "product": "Chrome",
+          "product_no": "20000037",
+          "lot": "DMP5192201",
+          "carrier": "ROBERT TRANSPORT",
+          "release_no": "N/A",
+          "gross": {
+            "raw": "56 160 kg",
+            "value": 56160.0,
+            "unit": "kg",
+            "kg": 56160.0
+          },
+          "tare": {
+            "raw": "22 110 kg",
+            "value": 22110.0,
+            "unit": "kg",
+            "kg": 22110.0
+          },
+          "net": {
+            "raw": "34 050 kg",
+            "value": 34050.0,
+            "unit": "kg",
+            "kg": 34050.0
+          },
+          "net_mt_raw": "34,05 MT",
+          "weights_present": true
+        }
+      ],
+      "checks": [],
+      "bol_source": "domeplex_issues",
+      "updated_at": "2026-11-20T16:58:25.355197+00:00",
+      "created_at": "2026-11-20T16:58:25.355189+00:00"
+    }
+  ]
+}
